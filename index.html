@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratica - Consultoria Estratégica Potencializada por IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Estilo para usar a fonte Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Efeito de gradiente no fundo do hero */
+        .hero-gradient {
+            background: #f8f9fa; /* Fundo mais claro, similar à referência */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Cabeçalho e Navegação -->
+    <header class="bg-white text-gray-800 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <img src="Logo09.avif" alt="Stratica Logo" class="h-10">            
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#visao" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Visão</a>
+                <a href="#servicos" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Serviços</a>
+                <a href="#diferenciais" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Diferenciais</a>
+                <a href="#cases" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Casos de Sucesso</a>
+                <a href="#contato" class="bg-red-700 text-white px-4 py-2 rounded-md hover:bg-red-800 transition duration-300">Contato</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6 text-gray-800"></i>
+            </button>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#visao" class="block py-2 hover:text-red-700">Visão</a>
+            <a href="#servicos" class="block py-2 hover:text-red-700">Serviços</a>
+            <a href="#diferenciais" class="block py-2 hover:text-red-700">Diferenciais</a>
+            <a href="#cases" class="block py-2 hover:text-red-700">Casos de Sucesso</a>
+            <a href="#contato" class="block py-2 hover:text-red-700">Contato</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Hero -->
+        <section id="home" class="relative text-gray-800 hero-gradient">
+             <div class="container mx-auto px-6 py-32 flex flex-col md:flex-row items-center text-center md:text-left">
+                <div class="md:w-1/2">
+                    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Estratégia + Tática</h1>
+                    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Powered by AI</h1>
+
+                    <p class="text-lg md:text-xl text-gray-700 max-w-xl mx-auto md:mx-0 mb-8">Transforme estratégias, pessoas e processos de gestão em resultados. Combinamos os melhores consultores com o poder da Inteligência Artificial para entregar os melhores insights com custos 90% menores.</p>
+                    <a href="#contato" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">Agende uma Conversa</a>
+                </div>
+                 <div class="md:w-1/2 mt-10 md:mt-0">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop" alt="Executivo sorrindo" class="rounded-lg shadow-2xl mx-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção A Visão -->
+        <section id="visao" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">Nossa Visão: Inteligência Aumentada</h2>
+                <div class="w-24 h-1 bg-red-700 mx-auto mb-8"></div>
+                <p class="max-w-4xl mx-auto text-lg text-gray-600">
+                    A Stratica se posiciona como uma consultoria estratégica "Powered by AI". Em um ambiente de negócios volátil, a integração da IA ao processo estratégico não é apenas um diferencial, é um imperativo. Nós unimos a inteligência artificial e a humana — <span class="font-semibold text-red-700">Augmented Intelligence</span> — para ajudar nossos clientes a não apenas reagir, mas a se antecipar às mudanças do mercado, com recomendações mais embasadas, dinâmicas e antecipatórias.
+                </p>
+            </div>
+        </section>
+
+        <!-- Seção de Serviços -->
+        <section id="servicos" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Nosso Portfólio de Serviços</h2>
+                    <div class="w-24 h-1 bg-red-700 mx-auto mt-4"></div>
+                    <p class="mt-4 text-lg text-gray-600">Oferecemos um portfólio completo, desde a elaboração do plano até sua implementação.</p>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">Serviços Estratégicos</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="bar-chart-3" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Planejamento Estratégico</h4>
+                        <p class="text-gray-600">Facilitação de todo o ciclo de planejamento, da análise situacional à definição de visão, missão e objetivos.</p>
+                    </div>
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="target" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Execução da Estratégia</h4>
+                        <p class="text-gray-600">Suporte hands-on na implementação, garantindo que os projetos estratégicos avancem conforme o planejado.</p>
+                    </div>
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="search" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Inteligência de Mercado</h4>
+                        <p class="text-gray-600">Pesquisas de mercado, análise de tendências e mapeamento de concorrentes para alimentar decisões estratégicas.</p>
+                    </div>
+                     <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="trending-up" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Aceleração de Crescimento</h4>
+                        <p class="text-gray-600">Consultoria para empresas em transformação, explorando novas avenidas de receita e modelos de negócio.</p>
+                    </div>
+                     <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="globe" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Expansão Internacional (LatAm)</h4>
+                        <p class="text-gray-600">Expertise regional para apoiar a entrada e o crescimento em mercados da América Latina.</p>
+                    </div>
+                     <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="building-2" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Governança da Estratégia</h4>
+                        <p class="text-gray-600">Apoio no desdobramento da estratégia e na criação de uma cultura de execução e accountability.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">Serviços Potencializados por IA</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                     <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="brain-circuit" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">AI-Driven Business Design</h4>
+                        <p class="text-gray-300">Uso de machine learning e IA Generativa para analisar dados de mercado, gerando insumos para o planejamento.</p>
+                    </div>
+                     <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="bot" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Planos Estratégicos com Copilotos de IA</h4>
+                        <p class="text-gray-300">Agentes de IA treinados que agilizam e enriquecem a elaboração de planos estratégicos em tempo real.</p>
+                    </div>
+                     <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="radar" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Inteligência Competitiva Automatizada</h4>
+                        <p class="text-gray-300">Agentes de IA que monitoram continuamente o ambiente competitivo, filtrando ruídos e destacando insights.</p>
+                    </div>
+                    <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="line-chart" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">IA para Vendas e Previsão de Demanda</h4>
+                        <p class="text-gray-300">Algoritmos que geram previsões de demanda acuradas e aceleram vendas com lead scoring inteligente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Diferenciais -->
+        <section id="diferenciais" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Nossos Diferenciais Competitivos</h2>
+                    <div class="w-24 h-1 bg-red-700 mx-auto mt-4"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="gem" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Soluções Sob Medida</h4>
+                        <p class="text-gray-600">Não usamos modelos genéricos. Cada solução é desenhada para a realidade única da sua organização.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="rocket" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Agilidade e Velocidade</h4>
+                        <p class="text-gray-600">Estrutura enxuta e sem burocracia para responder rapidamente às mudanças do mercado.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="users" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Atendimento Sênior</h4>
+                        <p class="text-gray-600">Acesso direto a consultores experientes e sócios, que "colocam a mão na massa" junto com seu time.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="atom" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">IA + Expertise Humana</h4>
+                        <p class="text-gray-600">A IA aumenta, não substitui. Unimos a capacidade da IA com o julgamento e a criatividade humana.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="award" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Foco em Resultados</h4>
+                        <p class="text-gray-600">Nosso sucesso é medido pelos resultados concretos que geramos para o seu negócio.</p>
+                    </div>
+                     <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="book-open" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Transferência de Conhecimento</h4>
+                        <p class="text-gray-600">Capacitamos seu time para que se tornem autossuficientes e sustentem os resultados a longo prazo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Cases de Sucesso -->
+        <section id="cases" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Cases de Sucesso</h2>
+                    <div class="w-24 h-1 bg-red-700 mx-auto mt-4"></div>
+                    <p class="mt-4 text-lg text-gray-600">Resultados reais que geramos para nossos clientes.</p>
+                </div>
+                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Varejo de Bens de Consumo</h4>
+                            <p class="text-red-700 font-semibold mb-3">Aumento de 12% na receita</p>
+                            <p class="text-gray-600">Melhoramos a acurácia da previsão de demanda em 30% com IA, reduzindo rupturas de estoque e otimizando a estratégia comercial. O resultado foi um aumento de 12% na receita e redução de 20% nos custos logísticos.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Setor Financeiro</h4>
+                            <p class="text-red-700 font-semibold mb-3">+25% em ativos sob gestão</p>
+                            <p class="text-gray-600">Estruturamos o plano de expansão para a América Latina e implementamos um Escritório de Gestão Estratégica, resultando na entrada bem-sucedida em 2 países, com 150 mil novos clientes e +25% nos ativos sob gestão na região.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Tecnologia (SaaS B2B)</h4>
+                            <p class="text-red-700 font-semibold mb-3">Aumento de 15% na taxa de conversão</p>
+                            <p class="text-gray-600">Com inteligência competitiva automatizada, antecipamos tendências de mercado e, com IA em vendas, aumentamos a taxa de conversão em 15% e reduzimos o churn trimestral de 8% para 5%.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Contato -->
+        <section id="contato" class="py-20 bg-gray-800 text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Vamos Conversar?</h2>
+                    <div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div>
+                    <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Oferecemos uma sessão de diagnóstico estratégico gratuita. Preencha o formulário abaixo ou entre em contato diretamente.</p>
+                </div>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+                    <div>
+                        <form action="#" method="POST" id="contact-form">
+                            <div class="mb-4">
+                                <label for="name" class="block mb-2">Nome</label>
+                                <input type="text" id="name" name="name" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block mb-2">Mensagem</label>
+                                <textarea id="message" name="message" rows="5" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">Enviar Mensagem</button>
+                        </form>
+                        <p id="form-success-message" class="hidden mt-4 text-center text-green-400">Mensagem enviada com sucesso! Entraremos em contato em breve.</p>
+                    </div>
+                    <div class="text-lg">
+                        <h3 class="text-2xl font-bold mb-4">Informações de Contato</h3>
+                        <p class="flex items-center mb-4">
+                            <i data-lucide="mail" class="w-6 h-6 mr-3 text-red-500"></i>
+                            <a href="mailto:stratica@stratica.com.br" class="hover:text-red-500">stratica@stratica.com.br</a>
+                        </p>
+                        <p class="flex items-center mb-4">
+                            <i data-lucide="globe" class="w-6 h-6 mr-3 text-red-500"></i>
+                            <a href="http://www.stratica.com.br" target="_blank" class="hover:text-red-500">www.stratica.com.br</a>
+                        </p>
+                        <p class="mt-8 text-gray-400">
+                            Estamos prontos para ajudar sua empresa a escrever o próximo capítulo de crescimento e sucesso estratégico.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Stratica. Todos os direitos reservados.</p>
+            <p class="text-sm text-gray-400 mt-2">Consultoria Estratégica Powered by AI</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para o menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Script para fechar o menu mobile ao clicar em um link
+        const mobileLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+
+        // Script para o formulário de contato
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('form-success-message');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Aqui você pode adicionar a lógica de envio do formulário para um backend
+            // Por enquanto, vamos apenas mostrar a mensagem de sucesso
+            contactForm.reset();
+            successMessage.classList.remove('hidden');
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000); // Esconde a mensagem após 5 segundos
+        });
+
+        // Inicializa os ícones do Lucide
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>

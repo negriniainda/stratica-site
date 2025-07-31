@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
+  <g>
+    <!-- Círculo vermelho com recorte -->
+    <path d="M25,5 A20,20 0 1,0 25,45 A20,20 0 1,0 25,5 Z M25,15 L35,35 L15,35 Z" fill="#B22222"/>
+    <!-- Texto Stratica -->
+    <text x="55" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#333333">Stratica</text>
+  </g>
+</svg>
