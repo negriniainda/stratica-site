@@ -32,9 +32,10 @@
         }
         
         .logos-slide {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            width: fit-content;
             animation: scroll 30s linear infinite;
-            padding-left: 20px;
         }
         
         .logos-slide img {
@@ -45,6 +46,7 @@
             opacity: 0.9;
             transition: opacity 0.3s, transform 0.3s;
             vertical-align: middle;
+            flex-shrink: 0;
         }
         
         .logos-slide img:hover {
@@ -57,7 +59,7 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-50%);
+                transform: translateX(calc(-112px * 16));
             }
         }
         
@@ -66,6 +68,14 @@
             .logos-slide img {
                 height: 60px;
                 margin: 0 15px;
+            }
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-90px * 16));
+                }
             }
         }
         
@@ -76,6 +86,17 @@
             }
             .logos-carousel {
                 padding: 15px 0;
+            }
+            .logos-slide {
+                animation: scroll 20s linear infinite;
+            }
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-68px * 16));
+                }
             }
         }
     </style>
@@ -118,7 +139,7 @@
                     <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Powered by AI</h1>
 
                     <p class="text-lg md:text-xl text-gray-700 max-w-xl mx-auto md:mx-0 mb-8">Transforme estratégias, pessoas e processos de gestão em resultados. Combinamos os melhores consultores com o poder da Inteligência Artificial para entregar os melhores insights com custos 90% menores.</p>
-                    <a href="#contato" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">Agende uma Conversa</a>
+                    <a href="#contato" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">Agende um Assessment Gratuito</a>
                 </div>
                  <div class="md:w-1/2 mt-10 md:mt-0">
                     <img src="Office.avif" alt="Executivo sorrindo" class="rounded-lg shadow-2xl mx-auto">
@@ -131,7 +152,7 @@
             <div class="container mx-auto px-6">
                 <h3 class="text-xl font-semibold text-center text-gray-700 mb-8">Quem Confia na Stratica</h3>
                 <div class="logos-carousel relative overflow-hidden">
-                    <div class="logos-slide flex items-center space-x-8 animate-scroll" id="logos-container">
+                    <div class="logos-slide flex items-center space-x-8" id="logos-container">
                         <!-- Logos serão carregados automaticamente via JavaScript -->
                     </div>
                 </div>
@@ -322,7 +343,7 @@
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold">Vamos Conversar?</h2>
                     <div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div>
-                    <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Oferecemos uma sessão de diagnóstico estratégico gratuita. Preencha o formulário abaixo ou entre em contato diretamente.</p>
+                    <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Chame a Stratica para um assessment estratégico gratuito. Você vai se surpreender. Preencha o formulário abaixo ou entre em contato diretamente.</p>
                 </div>
                 <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-start">
                     <div>
@@ -524,19 +545,6 @@
                 logosCarousel.addEventListener('mouseleave', () => {
                     logosSlide.style.animationPlayState = 'running';
                 });
-                
-                // Ajusta a velocidade da animação em dispositivos móveis
-                function updateAnimationSpeed() {
-                    if (window.innerWidth <= 480) {
-                        logosSlide.style.animationDuration = '20s';
-                    } else {
-                        logosSlide.style.animationDuration = '30s';
-                    }
-                }
-                
-                // Atualiza a velocidade quando a janela é redimensionada
-                window.addEventListener('resize', updateAnimationSpeed);
-                updateAnimationSpeed(); // Inicializa com o tamanho atual
             }
         }
     </script>
