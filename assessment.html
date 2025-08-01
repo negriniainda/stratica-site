@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário de Maturidade em Gestão - Stratica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: #f8f9fa;
+        }
+        /* Estilo para radio buttons customizados */
+        .radio-custom {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            outline: none;
+            transition: 0.2s all linear;
+            margin-right: 0.5rem;
+            position: relative;
+            top: 4px;
+        }
+        .radio-custom:checked {
+            border-color: #b91c1c; /* red-700 */
+        }
+        .radio-custom:checked::before {
+            content: '';
+            display: block;
+            width: 0.75rem;
+            height: 0.75rem;
+            margin: 2px;
+            background-color: #b91c1c; /* red-700 */
+            border-radius: 50%;
+        }
+        .question-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .result-bar-fill {
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Cabeçalho e Navegação -->
+    <header class="bg-white text-gray-800 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="Logo09.avif" alt="Stratica Logo" class="h-10">
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                 <a href="index.html" class="bg-red-700 text-white px-4 py-2 rounded-md hover:bg-red-800 transition duration-300">Voltar ao Início</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6 text-gray-800"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Hero -->
+        <section id="home" class="relative text-gray-800 hero-gradient">
+             <div class="container mx-auto px-6 py-20 md:py-32 text-center">
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Avaliação de Maturidade em Gestão</h1>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Responda ao questionário abaixo para medir o nível de maturidade da gestão de sua empresa em 6 dimensões críticas e receba um diagnóstico instantâneo e acionável.</p>
+            </div>
+        </section>
+
+        <!-- Seção do Questionário -->
+        <section id="questionario" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <form id="maturity-quiz-form">
+                    <!-- As perguntas serão injetadas aqui pelo JavaScript -->
+                    <div id="quiz-container" class="space-y-12"></div>
+
+                    <!-- Seção de Coleta de Dados do Usuário -->
+                    <div id="user-info" class="mt-16 pt-12 border-t border-gray-200">
+                         <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">Estamos quase lá!</h2>
+                         <p class="text-center text-gray-600 mb-8">Preencha seus dados para ver seu resultado e receber uma análise detalhada.</p>
+                         <div class="max-w-2xl mx-auto bg-gray-50 p-8 rounded-lg shadow-md">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                                    <input type="text" id="name" name="name" class="w-full p-3 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Corporativo</label>
+                                    <input type="email" id="email" name="email" class="w-full p-3 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                                </div>
+                                <div>
+                                    <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
+                                    <input type="text" id="company" name="company" class="w-full p-3 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                                </div>
+                                 <div>
+                                    <label for="position" class="block text-sm font-medium text-gray-700 mb-1">Cargo</label>
+                                    <input type="text" id="position" name="position" class="w-full p-3 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                                </div>
+                            </div>
+                             <div class="mt-8 text-center">
+                                <button type="submit" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                                    Calcular minha Maturidade
+                                </button>
+                            </div>
+                         </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Seção de Resultado (inicialmente oculta) -->
+        <section id="resultado" class="hidden py-20 bg-gray-800 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Seu Diagnóstico de Maturidade</h2>
+                <div class="max-w-3xl mx-auto bg-white text-gray-800 rounded-lg shadow-2xl p-8 md:p-12 mt-8">
+                    <p class="text-lg mb-2">Sua pontuação de maturidade é:</p>
+                    <p id="percentage-result" class="text-6xl font-extrabold text-red-700 mb-4">0%</p>
+                    
+                    <div class="w-full bg-gray-200 rounded-full h-6 mb-4 overflow-hidden">
+                        <div id="result-bar" class="bg-red-700 h-6 rounded-full result-bar-fill" style="width: 0%"></div>
+                    </div>
+
+                    <h3 id="level-title" class="text-3xl font-bold mt-8 mb-3">Nível</h3>
+                    <p id="level-description" class="text-lg text-gray-600">Descrição do nível de maturidade.</p>
+
+                    <div class="mt-10 text-center">
+                         <p class="text-gray-700">Um relatório detalhado com recomendações foi enviado para o seu e-mail.</p>
+                         <button onclick="window.location.reload()" class="mt-6 bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-full text-md transition duration-300">
+                            Refazer Questionário
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Stratica. Todos os direitos reservados.</p>
+            <p class="text-sm text-gray-400 mt-2">Consultoria Estratégica Powered by AI</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Definição do questionário em formato JSON
+            const quizData = [
+                {
+                    dimension: "Liderança",
+                    icon: "users",
+                    questions: [
+                        {
+                            id: "q1",
+                            text: "A alta liderança da empresa define uma visão, missão e valores claros e os comunica efetivamente a todos os colaboradores?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - não há definição clara ou comunicação estruturada." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - a comunicação é esporádica." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - muitos colaboradores não conhecem." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a maioria dos líderes comunica bem." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a visão guia a todos." }
+                            ]
+                        },
+                        {
+                            id: "q2",
+                            text: "Os líderes dão o exemplo e praticam os valores da empresa no dia a dia, inspirando e engajando as equipes?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - os comportamentos da liderança não refletem valores." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - apenas alguns líderes o fazem." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - há inconsistência entre áreas." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - os líderes em geral tentam ser exemplos." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - todos os líderes atuam como modelos." }
+                            ]
+                        },
+                        {
+                            id: "q3",
+                            text: "A liderança demonstra comprometimento com a melhoria contínua e apoia ativamente iniciativas de inovação e mudança?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - a alta direção não incentiva melhorias ou inovações." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - o apoio é pontual, sem política clara." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - nem todos os líderes ou áreas estão engajados." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a maioria dos líderes valoriza e incentiva." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a liderança está engajada em promover melhorias." }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    dimension: "Estratégia",
+                    icon: "target",
+                    questions: [
+                        {
+                            id: "q4",
+                            text: "A empresa possui um planejamento estratégico formal, com objetivos de curto, médio e longo prazo definidos?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - não há planejamento estratégico formal." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - planejamento básico, pouco detalhado." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - plano incompleto ou desatualizado." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - plano estruturado, mas com lacunas." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - plano formal e integrado." }
+                            ]
+                        },
+                        {
+                            id: "q5",
+                            text: "A estratégia da empresa é revisada periodicamente e adaptada conforme mudanças do ambiente de negócios?",
+                             options: [
+                                { value: 1, text: "Não fazemos isso - o planejamento, se existe, permanece estático." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - revisões ocorrem apenas de forma reativa." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - análises e ajustes ocasionais, sem regularidade." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - há um ciclo de revisão adotado amplamente." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - revisões regulares e alta adaptabilidade." }
+                            ]
+                        },
+                        {
+                            id: "q6",
+                            text: "Os objetivos estratégicos são desdobrados para os níveis tático e operacional e comunicados claramente?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - não há desdobramento; colaboradores desconhecem as metas." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - comunicação apenas a gerentes ou algumas equipes." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - processo inicial de desdobramento, mas com falhas." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a maioria das áreas recebe metas alinhadas." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - objetivos claramente desdobrados para todos." }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    dimension: "Processos",
+                    icon: "settings-2",
+                     questions: [
+                        {
+                            id: "q7",
+                            text: "Os principais processos do negócio estão mapeados e documentados, com padrões definidos para garantir consistência?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - os processos não são formalizados." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - apenas alguns processos isolados foram mapeados." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - documentação para alguns processos, mas não se segue rigorosamente." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a grande parte dos processos críticos está mapeada." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - todos os processos-chave estão mapeados e padronizados." }
+                            ]
+                        },
+                        {
+                            id: "q8",
+                            text: "Existem indicadores de desempenho (KPIs) e metas estabelecidas para monitorar os processos ativamente?",
+                             options: [
+                                { value: 1, text: "Não fazemos isso - não medimos formalmente o desempenho dos processos." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - alguns indicadores básicos existem, sem metas." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - acompanhamento não é sistemático." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a maioria dos processos importantes tem KPIs com metas." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - todos os processos críticos têm indicadores e metas." }
+                            ]
+                        },
+                        {
+                            id: "q9",
+                            text: "A empresa utiliza práticas de melhoria contínua (PDCA, etc.) para otimizar seus processos de forma regular?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - não há nenhuma iniciativa estruturada de melhoria." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - realizamos melhorias pontuais, sem metodologia." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - aplicação esporádica ou não padronizada." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a cultura de melhoria contínua está presente." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a melhoria contínua está enraizada na cultura." }
+                            ]
+                        }
+                    ]
+                },
+                 {
+                    dimension: "Pessoas",
+                    icon: "user-check",
+                     questions: [
+                        {
+                            id: "q10",
+                            text: "A empresa investe no desenvolvimento dos colaboradores (treinamentos, capacitações) de forma planejada?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - não há investimentos significativos em treinamento." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - treinamentos básicos ou reativos." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - programas existem, mas sem cobrir todas as áreas." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - há um plano de desenvolvimento estruturado para boa parte da equipe." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - programa abrangente de desenvolvimento." }
+                            ]
+                        },
+                        {
+                            id: "q11",
+                            text: "Existem processos estruturados de gestão de desempenho e feedback para os colaboradores?",
+                             options: [
+                                { value: 1, text: "Não fazemos isso - não há avaliação formal de desempenho nem feedback regular." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - processo informal de avaliação." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - avaliações periódicas, mas não consistentes." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - sistema de gestão de desempenho formal aplicado na maior parte." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - processo robusto de avaliação cobrindo todos." }
+                            ]
+                        },
+                        {
+                            id: "q12",
+                            text: "A empresa promove um ambiente de trabalho positivo, com ações que estimulam o engajamento e a motivação?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - não há iniciativas deliberadas para melhorar o clima." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - realiza-se alguma ação pontual." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - algumas práticas de engajamento, mas não regulares." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - existem programas de engajamento relativamente abrangentes." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a companhia valoriza as pessoas e isso se reflete no clima." }
+                            ]
+                        }
+                    ]
+                },
+                 {
+                    dimension: "Clientes",
+                    icon: "heart",
+                     questions: [
+                        {
+                            id: "q13",
+                            text: "A empresa coleta feedback de clientes regularmente (pesquisas, NPS) e analisa essas informações?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - não coletamos feedback de clientes de forma estruturada." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - alguma forma de ouvir o cliente, mas muito básica." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - realizamos pesquisas, mas não é abrangente." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - possuímos um programa de satisfação com pesquisas periódicas." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - constantemente coletamos e analisamos feedback." }
+                            ]
+                        },
+                        {
+                            id: "q14",
+                            text: "Os processos, produtos e serviços são desenvolvidos com foco nas necessidades do cliente e entrega de valor?",
+                             options: [
+                                { value: 1, text: "Não fazemos isso - produtos/serviços são definidos internamente sem considerar o cliente." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - ocasionalmente ajustamos algo após reclamações." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - algumas equipes consideram o cliente, mas não é regra." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a maioria das áreas leva em conta o cliente." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a empresa é centrada no cliente." }
+                            ]
+                        },
+                        {
+                            id: "q15",
+                            text: "A organização acompanha indicadores de satisfação e fidelidade e implementa ações para melhorar a experiência?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - não monitoramos indicadores formais de satisfação ou fidelização." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - acompanhamos um ou outro indicador muito básico." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - alguns indicadores são medidos, mas nem todos setores se envolvem." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - temos um conjunto de indicadores acompanhados regularmente." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a gestão do relacionamento com o cliente é prioridade." }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    dimension: "Resultados",
+                    icon: "bar-chart-3",
+                     questions: [
+                        {
+                            id: "q16",
+                            text: "A empresa acompanha regularmente os indicadores-chave de desempenho (financeiros e não financeiros)?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - não há um conjunto definido de indicadores globais." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - acompanhamos alguns indicadores básicos de forma esporádica." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - o monitoramento não é consistente." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - há um sistema estruturado de indicadores acompanhados." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a empresa monitora rigorosamente todos os indicadores-chave." }
+                            ]
+                        },
+                        {
+                            id: "q17",
+                            text: "Os resultados atingidos são comparados com as metas estabelecidas e benchmarks de mercado?",
+                             options: [
+                                { value: 1, text: "Não fazemos isso - não estabelecemos metas formais ou comparamos resultados." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - definimos metas básicas, análise limitada." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - há metas, mas a comparação não é sistemática." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - estabelecemos metas claras e comparamos na maioria das vezes." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - todos os resultados são avaliados contra metas e referências." }
+                            ]
+                        },
+                        {
+                            id: "q18",
+                            text: "A organização apresenta melhoria consistente nos resultados e utiliza essas análises para tomada de decisão?",
+                            options: [
+                                { value: 1, text: "Não fazemos isso - os resultados são estagnados ou erráticos." },
+                                { value: 2, text: "Fazemos raramente ou de forma inicial - pouca preocupação em analisar tendências." },
+                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - melhorias em alguns indicadores, mas outros não." },
+                                { value: 4, text: "Fazemos de forma ampla, porém não plena - existe uma trajetória positiva na maioria dos indicadores." },
+                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a melhoria contínua reflete-se nos resultados." }
+                            ]
+                        }
+                    ]
+                }
+            ];
+
+            const quizContainer = document.getElementById('quiz-container');
+            const form = document.getElementById('maturity-quiz-form');
+            const resultadoSection = document.getElementById('resultado');
+            let totalQuestions = 0;
+
+            // Função para gerar o HTML do questionário
+            function renderQuiz() {
+                quizData.forEach(dimension => {
+                    totalQuestions += dimension.questions.length;
+
+                    let dimensionHtml = `
+                        <div class="dimension-group">
+                            <div class="flex items-center mb-6">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-full bg-red-100 text-red-700 mr-4">
+                                    <i data-lucide="${dimension.icon}" class="w-6 h-6"></i>
+                                </div>
+                                <h2 class="text-3xl font-bold text-gray-800">${dimension.dimension}</h2>
+                            </div>
+                            <div class="space-y-8">
+                    `;
+
+                    dimension.questions.forEach((question, index) => {
+                        dimensionHtml += `
+                            <div class="bg-gray-50 p-6 rounded-lg shadow-sm question-card">
+                                <p class="font-semibold text-lg mb-4">${question.text}</p>
+                                <div class="space-y-3">
+                        `;
+                        question.options.forEach(option => {
+                            dimensionHtml += `
+                                <label class="flex items-start text-gray-700 cursor-pointer">
+                                    <input type="radio" name="${question.id}" value="${option.value}" class="radio-custom" required>
+                                    <span>${option.text}</span>
+                                </label>
+                            `;
+                        });
+                        dimensionHtml += `</div></div>`;
+                    });
+
+                    dimensionHtml += `</div></div>`;
+                    quizContainer.innerHTML += dimensionHtml;
+                });
+                lucide.createIcons(); // Renderiza os ícones
+            }
+
+            // Função para calcular e exibir o resultado
+            function calculateAndShowResult(event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+                let totalScore = 0;
+                let allQuestionsAnswered = true;
+                const answers = {};
+
+                quizData.forEach(dim => {
+                    dim.questions.forEach(q => {
+                        const answer = formData.get(q.id);
+                        if (answer) {
+                            const score = parseInt(answer);
+                            totalScore += score;
+                            answers[q.id] = {
+                                question: q.text,
+                                answer_text: q.options.find(opt => opt.value === score).text,
+                                score: score
+                            };
+                        } else {
+                            allQuestionsAnswered = false;
+                        }
+                    });
+                });
+
+                if (!allQuestionsAnswered) {
+                    alert("Por favor, responda todas as perguntas antes de continuar.");
+                    return;
+                }
+
+                const maxScore = totalQuestions * 5;
+                const percentage = (totalScore / maxScore) * 100;
+                
+                displayResult(percentage);
+                sendData({
+                    userInfo: {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        company: formData.get('company'),
+                        position: formData.get('position')
+                    },
+                    result: getResultDetails(percentage),
+                    answers: answers
+                });
+
+                resultadoSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Função para exibir o resultado no DOM
+            function displayResult(percentage) {
+                const percentageResultEl = document.getElementById('percentage-result');
+                const resultBarEl = document.getElementById('result-bar');
+                const levelTitleEl = document.getElementById('level-title');
+                const levelDescriptionEl = document.getElementById('level-description');
+                
+                const { level, title, description } = getResultDetails(percentage);
+
+                percentageResultEl.textContent = `${Math.round(percentage)}%`;
+                levelTitleEl.textContent = `Nível ${level} - ${title}`;
+                levelDescriptionEl.textContent = description;
+
+                // Animação da barra de progresso
+                setTimeout(() => {
+                     resultBarEl.style.width = `${percentage}%`;
+                }, 100);
+
+                resultadoSection.classList.remove('hidden');
+            }
+
+            // Função para obter os detalhes do nível de maturidade
+            function getResultDetails(percentage) {
+                if (percentage <= 20) {
+                    return {
+                        level: 1,
+                        title: "Inicial",
+                        description: "Maturidade muito baixa. Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
+                    };
+                } else if (percentage <= 40) {
+                    return {
+                        level: 2,
+                        title: "Emergente",
+                        description: "Maturidade baixa. Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
+                    };
+                } else if (percentage <= 60) {
+                    return {
+                        level: 3,
+                        title: "Estruturado",
+                        description: "Maturidade intermediária. Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
+                    };
+                } else if (percentage <= 80) {
+                    return {
+                        level: 4,
+                        title: "Avançado",
+                        description: "Maturidade alta. Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
+                    };
+                } else {
+                    return {
+                        level: 5,
+                        title: "Excelência",
+                        description: "Maturidade plena. Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
+                    };
+                }
+            }
+
+            // Função para enviar os dados para o endpoint
+            function sendData(data) {
+                const endpoint = 'https://webhook.site/d2a8a18a-74e9-4678-9588-a40e6918843c'; // Endpoint de teste. Mude para o seu.
+                const emailEndpoint = 'mailto:contato@ainda.app'; // Endpoint de email
+
+                console.log("--- DADOS PARA ENVIO ---");
+                console.log(JSON.stringify(data, null, 2));
+
+                // Simulação de envio para um backend.
+                // Em um projeto real, o backend receberia este POST e enviaria o e-mail.
+                // Não é seguro/possível enviar e-mail com anexo JSON diretamente do frontend.
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                    mode: 'no-cors' // Use 'no-cors' para webhooks de teste como webhook.site
+                })
+                .then(() => console.log("Dados enviados para o endpoint de teste com sucesso."))
+                .catch(error => console.error("Erro ao enviar dados para o endpoint de teste:", error));
+                
+                // Tentativa de abrir cliente de e-mail (funcionalidade limitada)
+                const subject = `Resultado do Questionário de Maturidade - ${data.userInfo.company}`;
+                const body = `Olá, \n\nSeguem os resultados do questionário de maturidade preenchido por ${data.userInfo.name} (${data.userInfo.email}) da empresa ${data.userInfo.company}.\n\n--- DADOS EM JSON ---\n\n${JSON.stringify(data, null, 2)}`;
+                // A linha abaixo pode não funcionar em todos os navegadores ou pode ser bloqueada.
+                // window.location.href = `${emailEndpoint}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                console.log("Para enviar o e-mail, um backend seria necessário para processar o POST e disparar o envio a partir do servidor.");
+            }
+
+            // Inicialização
+            renderQuiz();
+            form.addEventListener('submit', calculateAndShowResult);
+        });
+    </script>
+
+</body>
+</html>
