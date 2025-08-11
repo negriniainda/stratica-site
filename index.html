@@ -227,13 +227,13 @@
                      <!-- Card de Serviço IA -->
                     <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
                         <i data-lucide="brain-circuit" class="w-10 h-10 text-red-500 mb-4"></i>
-                        <h4 class="text-xl font-bold mb-2">AI-Driven Business Design</h4>
+                        <h4 class="text-xl font-bold mb-2">AI-Driven Business Research</h4>
                         <p class="text-gray-300">Uso de machine learning e IA Generativa para analisar dados de mercado, gerando insumos para o planejamento.</p>
                     </div>
                      <!-- Card de Serviço IA -->
                     <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
                         <i data-lucide="bot" class="w-10 h-10 text-red-500 mb-4"></i>
-                        <h4 class="text-xl font-bold mb-2">Planos Estratégicos com Copilotos de IA</h4>
+                        <h4 class="text-xl font-bold mb-2">Planos Estratégicos com Agentes de IA</h4>
                         <p class="text-gray-300">Agentes de IA treinados que agilizam e enriquecem a elaboração de planos estratégicos em tempo real.</p>
                     </div>
                      <!-- Card de Serviço IA -->
@@ -413,15 +413,57 @@
         // Script para o formulário de contato
         const contactForm = document.getElementById('contact-form');
         const successMessage = document.getElementById('form-success-message');
-        contactForm.addEventListener('submit', (e) => {
+        
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // Aqui você pode adicionar a lógica de envio do formulário para um backend
-            // Por enquanto, vamos apenas mostrar a mensagem de sucesso
-            contactForm.reset();
-            successMessage.classList.remove('hidden');
-            setTimeout(() => {
-                successMessage.classList.add('hidden');
-            }, 5000); // Esconde a mensagem após 5 segundos
+            
+            // Obter dados do formulário
+            const formData = new FormData(contactForm);
+            const contactData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message')
+            };
+            
+            // Desabilitar botão de envio durante o processamento
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+            
+            try {
+                // Enviar dados para a Edge Function do Supabase
+                const response = await fetch('https://vhlhpmceibygaqajpoir.supabase.co/functions/v1/contact-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZobGhwbWNlaWJ5Z2FxYWpwb2lyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2MDcwNDIsImV4cCI6MjA3MDE4MzA0Mn0.9P1q4h_El7h1D7BgQAZ7J762JbAryzJRmOoL3c2Q3tE'
+                    },
+                    body: JSON.stringify(contactData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Sucesso - mostrar mensagem e limpar formulário
+                    contactForm.reset();
+                    successMessage.textContent = result.message || 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
+                    successMessage.classList.remove('hidden');
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+                } else {
+                    // Erro - mostrar mensagem de erro
+                    throw new Error(result.error || 'Erro ao enviar mensagem');
+                }
+            } catch (error) {
+                console.error('Erro ao enviar formulário:', error);
+                alert('Erro ao enviar mensagem: ' + error.message + '. Tente novamente ou entre em contato diretamente.');
+            } finally {
+                // Reabilitar botão de envio
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
         });
 
         // Inicializa os ícones do Lucide
