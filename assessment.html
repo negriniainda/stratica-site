@@ -154,6 +154,113 @@
     </footer>
 
     <script>
+        // Funções globais para os botões (movidas para fora do DOMContentLoaded)
+        
+        // Função para contatar a Stratica diretamente
+        function contactStratica() {
+            const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
+            const subject = `Solicitação de Análise - Assessment Nível ${assessmentData.result?.level || 'N/A'}`;
+            const body = `Olá equipe Stratica,
+
+Acabei de completar o Assessment de Maturidade Estratégica no site e gostaria de agendar uma conversa para discutir os resultados.
+
+DADOS DO ASSESSMENT:
+Empresa: ${assessmentData.userInfo?.company || 'N/A'}
+Nome: ${assessmentData.userInfo?.name || 'N/A'}
+Email: ${assessmentData.userInfo?.email || 'N/A'}
+Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
+
+RESULTADO:
+Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
+Pontuação: ${Math.round(assessmentData.percentage || 0)}%
+
+Gostaria de entender melhor como a Stratica pode ajudar nossa empresa a evoluir para o próximo nível de maturidade estratégica.
+
+Aguardo contato.
+
+Atenciosamente,
+${assessmentData.userInfo?.name || 'N/A'}`;
+
+            const mailtoLink = `mailto:stratica@stratica.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(mailtoLink);
+        }
+
+        // Função para baixar relatório
+        function downloadReport() {
+            const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
+            
+            // Criar conteúdo do relatório
+            const reportContent = `
+RELATÓRIO DE MATURIDADE ESTRATÉGICA
+Stratica Consultoria
+
+PARTICIPANTE:
+Nome: ${assessmentData.userInfo?.name || 'N/A'}
+Email: ${assessmentData.userInfo?.email || 'N/A'}
+Empresa: ${assessmentData.userInfo?.company || 'N/A'}
+Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
+
+RESULTADO:
+Nível de Maturidade: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
+Pontuação: ${Math.round(assessmentData.percentage || 0)}%
+
+DESCRIÇÃO:
+${assessmentData.result?.description || 'N/A'}
+
+RECOMENDAÇÕES:
+${getRecommendations(assessmentData.result?.level || 1)}
+
+Data do Assessment: ${new Date(assessmentData.timestamp || Date.now()).toLocaleString('pt-BR')}
+
+---
+Relatório gerado por Stratica Consultoria
+www.stratica.com.br
+            `.trim();
+
+            // Criar e baixar arquivo
+            const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Relatorio_Maturidade_Estrategica_${assessmentData.userInfo?.name?.replace(/\s+/g, '_') || 'Assessment'}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Função para obter recomendações baseadas no nível
+        function getRecommendations(level) {
+            const recommendations = {
+                1: "• Estabelecer processos básicos de planejamento estratégico\n• Definir missão, visão e valores organizacionais\n• Implementar indicadores básicos de performance\n• Capacitar liderança em gestão estratégica",
+                2: "• Formalizar processos de planejamento estratégico\n• Implementar sistema de monitoramento de KPIs\n• Desenvolver cultura de execução estratégica\n• Melhorar comunicação da estratégia",
+                3: "• Implementar gestão de portfólio estratégico\n• Desenvolver capacidades de inovação\n• Fortalecer análise de cenários e riscos\n• Integrar sustentabilidade na estratégia",
+                4: "• Manter excelência e buscar inovação contínua\n• Compartilhar melhores práticas no mercado\n• Desenvolver ecossistema de parceiros estratégicos\n• Liderar transformação digital do setor",
+                5: "• Manter excelência e buscar inovação contínua\n• Compartilhar melhores práticas no mercado\n• Desenvolver ecossistema de parceiros estratégicos\n• Liderar transformação digital do setor"
+            };
+            return recommendations[level] || recommendations[1];
+        }
+
+        // Função para enviar relatório por email
+        function sendEmailReport() {
+            const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
+            const subject = `Relatório de Maturidade Estratégica - ${assessmentData.userInfo?.company || 'Sua Empresa'}`;
+            const body = `Olá,
+
+Segue o resultado do seu Assessment de Maturidade Estratégica:
+
+Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
+Pontuação: ${Math.round(assessmentData.percentage || 0)}%
+
+Para receber o relatório completo e uma análise detalhada, entre em contato conosco.
+
+Atenciosamente,
+Equipe Stratica`;
+
+            const mailtoLink = `mailto:${assessmentData.userInfo?.email || ''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(mailtoLink);
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             // Definição do questionário em formato JSON
             const quizData = [
@@ -687,24 +794,24 @@
                 const subject = `Solicitação de Análise - Assessment Nível ${assessmentData.result?.level || 'N/A'}`;
                 const body = `Olá equipe Stratica,
 
-Acabei de completar o Assessment de Maturidade Estratégica no site e gostaria de agendar uma conversa para discutir os resultados.
+            Acabei de completar o Assessment de Maturidade Estratégica no site e gostaria de agendar uma conversa para discutir os resultados.
 
-DADOS DO ASSESSMENT:
-Empresa: ${assessmentData.userInfo?.company || 'N/A'}
-Nome: ${assessmentData.userInfo?.name || 'N/A'}
-Email: ${assessmentData.userInfo?.email || 'N/A'}
-Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
+            DADOS DO ASSESSMENT:
+            Empresa: ${assessmentData.userInfo?.company || 'N/A'}
+            Nome: ${assessmentData.userInfo?.name || 'N/A'}
+            Email: ${assessmentData.userInfo?.email || 'N/A'}
+            Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
 
-RESULTADO:
-Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
-Pontuação: ${Math.round(assessmentData.percentage || 0)}%
+            RESULTADO:
+            Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
+            Pontuação: ${Math.round(assessmentData.percentage || 0)}%
 
-Gostaria de entender melhor como a Stratica pode ajudar nossa empresa a evoluir para o próximo nível de maturidade estratégica.
+            Gostaria de entender melhor como a Stratica pode ajudar nossa empresa a evoluir para o próximo nível de maturidade estratégica.
 
-Aguardo contato.
+            Aguardo contato.
 
-Atenciosamente,
-${assessmentData.userInfo?.name || 'N/A'}`;
+            Atenciosamente,
+            ${assessmentData.userInfo?.name || 'N/A'}`;
 
                 const mailtoLink = `mailto:stratica@stratica.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 window.open(mailtoLink);
@@ -716,30 +823,30 @@ ${assessmentData.userInfo?.name || 'N/A'}`;
                 
                 // Criar conteúdo do relatório
                 const reportContent = `
-RELATÓRIO DE MATURIDADE ESTRATÉGICA
-Stratica Consultoria
+            RELATÓRIO DE MATURIDADE ESTRATÉGICA
+            Stratica Consultoria
 
-PARTICIPANTE:
-Nome: ${assessmentData.userInfo?.name || 'N/A'}
-Email: ${assessmentData.userInfo?.email || 'N/A'}
-Empresa: ${assessmentData.userInfo?.company || 'N/A'}
-Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
+            PARTICIPANTE:
+            Nome: ${assessmentData.userInfo?.name || 'N/A'}
+            Email: ${assessmentData.userInfo?.email || 'N/A'}
+            Empresa: ${assessmentData.userInfo?.company || 'N/A'}
+            Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
 
-RESULTADO:
-Nível de Maturidade: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
-Pontuação: ${Math.round(assessmentData.percentage || 0)}%
+            RESULTADO:
+            Nível de Maturidade: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
+            Pontuação: ${Math.round(assessmentData.percentage || 0)}%
 
-DESCRIÇÃO:
-${assessmentData.result?.description || 'N/A'}
+            DESCRIÇÃO:
+            ${assessmentData.result?.description || 'N/A'}
 
-RECOMENDAÇÕES:
-${getRecommendations(assessmentData.result?.level || 1)}
+            RECOMENDAÇÕES:
+            ${getRecommendations(assessmentData.result?.level || 1)}
 
-Data do Assessment: ${new Date(assessmentData.timestamp || Date.now()).toLocaleString('pt-BR')}
+            Data do Assessment: ${new Date(assessmentData.timestamp || Date.now()).toLocaleString('pt-BR')}
 
----
-Relatório gerado por Stratica Consultoria
-www.stratica.com.br
+            ---
+            Relatório gerado por Stratica Consultoria
+            www.stratica.com.br
                 `.trim();
 
                 // Criar e baixar arquivo
@@ -772,15 +879,15 @@ www.stratica.com.br
                 const subject = `Relatório de Maturidade Estratégica - ${assessmentData.userInfo?.company || 'Sua Empresa'}`;
                 const body = `Olá,
 
-Segue o resultado do seu Assessment de Maturidade Estratégica:
+            Segue o resultado do seu Assessment de Maturidade Estratégica:
 
-Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
-Pontuação: ${Math.round(assessmentData.percentage || 0)}%
+            Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
+            Pontuação: ${Math.round(assessmentData.percentage || 0)}%
 
-Para receber o relatório completo e uma análise detalhada, entre em contato conosco.
+            Para receber o relatório completo e uma análise detalhada, entre em contato conosco.
 
-Atenciosamente,
-Equipe Stratica`;
+            Atenciosamente,
+            Equipe Stratica`;
 
                 const mailtoLink = `mailto:${assessmentData.userInfo?.email || ''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 window.open(mailtoLink);
