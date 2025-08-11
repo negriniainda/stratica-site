@@ -632,6 +632,7 @@
             }
 
             // Função para enviar os dados - versão simplificada sem dependência do Supabase
+            // Função para enviar os dados - versão totalmente offline
             async function sendData(data) {
                 console.log("--- DADOS DO ASSESSMENT ---");
                 console.log(JSON.stringify(data, null, 2));
@@ -653,16 +654,8 @@
                     console.warn('Não foi possível salvar no localStorage:', e);
                 }
 
-                // Mostrar resultado imediatamente
+                // Mostrar resultado imediatamente - SEM tentar enviar email
                 showSuccessMessage(assessmentData);
-
-                // Tentar enviar por email usando a função contact-form existente
-                try {
-                    await sendEmailNotification(assessmentData);
-                } catch (error) {
-                    console.warn('Erro ao enviar email:', error);
-                    // Não falha se o email não funcionar
-                }
             }
 
             // Função para mostrar mensagem de sucesso
@@ -680,9 +673,41 @@
                         <button onclick="sendEmailReport()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">
                             📧 Enviar por Email
                         </button>
+                        <button onclick="contactStratica()" class="bg-red-600 text-white px-4 py-2 rounded text-sm hover:bg-red-700">
+                            📞 Contatar Stratica
+                        </button>
                     </div>
                 `;
                 document.getElementById('resultado').appendChild(successDiv);
+            }
+
+            // Função para contatar a Stratica diretamente
+            function contactStratica() {
+                const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
+                const subject = `Solicitação de Análise - Assessment Nível ${assessmentData.result?.level || 'N/A'}`;
+                const body = `Olá equipe Stratica,
+
+Acabei de completar o Assessment de Maturidade Estratégica no site e gostaria de agendar uma conversa para discutir os resultados.
+
+DADOS DO ASSESSMENT:
+Empresa: ${assessmentData.userInfo?.company || 'N/A'}
+Nome: ${assessmentData.userInfo?.name || 'N/A'}
+Email: ${assessmentData.userInfo?.email || 'N/A'}
+Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
+
+RESULTADO:
+Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
+Pontuação: ${Math.round(assessmentData.percentage || 0)}%
+
+Gostaria de entender melhor como a Stratica pode ajudar nossa empresa a evoluir para o próximo nível de maturidade estratégica.
+
+Aguardo contato.
+
+Atenciosamente,
+${assessmentData.userInfo?.name || 'N/A'}`;
+
+                const mailtoLink = `mailto:stratica@stratica.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                window.open(mailtoLink);
             }
 
             // Função para enviar notificação por email usando a função contact-form
