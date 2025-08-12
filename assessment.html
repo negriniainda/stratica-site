@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -185,14 +185,266 @@ ${assessmentData.userInfo?.name || 'N/A'}`;
             window.open(mailtoLink);
         }
 
-        // Função para baixar relatório
+        // Função para analisar pontuação por dimensão
+        function analyzeDimensionScores(answers) {
+            const dimensions = {
+                'Liderança': ['q1', 'q2', 'q3'],
+                'Estratégia': ['q4', 'q5', 'q6'],
+                'Processos': ['q7', 'q8', 'q9'],
+                'Pessoas': ['q10', 'q11', 'q12'],
+                'Clientes': ['q13', 'q14', 'q15'],
+                'Resultados': ['q16', 'q17', 'q18']
+            };
+
+            const analysis = {};
+            
+            Object.keys(dimensions).forEach(dimension => {
+                const questionIds = dimensions[dimension];
+                let totalScore = 0;
+                let count = 0;
+                
+                questionIds.forEach(qId => {
+                    if (answers[qId]) {
+                        totalScore += answers[qId].score;
+                        count++;
+                    }
+                });
+                
+                const avgScore = count > 0 ? totalScore / count : 0;
+                const percentage = (avgScore / 5) * 100;
+                
+                analysis[dimension] = {
+                    avgScore: avgScore,
+                    percentage: percentage,
+                    level: getMaturityLevel(percentage),
+                    questions: questionIds.map(qId => answers[qId]).filter(Boolean)
+                };
+            });
+            
+            return analysis;
+        }
+
+        // Função para determinar nível de maturidade
+        function getMaturityLevel(percentage) {
+            if (percentage <= 20) return { level: 1, title: "Inicial" };
+            if (percentage <= 40) return { level: 2, title: "Emergente" };
+            if (percentage <= 60) return { level: 3, title: "Estruturado" };
+            if (percentage <= 80) return { level: 4, title: "Avançado" };
+            return { level: 5, title: "Excelência" };
+        }
+
+        // Função para gerar recomendações específicas por dimensão
+        function getDimensionRecommendations(dimension, analysis) {
+            const recommendations = {
+                'Liderança': {
+                    1: [
+                        "• Definir missão, visão e valores organizacionais claros",
+                        "• Estabelecer programa de desenvolvimento de liderança",
+                        "• Criar canais de comunicação estruturados",
+                        "• Implementar reuniões regulares de alinhamento estratégico"
+                    ],
+                    2: [
+                        "• Formalizar processos de comunicação da visão e valores",
+                        "• Treinar líderes em técnicas de engajamento",
+                        "• Estabelecer métricas de clima organizacional",
+                        "• Criar programa de mentoring interno"
+                    ],
+                    3: [
+                        "• Implementar avaliação 360° para líderes",
+                        "• Desenvolver planos de sucessão",
+                        "• Fortalecer cultura de feedback contínuo",
+                        "• Integrar valores organizacionais aos processos de RH"
+                    ],
+                    4: [
+                        "• Implementar liderança transformacional",
+                        "• Desenvolver líderes como agentes de mudança",
+                        "• Criar programas de inovação liderados pela alta gestão",
+                        "• Estabelecer governança de sustentabilidade"
+                    ],
+                    5: [
+                        "• Manter excelência e ser referência em liderança",
+                        "• Compartilhar melhores práticas no mercado",
+                        "• Desenvolver ecossistema de liderança colaborativa",
+                        "• Liderar transformações setoriais"
+                    ]
+                },
+                'Estratégia': {
+                    1: [
+                        "• Estabelecer processo básico de planejamento estratégico",
+                        "• Definir objetivos SMART de curto e médio prazo",
+                        "• Implementar análise SWOT estruturada",
+                        "• Criar comitê de estratégia"
+                    ],
+                    2: [
+                        "• Formalizar ciclo anual de planejamento estratégico",
+                        "• Implementar análise de cenários",
+                        "• Estabelecer indicadores estratégicos básicos",
+                        "• Criar processo de comunicação da estratégia"
+                    ],
+                    3: [
+                        "• Implementar balanced scorecard ou similar",
+                        "• Desenvolver capacidade de inteligência competitiva",
+                        "• Estabelecer processo de revisão trimestral",
+                        "• Integrar planejamento estratégico ao orçamento"
+                    ],
+                    4: [
+                        "• Implementar gestão de portfólio estratégico",
+                        "• Desenvolver capacidades de inovação estratégica",
+                        "• Fortalecer análise de riscos estratégicos",
+                        "• Integrar sustentabilidade à estratégia"
+                    ],
+                    5: [
+                        "• Manter excelência em gestão estratégica",
+                        "• Desenvolver estratégias disruptivas",
+                        "• Liderar ecossistemas de inovação",
+                        "• Ser referência em agilidade estratégica"
+                    ]
+                },
+                'Processos': {
+                    1: [
+                        "• Mapear processos críticos do negócio",
+                        "• Estabelecer padrões básicos de qualidade",
+                        "• Implementar controles essenciais",
+                        "• Treinar equipes em processos básicos"
+                    ],
+                    2: [
+                        "• Documentar todos os processos principais",
+                        "• Implementar indicadores básicos de processo",
+                        "• Estabelecer rotinas de monitoramento",
+                        "• Criar programa de melhoria de processos"
+                    ],
+                    3: [
+                        "• Implementar gestão por processos (BPM)",
+                        "• Estabelecer SLAs para processos críticos",
+                        "• Desenvolver cultura de melhoria contínua",
+                        "• Integrar processos entre áreas"
+                    ],
+                    4: [
+                        "• Implementar automação de processos (RPA)",
+                        "• Desenvolver processos ágeis e adaptativos",
+                        "• Estabelecer centro de excelência em processos",
+                        "• Integrar IA em processos críticos"
+                    ],
+                    5: [
+                        "• Manter excelência operacional",
+                        "• Liderar inovação em processos",
+                        "• Desenvolver processos inteligentes",
+                        "• Ser referência em eficiência operacional"
+                    ]
+                },
+                'Pessoas': {
+                    1: [
+                        "• Estabelecer programa básico de treinamento",
+                        "• Implementar processo de avaliação de desempenho",
+                        "• Criar descrições de cargo estruturadas",
+                        "• Desenvolver política de remuneração justa"
+                    ],
+                    2: [
+                        "• Implementar plano de desenvolvimento individual",
+                        "• Estabelecer programa de feedback regular",
+                        "• Criar trilhas de carreira",
+                        "• Desenvolver programa de reconhecimento"
+                    ],
+                    3: [
+                        "• Implementar gestão de talentos estruturada",
+                        "• Desenvolver programa de liderança interna",
+                        "• Estabelecer pesquisa de clima organizacional",
+                        "• Criar programa de diversidade e inclusão"
+                    ],
+                    4: [
+                        "• Implementar gestão de conhecimento",
+                        "• Desenvolver cultura de aprendizagem contínua",
+                        "• Estabelecer programa de inovação colaborativa",
+                        "• Criar ambiente de trabalho ágil e flexível"
+                    ],
+                    5: [
+                        "• Manter excelência em gestão de pessoas",
+                        "• Ser referência em employer branding",
+                        "• Liderar transformação do futuro do trabalho",
+                        "• Desenvolver ecossistema de talentos"
+                    ]
+                },
+                'Clientes': {
+                    1: [
+                        "• Implementar pesquisa básica de satisfação",
+                        "• Estabelecer canais de atendimento estruturados",
+                        "• Criar processo de tratamento de reclamações",
+                        "• Treinar equipes em atendimento ao cliente"
+                    ],
+                    2: [
+                        "• Implementar programa de NPS",
+                        "• Estabelecer jornada do cliente básica",
+                        "• Criar programa de fidelização",
+                        "• Desenvolver segmentação de clientes"
+                    ],
+                    3: [
+                        "• Implementar CRM estruturado",
+                        "• Desenvolver experiência do cliente omnichannel",
+                        "• Estabelecer programa de customer success",
+                        "• Criar métricas avançadas de relacionamento"
+                    ],
+                    4: [
+                        "• Implementar personalização em escala",
+                        "• Desenvolver programa de co-criação",
+                        "• Estabelecer comunidade de clientes",
+                        "• Integrar IA na experiência do cliente"
+                    ],
+                    5: [
+                        "• Manter excelência em experiência do cliente",
+                        "• Ser referência em customer centricity",
+                        "• Liderar inovação em relacionamento",
+                        "• Desenvolver ecossistema de valor para clientes"
+                    ]
+                },
+                'Resultados': {
+                    1: [
+                        "• Implementar dashboard básico de indicadores",
+                        "• Estabelecer metas financeiras claras",
+                        "• Criar rotina de acompanhamento mensal",
+                        "• Treinar gestores em análise de resultados"
+                    ],
+                    2: [
+                        "• Implementar balanced scorecard",
+                        "• Estabelecer benchmarking básico",
+                        "• Criar processo de análise de desvios",
+                        "• Desenvolver cultura orientada a resultados"
+                    ],
+                    3: [
+                        "• Implementar business intelligence",
+                        "• Estabelecer análise preditiva básica",
+                        "• Criar centro de competência em analytics",
+                        "• Integrar indicadores financeiros e não-financeiros"
+                    ],
+                    4: [
+                        "• Implementar analytics avançado",
+                        "• Desenvolver modelos preditivos",
+                        "• Estabelecer gestão de valor integrada",
+                        "• Criar cultura data-driven"
+                    ],
+                    5: [
+                        "• Manter excelência em gestão de resultados",
+                        "• Ser referência em analytics e BI",
+                        "• Liderar inovação em métricas de valor",
+                        "• Desenvolver ecossistema de dados inteligentes"
+                    ]
+                }
+            };
+
+            const level = analysis.level.level;
+            return recommendations[dimension]?.[level] || recommendations[dimension]?.[1] || [];
+        }
+
+        // Função para baixar relatório melhorado
         function downloadReport() {
             const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
+            const dimensionAnalysis = analyzeDimensionScores(assessmentData.answers || {});
             
-            // Criar conteúdo do relatório
-            const reportContent = `
-RELATÓRIO DE MATURIDADE ESTRATÉGICA
-Stratica Consultoria
+            // Criar conteúdo do relatório detalhado
+            let reportContent = `
+RELATÓRIO DETALHADO DE MATURIDADE ESTRATÉGICA
+Stratica Consultoria - Powered by AI
+
+═══════════════════════════════════════════════════════════════
 
 PARTICIPANTE:
 Nome: ${assessmentData.userInfo?.name || 'N/A'}
@@ -200,21 +452,74 @@ Email: ${assessmentData.userInfo?.email || 'N/A'}
 Empresa: ${assessmentData.userInfo?.company || 'N/A'}
 Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
 
-RESULTADO:
+═══════════════════════════════════════════════════════════════
+
+RESULTADO GERAL:
 Nível de Maturidade: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
-Pontuação: ${Math.round(assessmentData.percentage || 0)}%
+Pontuação Geral: ${Math.round(assessmentData.percentage || 0)}%
 
 DESCRIÇÃO:
 ${assessmentData.result?.description || 'N/A'}
 
-RECOMENDAÇÕES:
-${getRecommendations(assessmentData.result?.level || 1)}
+═══════════════════════════════════════════════════════════════
+
+ANÁLISE DETALHADA POR DIMENSÃO:
+
+`;
+
+            // Adicionar análise de cada dimensão
+            Object.keys(dimensionAnalysis).forEach(dimension => {
+                const analysis = dimensionAnalysis[dimension];
+                const recommendations = getDimensionRecommendations(dimension, analysis);
+                
+                reportContent += `
+📊 ${dimension.toUpperCase()}
+Pontuação: ${Math.round(analysis.percentage)}% (Nível ${analysis.level.level} - ${analysis.level.title})
+
+SITUAÇÃO ATUAL:
+`;
+                analysis.questions.forEach((q, index) => {
+                    reportContent += `${index + 1}. ${q.question}\n   Resposta: ${q.answer_text} (${q.score}/5)\n\n`;
+                });
+
+                reportContent += `
+RECOMENDAÇÕES ESTRATÉGICAS:
+${recommendations.join('\n')}
+
+───────────────────────────────────────────────────────────────
+
+`;
+            });
+
+            reportContent += `
+═══════════════════════════════════════════════════════════════
+
+PRÓXIMOS PASSOS RECOMENDADOS:
+
+1. PRIORIZAÇÃO: Foque nas dimensões com menor pontuação primeiro
+2. PLANEJAMENTO: Desenvolva um plano de ação com prazos definidos
+3. IMPLEMENTAÇÃO: Execute as recomendações de forma gradual
+4. MONITORAMENTO: Acompanhe o progresso mensalmente
+5. REAVALIAÇÃO: Refaça o assessment em 6-12 meses
+
+═══════════════════════════════════════════════════════════════
+
+COMO A STRATICA PODE AJUDAR:
+
+✓ Consultoria estratégica personalizada
+✓ Implementação de metodologias comprovadas
+✓ Treinamento e capacitação de equipes
+✓ Acompanhamento e mentoring executivo
+✓ Soluções de IA e transformação digital
+
+Entre em contato: stratica@stratica.com.br
+Website: www.stratica.com.br
 
 Data do Assessment: ${new Date(assessmentData.timestamp || Date.now()).toLocaleString('pt-BR')}
 
 ---
 Relatório gerado por Stratica Consultoria
-www.stratica.com.br
+Consultoria Estratégica Powered by AI
             `.trim();
 
             // Criar e baixar arquivo
@@ -222,14 +527,14 @@ www.stratica.com.br
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Relatorio_Maturidade_Estrategica_${assessmentData.userInfo?.name?.replace(/\s+/g, '_') || 'Assessment'}.txt`;
+            a.download = `Relatorio_Detalhado_Maturidade_${assessmentData.userInfo?.company?.replace(/\s+/g, '_') || 'Assessment'}_${new Date().toISOString().split('T')[0]}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
         }
 
-        // Função para obter recomendações baseadas no nível
+        // Função para obter recomendações baseadas no nível (mantida para compatibilidade)
         function getRecommendations(level) {
             const recommendations = {
                 1: "• Estabelecer processos básicos de planejamento estratégico\n• Definir missão, visão e valores organizacionais\n• Implementar indicadores básicos de performance\n• Capacitar liderança em gestão estratégica",
@@ -244,25 +549,38 @@ www.stratica.com.br
         // Função para enviar relatório por email
         function sendEmailReport() {
             const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
+            const dimensionAnalysis = analyzeDimensionScores(assessmentData.answers || {});
+            
+            // Criar resumo das dimensões
+            let dimensionSummary = '';
+            Object.keys(dimensionAnalysis).forEach(dimension => {
+                const analysis = dimensionAnalysis[dimension];
+                dimensionSummary += `${dimension}: ${Math.round(analysis.percentage)}% (Nível ${analysis.level.level})\n`;
+            });
+            
             const subject = `Relatório de Maturidade Estratégica - ${assessmentData.userInfo?.company || 'Sua Empresa'}`;
             const body = `Olá,
 
-Segue o resultado do seu Assessment de Maturidade Estratégica:
+Segue o resultado do Assessment de Maturidade Estratégica:
 
+RESULTADO GERAL:
 Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
 Pontuação: ${Math.round(assessmentData.percentage || 0)}%
 
-Para receber o relatório completo e uma análise detalhada, entre em contato conosco.
+ANÁLISE POR DIMENSÃO:
+${dimensionSummary}
+
+Para receber o relatório completo e detalhado com recomendações específicas, entre em contato conosco em stratica@stratica.com.br
 
 Atenciosamente,
-Equipe Stratica`;
+Equipe Stratica
+www.stratica.com.br`;
 
             const mailtoLink = `mailto:${assessmentData.userInfo?.email || ''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             window.open(mailtoLink);
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            // Definição do questionário em formato JSON
             const quizData = [
                 {
                     dimension: "Liderança",
@@ -649,7 +967,7 @@ Equipe Stratica`;
                 }
             }
 
-            // Função para enviar os dados para o Supabase com timeout
+            // Função para enviar os dados para o Supabase
             async function sendData(data) {
                 console.log("--- DADOS PARA ENVIO ---");
                 console.log(JSON.stringify(data, null, 2));
@@ -664,10 +982,6 @@ Equipe Stratica`;
                         answers: data.answers
                     };
 
-                    // Criar AbortController para timeout
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos timeout
-
                     // Enviar dados para a Edge Function do Supabase
                     const response = await fetch('https://vhlhpmceibygaqajpoir.supabase.co/functions/v1/assessment-results', {
                         method: 'POST',
@@ -675,225 +989,38 @@ Equipe Stratica`;
                             'Content-Type': 'application/json',
                             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZobGhwbWNlaWJ5Z2FxYWpwb2lyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2MDcwNDIsImV4cCI6MjA3MDE4MzA0Mn0.9P1q4h_El7h1D7BgQAZ7J762JbAryzJRmOoL3c2Q3tE'
                         },
-                        body: JSON.stringify(assessmentData),
-                        signal: controller.signal
+                        body: JSON.stringify(assessmentData)
                     });
-
-                    clearTimeout(timeoutId);
-
-                    if (!response.ok) {
-                        throw new Error(`Erro HTTP: ${response.status} - ${response.statusText}`);
-                    }
 
                     const result = await response.json();
 
-                    if (result.success) {
+                    if (response.ok && result.success) {
                         console.log("Assessment enviado com sucesso!");
                         // Mostrar mensagem de sucesso ao usuário
                         const successDiv = document.createElement('div');
                         successDiv.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mt-4';
                         successDiv.innerHTML = `
-                            <p><strong>✓ Sucesso!</strong> ${result.message || 'Assessment processado com sucesso!'}</p>
+                            <p><strong>✓ Sucesso!</strong> ${result.message}</p>
                             <p class="text-sm mt-2">Seu relatório detalhado foi enviado para o email cadastrado.</p>
                         `;
                         document.getElementById('resultado').appendChild(successDiv);
                     } else {
-                        throw new Error(result.error || 'Erro ao processar assessment no servidor');
+                        throw new Error(result.error || 'Erro ao enviar assessment');
                     }
                 } catch (error) {
                     console.error('Erro ao enviar assessment:', error);
-                    
-                    let errorMessage = '';
-                    let errorClass = 'bg-red-100 border border-red-400 text-red-700';
-                    
-                    if (error.name === 'AbortError') {
-                        // Timeout
-                        errorMessage = `
-                            <p><strong>⏱ Timeout</strong></p>
-                            <p class="text-sm mt-2">A conexão demorou muito para responder. Seus resultados foram calculados com sucesso!</p>
-                            <p class="text-sm mt-2">Entre em contato conosco em <a href="mailto:stratica@stratica.com.br" class="underline text-blue-600">stratica@stratica.com.br</a> para receber seu relatório detalhado.</p>
-                        `;
-                        errorClass = 'bg-yellow-100 border border-yellow-400 text-yellow-700';
-                    } else if (error.name === 'TypeError' || error.message.includes('fetch')) {
-                        // Erro de conectividade
-                        errorMessage = `
-                            <p><strong>⚠ Problema de Conectividade</strong></p>
-                            <p class="text-sm mt-2">Não foi possível conectar ao servidor. Seus resultados foram calculados com sucesso!</p>
-                            <p class="text-sm mt-2">Entre em contato conosco em <a href="mailto:stratica@stratica.com.br" class="underline text-blue-600">stratica@stratica.com.br</a> para receber seu relatório detalhado.</p>
-                        `;
-                        errorClass = 'bg-yellow-100 border border-yellow-400 text-yellow-700';
-                    } else {
-                        // Outros tipos de erro
-                        errorMessage = `
-                            <p><strong>✗ Erro:</strong> ${error.message}</p>
-                            <p class="text-sm mt-2">Seus resultados foram calculados, mas houve um problema no envio.</p>
-                            <p class="text-sm mt-2">Entre em contato conosco em <a href="mailto:stratica@stratica.com.br" class="underline text-blue-600">stratica@stratica.com.br</a> para receber seu relatório.</p>
-                        `;
-                    }
-                    
+                    // Mostrar mensagem de erro ao usuário
                     const errorDiv = document.createElement('div');
-                    errorDiv.className = errorClass + ' px-4 py-3 rounded mt-4';
-                    errorDiv.innerHTML = errorMessage;
+                    errorDiv.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4';
+                    errorDiv.innerHTML = `
+                        <p><strong>✗ Erro:</strong> ${error.message}</p>
+                        <p class="text-sm mt-2">Tente novamente ou entre em contato conosco diretamente.</p>
+                    `;
                     document.getElementById('resultado').appendChild(errorDiv);
                 }
             }
 
-            // Função para enviar os dados - versão simplificada sem dependência do Supabase
-            // Função para enviar os dados - versão totalmente offline
-            async function sendData(data) {
-                console.log("--- DADOS DO ASSESSMENT ---");
-                console.log(JSON.stringify(data, null, 2));
-
-                // Salvar dados localmente no navegador
-                const assessmentData = {
-                    userInfo: data.userInfo,
-                    result: data.result,
-                    totalScore: Object.values(data.answers).reduce((sum, answer) => sum + answer.score, 0),
-                    percentage: (Object.values(data.answers).reduce((sum, answer) => sum + answer.score, 0) / (Object.keys(data.answers).length * 5)) * 100,
-                    answers: data.answers,
-                    timestamp: new Date().toISOString()
-                };
-
-                // Salvar no localStorage para backup
-                try {
-                    localStorage.setItem('stratica_assessment_result', JSON.stringify(assessmentData));
-                } catch (e) {
-                    console.warn('Não foi possível salvar no localStorage:', e);
-                }
-
-                // Mostrar resultado imediatamente - SEM tentar enviar email
-                showSuccessMessage(assessmentData);
-            }
-
-            // Função para mostrar mensagem de sucesso
-            function showSuccessMessage(assessmentData) {
-                const successDiv = document.createElement('div');
-                successDiv.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mt-4';
-                successDiv.innerHTML = `
-                    <p><strong>✓ Assessment Concluído com Sucesso!</strong></p>
-                    <p class="text-sm mt-2">Seu resultado foi calculado: <strong>Nível ${assessmentData.result.level} - ${assessmentData.result.title}</strong></p>
-                    <p class="text-sm mt-1">Pontuação: <strong>${Math.round(assessmentData.percentage)}%</strong></p>
-                    <div class="mt-3 flex flex-col sm:flex-row gap-2">
-                        <button onclick="downloadReport()" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700">
-                            📄 Baixar Relatório
-                        </button>
-                        <button onclick="sendEmailReport()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">
-                            📧 Enviar por Email
-                        </button>
-                        <button onclick="contactStratica()" class="bg-red-600 text-white px-4 py-2 rounded text-sm hover:bg-red-700">
-                            📞 Contatar Stratica
-                        </button>
-                    </div>
-                `;
-                document.getElementById('resultado').appendChild(successDiv);
-            }
-
-            // Função para contatar a Stratica diretamente
-            function contactStratica() {
-                const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
-                const subject = `Solicitação de Análise - Assessment Nível ${assessmentData.result?.level || 'N/A'}`;
-                const body = `Olá equipe Stratica,
-
-            Acabei de completar o Assessment de Maturidade Estratégica no site e gostaria de agendar uma conversa para discutir os resultados.
-
-            DADOS DO ASSESSMENT:
-            Empresa: ${assessmentData.userInfo?.company || 'N/A'}
-            Nome: ${assessmentData.userInfo?.name || 'N/A'}
-            Email: ${assessmentData.userInfo?.email || 'N/A'}
-            Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
-
-            RESULTADO:
-            Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
-            Pontuação: ${Math.round(assessmentData.percentage || 0)}%
-
-            Gostaria de entender melhor como a Stratica pode ajudar nossa empresa a evoluir para o próximo nível de maturidade estratégica.
-
-            Aguardo contato.
-
-            Atenciosamente,
-            ${assessmentData.userInfo?.name || 'N/A'}`;
-
-                const mailtoLink = `mailto:stratica@stratica.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                window.open(mailtoLink);
-            }
-
-            // Função para baixar relatório
-            function downloadReport() {
-                const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
-                
-                // Criar conteúdo do relatório
-                const reportContent = `
-            RELATÓRIO DE MATURIDADE ESTRATÉGICA
-            Stratica Consultoria
-
-            PARTICIPANTE:
-            Nome: ${assessmentData.userInfo?.name || 'N/A'}
-            Email: ${assessmentData.userInfo?.email || 'N/A'}
-            Empresa: ${assessmentData.userInfo?.company || 'N/A'}
-            Cargo: ${assessmentData.userInfo?.position || 'Não informado'}
-
-            RESULTADO:
-            Nível de Maturidade: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
-            Pontuação: ${Math.round(assessmentData.percentage || 0)}%
-
-            DESCRIÇÃO:
-            ${assessmentData.result?.description || 'N/A'}
-
-            RECOMENDAÇÕES:
-            ${getRecommendations(assessmentData.result?.level || 1)}
-
-            Data do Assessment: ${new Date(assessmentData.timestamp || Date.now()).toLocaleString('pt-BR')}
-
-            ---
-            Relatório gerado por Stratica Consultoria
-            www.stratica.com.br
-                `.trim();
-
-                // Criar e baixar arquivo
-                const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `Relatorio_Maturidade_Estrategica_${assessmentData.userInfo?.name?.replace(/\s+/g, '_') || 'Assessment'}.txt`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-            }
-
-            // Função para obter recomendações baseadas no nível
-            function getRecommendations(level) {
-                const recommendations = {
-                    1: "• Estabelecer processos básicos de planejamento estratégico\n• Definir missão, visão e valores organizacionais\n• Implementar indicadores básicos de performance\n• Capacitar liderança em gestão estratégica",
-                    2: "• Formalizar processos de planejamento estratégico\n• Implementar sistema de monitoramento de KPIs\n• Desenvolver cultura de execução estratégica\n• Melhorar comunicação da estratégia",
-                    3: "• Implementar gestão de portfólio estratégico\n• Desenvolver capacidades de inovação\n• Fortalecer análise de cenários e riscos\n• Integrar sustentabilidade na estratégia",
-                    4: "• Manter excelência e buscar inovação contínua\n• Compartilhar melhores práticas no mercado\n• Desenvolver ecossistema de parceiros estratégicos\n• Liderar transformação digital do setor",
-                    5: "• Manter excelência e buscar inovação contínua\n• Compartilhar melhores práticas no mercado\n• Desenvolver ecossistema de parceiros estratégicos\n• Liderar transformação digital do setor"
-                };
-                return recommendations[level] || recommendations[1];
-            }
-
-            // Função para enviar relatório por email
-            function sendEmailReport() {
-                const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
-                const subject = `Relatório de Maturidade Estratégica - ${assessmentData.userInfo?.company || 'Sua Empresa'}`;
-                const body = `Olá,
-
-            Segue o resultado do seu Assessment de Maturidade Estratégica:
-
-            Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
-            Pontuação: ${Math.round(assessmentData.percentage || 0)}%
-
-            Para receber o relatório completo e uma análise detalhada, entre em contato conosco.
-
-            Atenciosamente,
-            Equipe Stratica`;
-
-                const mailtoLink = `mailto:${assessmentData.userInfo?.email || ''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                window.open(mailtoLink);
-            }
-
-            // Inicializar o questionário e configurar event listeners
+            // Inicialização
             renderQuiz();
             form.addEventListener('submit', calculateAndShowResult);
         });
