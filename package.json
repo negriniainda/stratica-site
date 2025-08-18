@@ -1,0 +1,20 @@
+{
+  "name": "site-gemini",
+  "version": "1.0.0",
+  "description": "Site da Stratica com Supabase",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "supabase": "supabase"
+  },
+  "keywords": [
+    "supabase",
+    "website",
+    "stratica"
+  ],
+  "author": "Stratica",
+  "license": "ISC",
+  "devDependencies": {
+    "supabase": "^2.34.3"
+  }
+}
