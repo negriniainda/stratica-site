@@ -1,5 +1,4 @@
-# A string used to distinguish different Supabase projects on the same host. Defaults to the
-# working directory name when running `supabase init`.
+# A string used to distinguish different Supabase projects on the same host.
 project_id = "stratica-site"
 
 [api]
@@ -25,45 +24,13 @@ pop3_port = 54326
 
 [storage]
 enabled = true
-port = 54325
-image_transformation = {
-  enabled = true
-}
 
 [auth]
 enabled = true
-port = 54326
 site_url = "http://localhost:3000"
 additional_redirect_urls = ["https://localhost:3000"]
 jwt_expiry = 3600
 enable_signup = true
-enable_email_confirmations = false
-enable_sms_confirmations = false
-enable_phone_auth = false
-enable_phone_confirmations = false
-enable_anonymous_sign_ins = false
 
 [edge_runtime]
 enabled = true
-port = 54327
-
-# Email template configuration
-[auth.email.template.invite]
-subject = "You have been invited"
-content_path = "./supabase/templates/invite.html"
-
-[auth.email.template.confirmation]
-subject = "Confirm your signup"
-content_path = "./supabase/templates/confirmation.html"
-
-[auth.email.template.recovery]
-subject = "Reset your password"
-content_path = "./supabase/templates/recovery.html"
-
-[auth.email.template.magic_link]
-subject = "Your magic link"
-content_path = "./supabase/templates/magic_link.html"
-
-[auth.email.template.email_change]
-subject = "Confirm your new email"
-content_path = "./supabase/templates/email_change.html"
