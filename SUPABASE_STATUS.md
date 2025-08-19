@@ -1,5 +1,19 @@
 # Status do Supabase
 
+## ⚠️ PROBLEMA IDENTIFICADO - 18/08/2025
+
+### Erro no Formulário de Contato
+- **Problema**: Formulário retornando erro 500 (Erro Interno do Servidor)
+- **Causa**: Migrações do banco não foram aplicadas no ambiente de produção
+- **Status**: Edge Functions deployadas ✅, Banco de dados ❌
+
+### Solução Necessária
+1. **Aplicar migrações manualmente** no dashboard do Supabase
+2. Ver arquivo `MIGRACAO_MANUAL.md` para instruções detalhadas
+3. Dashboard: https://supabase.com/dashboard/project/vhlhpmceibygaqajpoir
+
+---
+
 ## Ambiente Local ✅
 - **Docker Desktop**: Funcionando
 - **Supabase CLI**: Instalado e configurado
