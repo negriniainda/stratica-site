@@ -180,7 +180,7 @@ serve(async (req) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'Stratica Assessment <noreply@stratica.com.br>',
+            from: 'Stratica Assessment <onboarding@resend.dev>', // Use o domínio padrão do Resend temporariamente
             to: [userInfo.email],
             subject: `Seu Resultado: Maturidade Estratégica - Nível ${result.level}`,
             html: generateDetailedReport(),
@@ -212,7 +212,12 @@ serve(async (req) => {
         })
 
         if (!userEmailResponse.ok || !teamEmailResponse.ok) {
-          console.error('Email sending failed')
+          console.error('Email sending failed', {
+            userEmailStatus: userEmailResponse.status,
+            userEmailText: await userEmailResponse.text().catch(() => 'Failed to get response text'),
+            teamEmailStatus: teamEmailResponse.status,
+            teamEmailText: await teamEmailResponse.text().catch(() => 'Failed to get response text')
+          })
         }
       } catch (emailError) {
         console.error('Email error:', emailError)
