@@ -34,13 +34,11 @@
             resultDiv.innerHTML = 'Testando...';
             
             try {
-                // Update both URLs around lines 37 and 67:
-                // Line 37:
-                const response = await fetch('https://zfsdocnmxdaqvzuajbqp.supabase.co/functions/v1/contact-form', {
+                const response = await fetch('http://localhost:54321/functions/v1/contact-form', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmc2RvY25teGRhcXZ6dWFqYnFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2MDE1MzIsImV4cCI6MjA3MTE3NzUzMn0.uVd_l00SE-icATJEKam9sWJwzMMbblyjAqaMebnIPtM'
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
                     },
                     body: JSON.stringify({
                         name: 'Teste',
@@ -66,22 +64,29 @@
             resultDiv.innerHTML = 'Testando...';
             
             try {
-                const response = await fetch('https://zfsdocnmxdaqvzuajbqp.supabase.co/functions/v1/assessment-results', {
+                const response = await fetch('http://localhost:54321/functions/v1/assessment-results', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmc2RvY25teGRhcXZ6dWFqYnFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2MDE1MzIsImV4cCI6MjA3MTE3NzUzMn0.uVd_l00SE-icATJEKam9sWJwzMMbblyjAqaMebnIPtM'
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
                     },
                     body: JSON.stringify({
-                        name: 'Teste',
-                        email: 'teste@exemplo.com',
-                        company: 'Empresa Teste',
-                        results: {
-                            strategy: 3,
-                            people: 2,
-                            process: 4,
-                            technology: 3,
-                            data: 2
+                        userInfo: {
+                            name: 'Teste',
+                            email: 'teste@exemplo.com',
+                            company: 'Empresa Teste',
+                            position: 'Gerente'
+                        },
+                        result: {
+                            level: 3,
+                            title: 'Intermediário',
+                            description: 'Nível intermediário de maturidade'
+                        },
+                        totalScore: 15,
+                        percentage: 75,
+                        answers: {
+                            q1: 'resposta1',
+                            q2: 'resposta2'
                         }
                     })
                 });
