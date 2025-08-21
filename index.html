@@ -764,3 +764,26 @@
 
 </body>
 </html>
+
+try {
+    const response = await fetch('http://localhost:54321/functions/v1/contact-form', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    
+    if (!response.ok) {
+        const errorText = await response.text()
+        console.error('Erro da API:', errorText)
+        throw new Error(`HTTP ${response.status}: ${errorText}`)
+    }
+    
+    const result = await response.json()
+    console.log('Sucesso:', result)
+    
+} catch (error) {
+    console.error('Erro completo:', error)
+    // Mostrar erro específico para debug
+}
