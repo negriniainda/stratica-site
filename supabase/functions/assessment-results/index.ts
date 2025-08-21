@@ -194,7 +194,7 @@ serve(async (req) => {
           headers: {
             'Authorization': `Bearer ${RESEND_API_KEY}`,
             'Content-Type': 'application/json',
-          }, // <- apenas uma vírgula
+          },
           body: JSON.stringify({
             from: 'Stratica Assessment <onboarding@resend.dev>',
             to: ['marcelo@ainda.app'], // ALTERADO: era 'stratica@stratica.com.br'
