@@ -195,8 +195,8 @@ serve(async (req) => {
             'Content-Type': 'application/json',
           },,
           body: JSON.stringify({
-            from: 'Stratica Assessment <onboarding@resend.dev>', // Alterado para testes
-            to: ['stratica@stratica.com.br'],
+            from: 'Stratica Assessment <onboarding@resend.dev>',
+            to: ['marcelo@ainda.app'], // ALTERADO: era 'stratica@stratica.com.br'
             subject: `Novo Assessment Completado - ${userInfo.company}`,
             html: `
               <h2>Novo Assessment de Maturidade Estratégica</h2>
