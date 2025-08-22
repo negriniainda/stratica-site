@@ -79,7 +79,7 @@ serve(async (req) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'Stratica Website <onboarding@resend.dev>',
+            from: 'Stratica Website <noreply@ainda.app>',
             to: ['marcelo@ainda.app'], // ALTERADO: era 'stratica@stratica.com.br'
             subject: `Novo contato do site - ${name}`,
             html: `
