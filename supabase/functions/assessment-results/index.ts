@@ -94,6 +94,76 @@ serve(async (req) => {
          )
        }
 
+       // Send email notification if Resend API key is configured
+       console.log('RESEND_API_KEY exists:', !!RESEND_API_KEY)
+       console.log('RESEND_API_KEY length:', RESEND_API_KEY ? RESEND_API_KEY.length : 0)
+       
+       if (RESEND_API_KEY) {
+         try {
+           console.log('Attempting to send assessment email to Resend...')
+           
+           // Format answers for email display
+           const answersHtml = Object.entries(answers).map(([key, value]) => {
+             return `<p><strong>${key}:</strong> ${JSON.stringify(value)}</p>`
+           }).join('')
+           
+           const emailPayload = {
+             from: 'Stratica Website <onboarding@resend.dev>',
+             to: ['marcelo@ainda.app'],
+             subject: `Novo Assessment Completado - ${userInfo.name} (${userInfo.company})`,
+             html: `
+               <h2>Novo Assessment de Maturidade Digital Completado</h2>
+               <h3>Informações do Usuário</h3>
+               <p><strong>Nome:</strong> ${userInfo.name}</p>
+               <p><strong>Email:</strong> ${userInfo.email}</p>
+               <p><strong>Empresa:</strong> ${userInfo.company}</p>
+               ${userInfo.position ? `<p><strong>Cargo:</strong> ${userInfo.position}</p>` : ''}
+               
+               <h3>Resultado do Assessment</h3>
+               <p><strong>Nível de Maturidade:</strong> ${result.level}</p>
+               <p><strong>Título:</strong> ${result.title}</p>
+               <p><strong>Descrição:</strong> ${result.description}</p>
+               <p><strong>Pontuação Total:</strong> ${totalScore}</p>
+               <p><strong>Percentual:</strong> ${percentage}%</p>
+               
+               <h3>Respostas Detalhadas</h3>
+               ${answersHtml}
+               
+               <hr>
+               <p><small>Assessment completado em: ${new Date().toLocaleString('pt-BR')}</small></p>
+             `,
+           }
+           
+           console.log('Assessment email payload:', JSON.stringify(emailPayload, null, 2))
+           
+           const emailResponse = await fetch('https://api.resend.com/emails', {
+             method: 'POST',
+             headers: {
+               'Authorization': `Bearer ${RESEND_API_KEY}`,
+               'Content-Type': 'application/json',
+             },
+             body: JSON.stringify(emailPayload),
+           })
+
+           console.log('Assessment email response status:', emailResponse.status)
+           const responseText = await emailResponse.text()
+           console.log('Assessment email response body:', responseText)
+           
+           if (!emailResponse.ok) {
+             console.error('Assessment email sending failed with status:', emailResponse.status)
+             console.error('Assessment email error response:', responseText)
+           } else {
+             console.log('Assessment email sent successfully!')
+           }
+         } catch (emailError) {
+           console.error('Assessment email error caught:', emailError)
+           console.error('Assessment email error stack:', emailError.stack)
+           // Don't fail the request if email fails
+         }
+       } else {
+         console.log('RESEND_API_KEY not configured - skipping assessment email send')
+       }
+
        return new Response(
          JSON.stringify({ 
            success: true, 
