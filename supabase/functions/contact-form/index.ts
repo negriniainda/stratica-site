@@ -18,6 +18,17 @@ serve(async (req) => {
     return new Response('ok', { headers: corsHeaders })
   }
 
+  // Only allow POST requests
+  if (req.method !== 'POST') {
+    return new Response(
+      JSON.stringify({ error: 'Método não permitido' }),
+      { 
+        status: 405, 
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+      }
+    )
+  }
+
   try {
     // Parse request body
     const { name, email, message }: ContactFormData = await req.json()
@@ -70,37 +81,55 @@ serve(async (req) => {
     }
 
     // Send email notification if Resend API key is configured
+    console.log('RESEND_API_KEY exists:', !!RESEND_API_KEY)
+    console.log('RESEND_API_KEY length:', RESEND_API_KEY ? RESEND_API_KEY.length : 0)
+    
     if (RESEND_API_KEY) {
       try {
+        console.log('Attempting to send email to Resend...')
+        const emailPayload = {
+          from: 'Stratica Website <noreply@ainda.app>',
+          to: ['marcelo@ainda.app'], // ALTERADO: era 'stratica@stratica.com.br'
+          subject: `Novo contato do site - ${name}`,
+          html: `
+            <h2>Novo contato recebido pelo site</h2>
+            <p><strong>Nome:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Mensagem:</strong></p>
+            <p>${message.replace(/\n/g, '<br>')}</p>
+            <hr>
+            <p><small>Enviado em: ${new Date().toLocaleString('pt-BR')}</small></p>
+          `,
+        }
+        
+        console.log('Email payload:', JSON.stringify(emailPayload, null, 2))
+        
         const emailResponse = await fetch('https://api.resend.com/emails', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${RESEND_API_KEY}`,
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            from: 'Stratica Website <noreply@ainda.app>',
-            to: ['marcelo@ainda.app'], // ALTERADO: era 'stratica@stratica.com.br'
-            subject: `Novo contato do site - ${name}`,
-            html: `
-              <h2>Novo contato recebido pelo site</h2>
-              <p><strong>Nome:</strong> ${name}</p>
-              <p><strong>Email:</strong> ${email}</p>
-              <p><strong>Mensagem:</strong></p>
-              <p>${message.replace(/\n/g, '<br>')}</p>
-              <hr>
-              <p><small>Enviado em: ${new Date().toLocaleString('pt-BR')}</small></p>
-            `,
-          }),
+          body: JSON.stringify(emailPayload),
         })
 
+        console.log('Email response status:', emailResponse.status)
+        const responseText = await emailResponse.text()
+        console.log('Email response body:', responseText)
+        
         if (!emailResponse.ok) {
-          console.error('Email sending failed:', await emailResponse.text())
+          console.error('Email sending failed with status:', emailResponse.status)
+          console.error('Email error response:', responseText)
+        } else {
+          console.log('Email sent successfully!')
         }
       } catch (emailError) {
-        console.error('Email error:', emailError)
+        console.error('Email error caught:', emailError)
+        console.error('Email error stack:', emailError.stack)
         // Don't fail the request if email fails
       }
+    } else {
+      console.log('RESEND_API_KEY not configured - skipping email send')
     }
 
     return new Response(
