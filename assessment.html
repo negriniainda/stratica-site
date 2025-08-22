@@ -73,7 +73,7 @@
         <section id="home" class="relative text-gray-800 hero-gradient">
              <div class="container mx-auto px-6 py-20 md:py-32 text-center">
                 <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Avaliação de Maturidade em Gestão</h1>
-                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Responda ao questionário abaixo para medir o nível de maturidade da gestão de sua empresa em 6 dimensões críticas e receba um diagnóstico instantâneo e acionável.</p>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Responda ao questionário abaixo para medir o nível de maturidade da gestão de sua empresa nos 8 critérios de excelência FNQ e receba um diagnóstico instantâneo e acionável com pontuação de 0 a 1000 pontos.</p>
             </div>
         </section>
 
@@ -585,77 +585,90 @@ www.stratica.com.br`;
                 {
                     dimension: "Liderança",
                     icon: "users",
+                    weight: 110,
                     questions: [
                         {
                             id: "q1",
-                            text: "A alta liderança da empresa define uma visão, missão e valores claros e os comunica efetivamente a todos os colaboradores?",
+                            text: "Como a alta direção exerce a liderança e interage com as partes interessadas?",
                             options: [
-                                { value: 1, text: "Não fazemos isso - não há definição clara ou comunicação estruturada." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - a comunicação é esporádica." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - muitos colaboradores não conhecem." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a maioria dos líderes comunica bem." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a visão guia a todos." }
+                                { value: 1, text: "Não há práticas estruturadas de liderança ou interação com partes interessadas" },
+                                { value: 2, text: "Práticas iniciais e informais de liderança, com pouca interação estruturada" },
+                                { value: 3, text: "Algumas práticas de liderança implementadas, mas não de forma consistente" },
+                                { value: 4, text: "Práticas de liderança bem estruturadas e aplicadas na maioria das situações" },
+                                { value: 5, text: "Liderança exemplar com práticas consistentes e eficazes em toda a organização" }
                             ]
                         },
                         {
                             id: "q2",
-                            text: "Os líderes dão o exemplo e praticam os valores da empresa no dia a dia, inspirando e engajando as equipes?",
+                            text: "Como é implementado o sistema de liderança da organização?",
                             options: [
-                                { value: 1, text: "Não fazemos isso - os comportamentos da liderança não refletem valores." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - apenas alguns líderes o fazem." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - há inconsistência entre áreas." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - os líderes em geral tentam ser exemplos." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - todos os líderes atuam como modelos." }
+                                { value: 1, text: "Não existe um sistema de liderança estruturado" },
+                                { value: 2, text: "Sistema de liderança básico e informal" },
+                                { value: 3, text: "Sistema de liderança parcialmente implementado" },
+                                { value: 4, text: "Sistema de liderança bem estruturado e amplamente aplicado" },
+                                { value: 5, text: "Sistema de liderança robusto, integrado e continuamente aprimorado" }
                             ]
                         },
                         {
                             id: "q3",
-                            text: "A liderança demonstra comprometimento com a melhoria contínua e apoia ativamente iniciativas de inovação e mudança?",
+                            text: "Como a organização analisa criticamente o desempenho global?",
                             options: [
-                                { value: 1, text: "Não fazemos isso - a alta direção não incentiva melhorias ou inovações." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - o apoio é pontual, sem política clara." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - nem todos os líderes ou áreas estão engajados." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a maioria dos líderes valoriza e incentiva." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a liderança está engajada em promover melhorias." }
+                                { value: 1, text: "Não há análise crítica estruturada do desempenho" },
+                                { value: 2, text: "Análises pontuais e informais do desempenho" },
+                                { value: 3, text: "Análise crítica parcial com alguns indicadores" },
+                                { value: 4, text: "Análise crítica sistemática com indicadores abrangentes" },
+                                { value: 5, text: "Análise crítica robusta, integrada e orientada para melhoria contínua" }
+                            ]
+                        },
+                        {
+                            id: "q4",
+                            text: "Como a alta direção demonstra comprometimento com a excelência e sustentabilidade?",
+                            options: [
+                                { value: 1, text: "Não há demonstração clara de comprometimento com excelência" },
+                                { value: 2, text: "Comprometimento básico e esporádico" },
+                                { value: 3, text: "Comprometimento parcial com algumas iniciativas" },
+                                { value: 4, text: "Comprometimento claro e consistente na maioria das ações" },
+                                { value: 5, text: "Comprometimento exemplar e inspirador em todas as dimensões" }
                             ]
                         }
                     ]
                 },
                 {
-                    dimension: "Estratégia",
+                    dimension: "Estratégias e Planos",
                     icon: "target",
+                    weight: 60,
                     questions: [
                         {
-                            id: "q4",
-                            text: "A empresa possui um planejamento estratégico formal, com objetivos de curto, médio e longo prazo definidos?",
-                            options: [
-                                { value: 1, text: "Não fazemos isso - não há planejamento estratégico formal." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - planejamento básico, pouco detalhado." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - plano incompleto ou desatualizado." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - plano estruturado, mas com lacunas." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - plano formal e integrado." }
-                            ]
-                        },
-                        {
                             id: "q5",
-                            text: "A estratégia da empresa é revisada periodicamente e adaptada conforme mudanças do ambiente de negócios?",
-                             options: [
-                                { value: 1, text: "Não fazemos isso - o planejamento, se existe, permanece estático." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - revisões ocorrem apenas de forma reativa." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - análises e ajustes ocasionais, sem regularidade." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - há um ciclo de revisão adotado amplamente." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - revisões regulares e alta adaptabilidade." }
+                            text: "Como são formuladas as estratégias da organização?",
+                            options: [
+                                { value: 1, text: "Não há processo estruturado de formulação de estratégias" },
+                                { value: 2, text: "Processo básico e informal de definição estratégica" },
+                                { value: 3, text: "Processo de formulação estratégica parcialmente estruturado" },
+                                { value: 4, text: "Processo bem estruturado com metodologia definida" },
+                                { value: 5, text: "Processo robusto, sistemático e continuamente aprimorado" }
                             ]
                         },
                         {
                             id: "q6",
-                            text: "Os objetivos estratégicos são desdobrados para os níveis tático e operacional e comunicados claramente?",
+                            text: "Como são implementadas as estratégias da organização?",
                             options: [
-                                { value: 1, text: "Não fazemos isso - não há desdobramento; colaboradores desconhecem as metas." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - comunicação apenas a gerentes ou algumas equipes." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - processo inicial de desdobramento, mas com falhas." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a maioria das áreas recebe metas alinhadas." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - objetivos claramente desdobrados para todos." }
+                                { value: 1, text: "Não há processo estruturado de implementação estratégica" },
+                                { value: 2, text: "Implementação básica e informal das estratégias" },
+                                { value: 3, text: "Implementação parcial com alguns mecanismos de controle" },
+                                { value: 4, text: "Implementação sistemática com acompanhamento regular" },
+                                { value: 5, text: "Implementação exemplar com gestão integrada e monitoramento contínuo" }
+                            ]
+                        },
+                        {
+                            id: "q7",
+                            text: "Como são elaborados os planos de ação da organização?",
+                            options: [
+                                { value: 1, text: "Não há elaboração estruturada de planos de ação" },
+                                { value: 2, text: "Planos básicos e informais" },
+                                { value: 3, text: "Planos parcialmente estruturados" },
+                                { value: 4, text: "Planos bem elaborados e integrados" },
+                                { value: 5, text: "Planos robustos, detalhados e continuamente atualizados" }
                             ]
                         }
                     ]
@@ -738,41 +751,202 @@ www.stratica.com.br`;
                         }
                     ]
                 },
-                 {
+                {
                     dimension: "Clientes",
                     icon: "heart",
-                     questions: [
+                    weight: 60,
+                    questions: [
                         {
-                            id: "q13",
-                            text: "A empresa coleta feedback de clientes regularmente (pesquisas, NPS) e analisa essas informações?",
+                            id: "q8",
+                            text: "Como são identificadas as necessidades e expectativas dos clientes?",
                             options: [
-                                { value: 1, text: "Não fazemos isso - não coletamos feedback de clientes de forma estruturada." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - alguma forma de ouvir o cliente, mas muito básica." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - realizamos pesquisas, mas não é abrangente." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - possuímos um programa de satisfação com pesquisas periódicas." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - constantemente coletamos e analisamos feedback." }
+                                { value: 1, text: "Não há processo estruturado para identificar necessidades dos clientes" },
+                                { value: 2, text: "Identificação básica e informal das necessidades" },
+                                { value: 3, text: "Processo parcial de identificação com alguns métodos" },
+                                { value: 4, text: "Processo sistemático e abrangente de identificação" },
+                                { value: 5, text: "Processo robusto, proativo e continuamente aprimorado" }
                             ]
                         },
                         {
+                            id: "q9",
+                            text: "Como é desenvolvido o relacionamento com os clientes?",
+                            options: [
+                                { value: 1, text: "Não há estratégia estruturada de relacionamento com clientes" },
+                                { value: 2, text: "Relacionamento básico e reativo" },
+                                { value: 3, text: "Algumas práticas de relacionamento implementadas" },
+                                { value: 4, text: "Estratégia bem estruturada de relacionamento" },
+                                { value: 5, text: "Relacionamento exemplar, proativo e personalizado" }
+                            ]
+                        },
+                        {
+                            id: "q10",
+                            text: "Como são tratadas as reclamações dos clientes?",
+                            options: [
+                                { value: 1, text: "Não há processo estruturado para tratar reclamações" },
+                                { value: 2, text: "Tratamento básico e informal das reclamações" },
+                                { value: 3, text: "Processo parcial com alguns procedimentos definidos" },
+                                { value: 4, text: "Processo bem estruturado e sistemático" },
+                                { value: 5, text: "Processo exemplar com foco em prevenção e melhoria" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    dimension: "Sociedade",
+                    icon: "globe",
+                    weight: 60,
+                    questions: [
+                        {
+                            id: "q11",
+                            text: "Como são identificadas as necessidades da sociedade?",
+                            options: [
+                                { value: 1, text: "Não há processo para identificar necessidades da sociedade" },
+                                { value: 2, text: "Identificação básica e informal das necessidades sociais" },
+                                { value: 3, text: "Processo parcial de identificação com alguns métodos" },
+                                { value: 4, text: "Processo sistemático e abrangente de identificação" },
+                                { value: 5, text: "Processo robusto e proativo de identificação" }
+                            ]
+                        },
+                        {
+                            id: "q12",
+                            text: "Como são desenvolvidos os produtos e processos considerando a preservação do meio ambiente?",
+                            options: [
+                                { value: 1, text: "Não há consideração ambiental no desenvolvimento" },
+                                { value: 2, text: "Consideração básica e informal de aspectos ambientais" },
+                                { value: 3, text: "Algumas práticas ambientais implementadas" },
+                                { value: 4, text: "Estratégia bem estruturada de sustentabilidade" },
+                                { value: 5, text: "Práticas exemplares de sustentabilidade integradas" }
+                            ]
+                        },
+                        {
+                            id: "q13",
+                            text: "Como é promovido o desenvolvimento social?",
+                            options: [
+                                { value: 1, text: "Não há ações estruturadas de desenvolvimento social" },
+                                { value: 2, text: "Ações básicas e esporádicas de responsabilidade social" },
+                                { value: 3, text: "Algumas práticas de desenvolvimento social implementadas" },
+                                { value: 4, text: "Programa bem estruturado de responsabilidade social" },
+                                { value: 5, text: "Práticas exemplares de desenvolvimento social integradas" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    dimension: "Informações e Conhecimento",
+                    icon: "database",
+                    weight: 60,
+                    questions: [
+                        {
                             id: "q14",
-                            text: "Os processos, produtos e serviços são desenvolvidos com foco nas necessidades do cliente e entrega de valor?",
-                             options: [
-                                { value: 1, text: "Não fazemos isso - produtos/serviços são definidos internamente sem considerar o cliente." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - ocasionalmente ajustamos algo após reclamações." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - algumas equipes consideram o cliente, mas não é regra." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - a maioria das áreas leva em conta o cliente." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a empresa é centrada no cliente." }
+                            text: "Como são identificadas as necessidades de informações?",
+                            options: [
+                                { value: 1, text: "Não há processo para identificar necessidades de informações" },
+                                { value: 2, text: "Identificação básica e informal das necessidades" },
+                                { value: 3, text: "Processo parcial de identificação com alguns métodos" },
+                                { value: 4, text: "Processo sistemático e abrangente de identificação" },
+                                { value: 5, text: "Processo robusto e proativo de identificação" }
                             ]
                         },
                         {
                             id: "q15",
-                            text: "A organização acompanha indicadores de satisfação e fidelidade e implementa ações para melhorar a experiência?",
+                            text: "Como são desenvolvidos os sistemas de informação?",
                             options: [
-                                { value: 1, text: "Não fazemos isso - não monitoramos indicadores formais de satisfação ou fidelização." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - acompanhamos um ou outro indicador muito básico." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - alguns indicadores são medidos, mas nem todos setores se envolvem." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - temos um conjunto de indicadores acompanhados regularmente." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a gestão do relacionamento com o cliente é prioridade." }
+                                { value: 1, text: "Não há desenvolvimento estruturado de sistemas" },
+                                { value: 2, text: "Desenvolvimento básico e informal" },
+                                { value: 3, text: "Algumas práticas de desenvolvimento implementadas" },
+                                { value: 4, text: "Processo bem estruturado de desenvolvimento" },
+                                { value: 5, text: "Práticas exemplares de desenvolvimento integradas" }
+                            ]
+                        },
+                        {
+                            id: "q16",
+                            text: "Como são desenvolvidos os ativos intangíveis?",
+                            options: [
+                                { value: 1, text: "Não há gestão de ativos intangíveis" },
+                                { value: 2, text: "Gestão básica e informal" },
+                                { value: 3, text: "Algumas práticas de gestão implementadas" },
+                                { value: 4, text: "Processo bem estruturado de gestão" },
+                                { value: 5, text: "Práticas exemplares de gestão integradas" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    dimension: "Pessoas",
+                    icon: "users",
+                    weight: 90,
+                    questions: [
+                        {
+                            id: "q17",
+                            text: "Como são organizados os sistemas de trabalho?",
+                            options: [
+                                { value: 1, text: "Não há organização estruturada dos sistemas de trabalho" },
+                                { value: 2, text: "Organização básica e informal" },
+                                { value: 3, text: "Algumas práticas de organização implementadas" },
+                                { value: 4, text: "Sistema bem estruturado de organização" },
+                                { value: 5, text: "Práticas exemplares de organização integradas" }
+                            ]
+                        },
+                        {
+                            id: "q18",
+                            text: "Como são desenvolvidas as competências das pessoas?",
+                            options: [
+                                { value: 1, text: "Não há desenvolvimento estruturado de competências" },
+                                { value: 2, text: "Desenvolvimento básico e informal" },
+                                { value: 3, text: "Algumas práticas de desenvolvimento implementadas" },
+                                { value: 4, text: "Programa bem estruturado de desenvolvimento" },
+                                { value: 5, text: "Práticas exemplares de desenvolvimento integradas" }
+                            ]
+                        },
+                        {
+                            id: "q19",
+                            text: "Como é promovida a qualidade de vida das pessoas?",
+                            options: [
+                                { value: 1, text: "Não há ações estruturadas para qualidade de vida" },
+                                { value: 2, text: "Ações básicas e esporádicas" },
+                                { value: 3, text: "Algumas práticas de qualidade de vida implementadas" },
+                                { value: 4, text: "Programa bem estruturado de qualidade de vida" },
+                                { value: 5, text: "Práticas exemplares de qualidade de vida integradas" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    dimension: "Processos",
+                    icon: "settings",
+                    weight: 110,
+                    questions: [
+                        {
+                            id: "q20",
+                            text: "Como são gerenciados os processos principais do negócio?",
+                            options: [
+                                { value: 1, text: "Não há gestão estruturada dos processos principais" },
+                                { value: 2, text: "Gestão básica e informal" },
+                                { value: 3, text: "Algumas práticas de gestão implementadas" },
+                                { value: 4, text: "Sistema bem estruturado de gestão" },
+                                { value: 5, text: "Práticas exemplares de gestão integradas" }
+                            ]
+                        },
+                        {
+                            id: "q21",
+                            text: "Como são gerenciados os processos de apoio?",
+                            options: [
+                                { value: 1, text: "Não há gestão estruturada dos processos de apoio" },
+                                { value: 2, text: "Gestão básica e informal" },
+                                { value: 3, text: "Algumas práticas de gestão implementadas" },
+                                { value: 4, text: "Sistema bem estruturado de gestão" },
+                                { value: 5, text: "Práticas exemplares de gestão integradas" }
+                            ]
+                        },
+                        {
+                            id: "q22",
+                            text: "Como são gerenciados os processos econômico-financeiros?",
+                            options: [
+                                { value: 1, text: "Não há gestão estruturada dos processos financeiros" },
+                                { value: 2, text: "Gestão básica e informal" },
+                                { value: 3, text: "Algumas práticas de gestão implementadas" },
+                                { value: 4, text: "Sistema bem estruturado de gestão" },
+                                { value: 5, text: "Práticas exemplares de gestão integradas" }
                             ]
                         }
                     ]
@@ -780,38 +954,50 @@ www.stratica.com.br`;
                 {
                     dimension: "Resultados",
                     icon: "bar-chart-3",
-                     questions: [
+                    weight: 450,
+                    questions: [
                         {
-                            id: "q16",
-                            text: "A empresa acompanha regularmente os indicadores-chave de desempenho (financeiros e não financeiros)?",
+                            id: "q23",
+                            text: "Quais são os resultados econômico-financeiros da organização?",
                             options: [
-                                { value: 1, text: "Não fazemos isso - não há um conjunto definido de indicadores globais." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - acompanhamos alguns indicadores básicos de forma esporádica." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - o monitoramento não é consistente." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - há um sistema estruturado de indicadores acompanhados." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a empresa monitora rigorosamente todos os indicadores-chave." }
+                                { value: 1, text: "Resultados financeiros inadequados ou em declínio" },
+                                { value: 2, text: "Resultados financeiros básicos, sem tendências claras" },
+                                { value: 3, text: "Alguns resultados financeiros positivos" },
+                                { value: 4, text: "Bons resultados financeiros com tendências favoráveis" },
+                                { value: 5, text: "Excelentes resultados financeiros sustentáveis" }
                             ]
                         },
                         {
-                            id: "q17",
-                            text: "Os resultados atingidos são comparados com as metas estabelecidas e benchmarks de mercado?",
-                             options: [
-                                { value: 1, text: "Não fazemos isso - não estabelecemos metas formais ou comparamos resultados." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - definimos metas básicas, análise limitada." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - há metas, mas a comparação não é sistemática." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - estabelecemos metas claras e comparamos na maioria das vezes." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - todos os resultados são avaliados contra metas e referências." }
+                            id: "q24",
+                            text: "Quais são os resultados relativos a clientes e mercado?",
+                            options: [
+                                { value: 1, text: "Resultados de clientes inadequados ou em declínio" },
+                                { value: 2, text: "Resultados básicos de satisfação e retenção" },
+                                { value: 3, text: "Alguns resultados positivos com clientes" },
+                                { value: 4, text: "Bons resultados de satisfação e fidelização" },
+                                { value: 5, text: "Excelentes resultados de relacionamento com clientes" }
                             ]
                         },
                         {
-                            id: "q18",
-                            text: "A organização apresenta melhoria consistente nos resultados e utiliza essas análises para tomada de decisão?",
+                            id: "q25",
+                            text: "Quais são os resultados relativos à sociedade?",
                             options: [
-                                { value: 1, text: "Não fazemos isso - os resultados são estagnados ou erráticos." },
-                                { value: 2, text: "Fazemos raramente ou de forma inicial - pouca preocupação em analisar tendências." },
-                                { value: 3, text: "Fazemos parcialmente ou de forma inconsistente - melhorias em alguns indicadores, mas outros não." },
-                                { value: 4, text: "Fazemos de forma ampla, porém não plena - existe uma trajetória positiva na maioria dos indicadores." },
-                                { value: 5, text: "Fazemos de forma consistente e eficaz em toda a empresa - a melhoria contínua reflete-se nos resultados." }
+                                { value: 1, text: "Resultados sociais inadequados ou inexistentes" },
+                                { value: 2, text: "Resultados básicos de responsabilidade social" },
+                                { value: 3, text: "Alguns resultados positivos para a sociedade" },
+                                { value: 4, text: "Bons resultados de impacto social" },
+                                { value: 5, text: "Excelentes resultados de contribuição social" }
+                            ]
+                        },
+                        {
+                            id: "q26",
+                            text: "Quais são os resultados relativos às pessoas?",
+                            options: [
+                                { value: 1, text: "Resultados de pessoas inadequados" },
+                                { value: 2, text: "Resultados básicos de satisfação dos colaboradores" },
+                                { value: 3, text: "Alguns resultados positivos com pessoas" },
+                                { value: 4, text: "Bons resultados de engajamento e desenvolvimento" },
+                                { value: 5, text: "Excelentes resultados de gestão de pessoas" }
                             ]
                         }
                     ]
@@ -867,16 +1053,20 @@ www.stratica.com.br`;
                 event.preventDefault();
 
                 const formData = new FormData(form);
-                let totalScore = 0;
+                let totalFNQScore = 0;
                 let allQuestionsAnswered = true;
                 const answers = {};
+                const dimensionScores = {};
 
                 quizData.forEach(dim => {
+                    let dimensionScore = 0;
+                    let dimensionQuestions = 0;
+                    
                     dim.questions.forEach(q => {
                         const answer = formData.get(q.id);
                         if (answer) {
                             const score = parseInt(answer);
-                            totalScore += score;
+                            dimensionScore += score;
                             answers[q.id] = {
                                 question: q.text,
                                 answer_text: q.options.find(opt => opt.value === score).text,
@@ -885,7 +1075,23 @@ www.stratica.com.br`;
                         } else {
                             allQuestionsAnswered = false;
                         }
+                        dimensionQuestions++;
                     });
+                    
+                    // Calcular pontuação FNQ para esta dimensão
+                    const dimensionPercentage = (dimensionScore / (dimensionQuestions * 5)) * 100;
+                    const dimensionWeight = dim.weight || 60; // peso padrão se não especificado
+                    const fnqScore = Math.round((dimensionPercentage / 100) * dimensionWeight);
+                    
+                    dimensionScores[dim.dimension] = {
+                        score: dimensionScore,
+                        maxScore: dimensionQuestions * 5,
+                        percentage: Math.round(dimensionPercentage),
+                        fnqScore: fnqScore,
+                        weight: dimensionWeight
+                    };
+                    
+                    totalFNQScore += fnqScore;
                 });
 
                 if (!allQuestionsAnswered) {
@@ -893,10 +1099,10 @@ www.stratica.com.br`;
                     return;
                 }
 
-                const maxScore = totalQuestions * 5;
-                const percentage = (totalScore / maxScore) * 100;
+                const maxFNQScore = 1000; // Total máximo FNQ
+                const percentage = (totalFNQScore / maxFNQScore) * 100;
                 
-                displayResult(percentage);
+                displayResult(percentage, totalFNQScore, dimensionScores);
                 sendData({
                     userInfo: {
                         name: formData.get('name'),
@@ -904,7 +1110,9 @@ www.stratica.com.br`;
                         company: formData.get('company'),
                         position: formData.get('position')
                     },
-                    result: getResultDetails(percentage),
+                    result: getResultDetailsFNQ(totalFNQScore),
+                    totalFNQScore: totalFNQScore,
+                    dimensionScores: dimensionScores,
                     answers: answers
                 });
 
@@ -912,15 +1120,15 @@ www.stratica.com.br`;
             }
 
             // Função para exibir o resultado no DOM
-            function displayResult(percentage) {
+            function displayResult(percentage, totalFNQScore, dimensionScores) {
                 const percentageResultEl = document.getElementById('percentage-result');
                 const resultBarEl = document.getElementById('result-bar');
                 const levelTitleEl = document.getElementById('level-title');
                 const levelDescriptionEl = document.getElementById('level-description');
                 
-                const { level, title, description } = getResultDetails(percentage);
+                const { level, title, description } = getResultDetailsFNQ(totalFNQScore);
 
-                percentageResultEl.textContent = `${Math.round(percentage)}%`;
+                percentageResultEl.textContent = `${totalFNQScore}/1000 pontos FNQ (${Math.round(percentage)}%)`;
                 levelTitleEl.textContent = `Nível ${level} - ${title}`;
                 levelDescriptionEl.textContent = description;
 
@@ -929,42 +1137,170 @@ www.stratica.com.br`;
                      resultBarEl.style.width = `${percentage}%`;
                 }, 100);
 
+                // Exibir análise por dimensão
+                displayDimensionAnalysis(dimensionScores);
+
                 resultadoSection.classList.remove('hidden');
             }
 
-            // Função para obter os detalhes do nível de maturidade
-            function getResultDetails(percentage) {
-                if (percentage <= 20) {
+            // Função para exibir análise detalhada por critério
+            function displayDimensionAnalysis(dimensionScores) {
+                // Verificar se já existe um container de análise
+                let analysisContainer = document.getElementById('dimension-analysis-container');
+                if (!analysisContainer) {
+                    analysisContainer = document.createElement('div');
+                    analysisContainer.id = 'dimension-analysis-container';
+                    analysisContainer.className = 'mt-8';
+                    document.getElementById('resultado').appendChild(analysisContainer);
+                }
+                
+                let analysisHTML = '<h3 class="text-xl font-bold mb-4">Análise por Critério FNQ</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+                
+                for (const [dimension, data] of Object.entries(dimensionScores)) {
+                    const percentage = Math.round((data.score / data.maxScore) * 100);
+                    const level = getResultDetailsFNQ(data.score).level;
+                    
+                    analysisHTML += `
+                        <div class="bg-white p-4 rounded-lg shadow border">
+                            <h4 class="font-semibold text-lg mb-2">${dimension}</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium">${data.score}/${data.maxScore} pontos</span>
+                                <span class="text-sm text-gray-600">(${percentage}%)</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                                <div class="bg-blue-600 h-2 rounded-full transition-all duration-500" style="width: ${percentage}%"></div>
+                            </div>
+                            <div class="text-sm text-blue-600 font-medium mb-2">Nível ${level}</div>
+                            <div class="text-xs text-gray-700">
+                                ${getDimensionRecommendations(dimension, level)}
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                analysisHTML += '</div>';
+                analysisContainer.innerHTML = analysisHTML;
+            }
+
+            // Função para obter recomendações específicas por critério e nível
+            function getDimensionRecommendations(dimension, level) {
+                const recommendations = {
+                    'Liderança': {
+                        1: 'Estabeleça uma visão clara e valores organizacionais. Defina papéis de liderança.',
+                        2: 'Desenvolva competências de liderança. Implemente comunicação regular com equipes.',
+                        3: 'Formalize processos de governança. Estabeleça indicadores de desempenho da liderança.',
+                        4: 'Implemente liderança participativa. Desenvolva sucessores e talentos.',
+                        5: 'Pratique liderança transformacional. Promova inovação e melhoria contínua.',
+                        6: 'Seja referência em liderança. Compartilhe melhores práticas com o mercado.'
+                    },
+                    'Estratégias e Planos': {
+                        1: 'Defina missão, visão e valores. Estabeleça objetivos básicos de curto prazo.',
+                        2: 'Desenvolva planejamento estratégico formal. Identifique stakeholders principais.',
+                        3: 'Implemente análise SWOT sistemática. Estabeleça planos de ação estruturados.',
+                        4: 'Integre planejamento com execução. Monitore indicadores estratégicos regularmente.',
+                        5: 'Pratique gestão estratégica avançada. Antecipe tendências e cenários futuros.',
+                        6: 'Seja benchmark em estratégia. Influencie o desenvolvimento do setor.'
+                    },
+                    'Clientes': {
+                        1: 'Identifique seus clientes principais. Estabeleça canais básicos de comunicação.',
+                        2: 'Implemente pesquisas de satisfação. Desenvolva relacionamento mais próximo.',
+                        3: 'Segmente clientes e personalize atendimento. Monitore experiência do cliente.',
+                        4: 'Pratique gestão de relacionamento avançada. Antecipe necessidades dos clientes.',
+                        5: 'Seja referência em experiência do cliente. Inove constantemente na proposta de valor.',
+                        6: 'Lidere transformação no relacionamento com clientes no seu setor.'
+                    },
+                    'Sociedade': {
+                        1: 'Identifique impactos sociais básicos. Cumpra legislação ambiental e social.',
+                        2: 'Desenvolva programas de responsabilidade social. Engaje comunidade local.',
+                        3: 'Implemente gestão ambiental estruturada. Monitore impactos socioambientais.',
+                        4: 'Integre sustentabilidade à estratégia. Promova desenvolvimento social ativo.',
+                        5: 'Seja referência em sustentabilidade. Lidere iniciativas setoriais.',
+                        6: 'Transforme positivamente a sociedade. Seja modelo global de sustentabilidade.'
+                    },
+                    'Informações e Conhecimento': {
+                        1: 'Organize informações básicas. Estabeleça sistemas de comunicação interna.',
+                        2: 'Implemente sistemas de gestão de informações. Desenvolva base de conhecimento.',
+                        3: 'Estruture gestão do conhecimento. Monitore qualidade das informações.',
+                        4: 'Integre sistemas de informação. Promova compartilhamento de conhecimento.',
+                        5: 'Pratique gestão avançada do conhecimento. Use analytics para decisões.',
+                        6: 'Seja referência em gestão da informação e conhecimento no setor.'
+                    },
+                    'Pessoas': {
+                        1: 'Organize estrutura básica de RH. Defina descrições de cargos e responsabilidades.',
+                        2: 'Implemente processos de recrutamento e desenvolvimento. Melhore comunicação interna.',
+                        3: 'Estruture gestão de competências. Monitore clima organizacional regularmente.',
+                        4: 'Pratique gestão de talentos avançada. Promova engajamento e bem-estar.',
+                        5: 'Seja referência em gestão de pessoas. Inove em práticas de RH.',
+                        6: 'Transforme o mercado de trabalho. Seja modelo global em gestão de pessoas.'
+                    },
+                    'Processos': {
+                        1: 'Mapeie processos principais. Estabeleça controles básicos de qualidade.',
+                        2: 'Padronize processos críticos. Implemente melhorias pontuais.',
+                        3: 'Estruture gestão por processos. Monitore indicadores de desempenho.',
+                        4: 'Otimize processos continuamente. Integre cadeia de valor.',
+                        5: 'Pratique excelência operacional. Inove em processos e tecnologias.',
+                        6: 'Seja benchmark em gestão de processos. Lidere transformação setorial.'
+                    },
+                    'Resultados': {
+                        1: 'Monitore resultados financeiros básicos. Estabeleça controles de custos.',
+                        2: 'Implemente indicadores de desempenho. Monitore satisfação de clientes.',
+                        3: 'Estruture sistema de medição integrado. Analise tendências e comparações.',
+                        4: 'Pratique gestão por resultados avançada. Benchmarking com concorrentes.',
+                        5: 'Alcance resultados superiores sustentados. Seja referência no setor.',
+                        6: 'Transforme padrões de desempenho do mercado. Seja líder global.'
+                    }
+                };
+                
+                return recommendations[dimension] && recommendations[dimension][level] 
+                    ? recommendations[dimension][level] 
+                    : 'Continue desenvolvendo este critério para alcançar melhores resultados.';
+            }
+
+            // Função para obter os detalhes do nível de maturidade FNQ
+            function getResultDetailsFNQ(fnqScore) {
+                if (fnqScore <= 125) {
                     return {
                         level: 1,
                         title: "Inicial",
-                        description: "Maturidade muito baixa. Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
+                        description: "Maturidade muito baixa (0-125 pontos FNQ). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
                     };
-                } else if (percentage <= 40) {
+                } else if (fnqScore <= 250) {
                     return {
                         level: 2,
                         title: "Emergente",
-                        description: "Maturidade baixa. Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
+                        description: "Maturidade baixa (126-250 pontos FNQ). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
                     };
-                } else if (percentage <= 60) {
+                } else if (fnqScore <= 375) {
                     return {
                         level: 3,
                         title: "Estruturado",
-                        description: "Maturidade intermediária. Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
+                        description: "Maturidade intermediária (251-375 pontos FNQ). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
                     };
-                } else if (percentage <= 80) {
+                } else if (fnqScore <= 500) {
                     return {
                         level: 4,
                         title: "Avançado",
-                        description: "Maturidade alta. Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
+                        description: "Maturidade alta (376-500 pontos FNQ). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
                     };
-                } else {
+                } else if (fnqScore <= 750) {
                     return {
                         level: 5,
                         title: "Excelência",
-                        description: "Maturidade plena. Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
+                        description: "Maturidade muito alta (501-750 pontos FNQ). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
+                    };
+                } else {
+                    return {
+                        level: 6,
+                        title: "Classe Mundial",
+                        description: "Maturidade excepcional (751-1000 pontos FNQ). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
                     };
                 }
+            }
+
+            // Função para obter os detalhes do nível de maturidade (mantida para compatibilidade)
+            function getResultDetails(percentage) {
+                const fnqScore = Math.round((percentage / 100) * 1000);
+                return getResultDetailsFNQ(fnqScore);
             }
 
             // Função para fallback mailto: do assessment
