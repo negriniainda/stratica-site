@@ -88,7 +88,7 @@ serve(async (req) => {
       try {
         console.log('Attempting to send email to Resend...')
         const emailPayload = {
-          from: 'Stratica Website <noreply@ainda.app>',
+          from: 'Stratica Website <onboarding@resend.dev>',
           to: ['marcelo@ainda.app'], // ALTERADO: era 'stratica@stratica.com.br'
           subject: `Novo contato do site - ${name}`,
           html: `
