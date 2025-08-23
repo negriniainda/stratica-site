@@ -1158,7 +1158,7 @@ www.stratica.com.br`;
                 
                 for (const [dimension, data] of Object.entries(dimensionScores)) {
                     const percentage = Math.round((data.score / data.maxScore) * 100);
-                    const level = getResultDetailsStratica(data.score).level;
+                    const level = getResultDetailsStratica(data.straticaScore).level;
                     
                     analysisHTML += `
                         <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
