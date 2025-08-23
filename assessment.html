@@ -73,7 +73,7 @@
         <section id="home" class="relative text-gray-800 hero-gradient">
              <div class="container mx-auto px-6 py-20 md:py-32 text-center">
                 <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Avaliação de Maturidade em Gestão</h1>
-                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Responda ao questionário abaixo para medir o nível de maturidade da gestão de sua empresa nos 8 critérios de excelência FNQ e receba um diagnóstico instantâneo e acionável com pontuação de 0 a 1000 pontos.</p>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Responda ao questionário abaixo para medir o nível de maturidade da gestão de sua empresa nos 8 critérios de excelência Stratica e receba um diagnóstico instantâneo e acionável com pontuação de 0 a 1000 pontos.</p>
             </div>
         </section>
 
@@ -1053,7 +1053,7 @@ www.stratica.com.br`;
                 event.preventDefault();
 
                 const formData = new FormData(form);
-                let totalFNQScore = 0;
+                let totalStraticaScore = 0;
                 let allQuestionsAnswered = true;
                 const answers = {};
                 const dimensionScores = {};
@@ -1078,20 +1078,20 @@ www.stratica.com.br`;
                         dimensionQuestions++;
                     });
                     
-                    // Calcular pontuação FNQ para esta dimensão
+                    // Calcular pontuação Stratica para esta dimensão
                     const dimensionPercentage = (dimensionScore / (dimensionQuestions * 5)) * 100;
                     const dimensionWeight = dim.weight || 60; // peso padrão se não especificado
-                    const fnqScore = Math.round((dimensionPercentage / 100) * dimensionWeight);
+                    const straticaScore = Math.round((dimensionPercentage / 100) * dimensionWeight);
                     
                     dimensionScores[dim.dimension] = {
                         score: dimensionScore,
                         maxScore: dimensionQuestions * 5,
                         percentage: Math.round(dimensionPercentage),
-                        fnqScore: fnqScore,
+                        straticaScore: straticaScore,
                         weight: dimensionWeight
                     };
                     
-                    totalFNQScore += fnqScore;
+                    totalStraticaScore += straticaScore;
                 });
 
                 if (!allQuestionsAnswered) {
@@ -1099,10 +1099,10 @@ www.stratica.com.br`;
                     return;
                 }
 
-                const maxFNQScore = 1000; // Total máximo FNQ
-                const percentage = (totalFNQScore / maxFNQScore) * 100;
+                const maxStraticaScore = 1000; // Total máximo Stratica
+                const percentage = (totalStraticaScore / maxStraticaScore) * 100;
                 
-                displayResult(percentage, totalFNQScore, dimensionScores);
+                displayResult(percentage, totalStraticaScore, dimensionScores);
                 sendData({
                     userInfo: {
                         name: formData.get('name'),
@@ -1110,8 +1110,8 @@ www.stratica.com.br`;
                         company: formData.get('company'),
                         position: formData.get('position')
                     },
-                    result: getResultDetailsFNQ(totalFNQScore),
-                    totalFNQScore: totalFNQScore,
+                    result: getResultDetailsStratica(totalStraticaScore),
+                    totalStraticaScore: totalStraticaScore,
                     dimensionScores: dimensionScores,
                     answers: answers
                 });
@@ -1120,15 +1120,15 @@ www.stratica.com.br`;
             }
 
             // Função para exibir o resultado no DOM
-            function displayResult(percentage, totalFNQScore, dimensionScores) {
+            function displayResult(percentage, totalStraticaScore, dimensionScores) {
                 const percentageResultEl = document.getElementById('percentage-result');
                 const resultBarEl = document.getElementById('result-bar');
                 const levelTitleEl = document.getElementById('level-title');
                 const levelDescriptionEl = document.getElementById('level-description');
                 
-                const { level, title, description } = getResultDetailsFNQ(totalFNQScore);
+                const { level, title, description } = getResultDetailsStratica(totalStraticaScore);
 
-                percentageResultEl.textContent = `${totalFNQScore}/1000 pontos FNQ (${Math.round(percentage)}%)`;
+                percentageResultEl.textContent = `${totalStraticaScore}/1000 pontos Stratica (${Math.round(percentage)}%)`;
                 levelTitleEl.textContent = `Nível ${level} - ${title}`;
                 levelDescriptionEl.textContent = description;
 
@@ -1150,29 +1150,32 @@ www.stratica.com.br`;
                 if (!analysisContainer) {
                     analysisContainer = document.createElement('div');
                     analysisContainer.id = 'dimension-analysis-container';
-                    analysisContainer.className = 'mt-8';
+                    analysisContainer.className = 'mt-12 pt-8 border-t border-gray-600';
                     document.getElementById('resultado').appendChild(analysisContainer);
                 }
                 
-                let analysisHTML = '<h3 class="text-xl font-bold mb-4">Análise por Critério FNQ</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+                let analysisHTML = '<h3 class="text-xl font-bold mb-6 text-white">Análise por Critério Stratica</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
                 
                 for (const [dimension, data] of Object.entries(dimensionScores)) {
                     const percentage = Math.round((data.score / data.maxScore) * 100);
-                    const level = getResultDetailsFNQ(data.score).level;
+                    const level = getResultDetailsStratica(data.score).level;
                     
                     analysisHTML += `
-                        <div class="bg-white p-4 rounded-lg shadow border">
-                            <h4 class="font-semibold text-lg mb-2">${dimension}</h4>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-sm font-medium">${data.score}/${data.maxScore} pontos</span>
+                        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                            <h4 class="font-semibold text-lg mb-4 text-gray-800">${dimension}</h4>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-sm font-medium text-gray-700">${data.score}/${data.maxScore} pontos</span>
                                 <span class="text-sm text-gray-600">(${percentage}%)</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
-                                <div class="bg-blue-600 h-2 rounded-full transition-all duration-500" style="width: ${percentage}%"></div>
+                            <div class="w-full bg-gray-200 rounded-full h-3 mb-3">
+                                <div class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: ${percentage}%"></div>
                             </div>
-                            <div class="text-sm text-blue-600 font-medium mb-2">Nível ${level}</div>
-                            <div class="text-xs text-gray-700">
-                                ${getDimensionRecommendations(dimension, level)}
+                            <div class="text-center mb-4">
+                                <span class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">Nível ${level}</span>
+                            </div>
+                            <div class="text-sm text-gray-700 leading-relaxed">
+                                <strong class="text-gray-800">Recomendações:</strong>
+                                <p class="mt-2">${getDimensionRecommendations(dimension, level)}</p>
                             </div>
                         </div>
                     `;
@@ -1256,51 +1259,51 @@ www.stratica.com.br`;
                     : 'Continue desenvolvendo este critério para alcançar melhores resultados.';
             }
 
-            // Função para obter os detalhes do nível de maturidade FNQ
-            function getResultDetailsFNQ(fnqScore) {
-                if (fnqScore <= 125) {
+            // Função para obter os detalhes do nível de maturidade Stratica
+            function getResultDetailsStratica(straticaScore) {
+                if (straticaScore <= 125) {
                     return {
                         level: 1,
                         title: "Inicial",
-                        description: "Maturidade muito baixa (0-125 pontos FNQ). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
+                        description: "Maturidade muito baixa (0-125 pontos Stratica). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
                     };
-                } else if (fnqScore <= 250) {
+                } else if (straticaScore <= 250) {
                     return {
                         level: 2,
                         title: "Emergente",
-                        description: "Maturidade baixa (126-250 pontos FNQ). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
+                        description: "Maturidade baixa (126-250 pontos Stratica). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
                     };
-                } else if (fnqScore <= 375) {
+                } else if (straticaScore <= 375) {
                     return {
                         level: 3,
                         title: "Estruturado",
-                        description: "Maturidade intermediária (251-375 pontos FNQ). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
+                        description: "Maturidade intermediária (251-375 pontos Stratica). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
                     };
-                } else if (fnqScore <= 500) {
+                } else if (straticaScore <= 500) {
                     return {
                         level: 4,
                         title: "Avançado",
-                        description: "Maturidade alta (376-500 pontos FNQ). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
+                        description: "Maturidade alta (376-500 pontos Stratica). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
                     };
-                } else if (fnqScore <= 750) {
+                } else if (straticaScore <= 750) {
                     return {
                         level: 5,
                         title: "Excelência",
-                        description: "Maturidade muito alta (501-750 pontos FNQ). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
+                        description: "Maturidade muito alta (501-750 pontos Stratica). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
                     };
                 } else {
                     return {
                         level: 6,
                         title: "Classe Mundial",
-                        description: "Maturidade excepcional (751-1000 pontos FNQ). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
+                        description: "Maturidade excepcional (751-1000 pontos Stratica). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
                     };
                 }
             }
 
             // Função para obter os detalhes do nível de maturidade (mantida para compatibilidade)
             function getResultDetails(percentage) {
-                const fnqScore = Math.round((percentage / 100) * 1000);
-                return getResultDetailsFNQ(fnqScore);
+                const straticaScore = Math.round((percentage / 100) * 1000);
+                return getResultDetailsStratica(straticaScore);
             }
 
             // Função para fallback mailto: do assessment
@@ -1336,12 +1339,17 @@ www.stratica.com.br`;
                 console.log(JSON.stringify(data, null, 2));
 
                 try {
+                    // Usar pontuação Stratica já calculada
+                    const totalStraticaScore = data.totalStraticaScore;
+                    const maxStraticaScore = 1000;
+                    const calculatedPercentage = (totalStraticaScore / maxStraticaScore) * 100;
+                    
                     // Preparar dados para envio
                     const assessmentData = {
                         userInfo: data.userInfo,
                         result: data.result,
-                        totalScore: Object.values(data.answers).reduce((sum, answer) => sum + answer.score, 0),
-                        percentage: (Object.values(data.answers).reduce((sum, answer) => sum + answer.score, 0) / (Object.keys(data.answers).length * 5)) * 100,
+                        totalScore: totalStraticaScore,
+                        percentage: Math.round(calculatedPercentage * 100) / 100, // Arredondar para 2 casas decimais
                         answers: data.answers
                     };
 
