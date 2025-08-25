@@ -6,6 +6,361 @@ const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!
 const SUPABASE_ANON_KEY = Deno.env.get('SUPABASE_ANON_KEY')!
 
+// Mapeamento das perguntas do questionário
+const questionMapping: Record<string, { text: string; dimension: string; options: Array<{ value: number; text: string }> }> = {
+  "q1": {
+    text: "Como a alta direção exerce a liderança e interage com as partes interessadas?",
+    dimension: "Liderança",
+    options: [
+      { value: 1, text: "Não há liderança estruturada ou interação com partes interessadas" },
+      { value: 2, text: "Liderança básica com interação informal" },
+      { value: 3, text: "Liderança parcialmente estruturada com algumas interações" },
+      { value: 4, text: "Liderança bem estruturada com interação sistemática" },
+      { value: 5, text: "Liderança exemplar com engajamento proativo de todas as partes" }
+    ]
+  },
+  "q2": {
+    text: "Como é implementado o sistema de liderança da organização?",
+    dimension: "Liderança",
+    options: [
+      { value: 1, text: "Não existe um sistema de liderança estruturado" },
+      { value: 2, text: "Sistema de liderança básico e informal" },
+      { value: 3, text: "Sistema de liderança parcialmente implementado" },
+      { value: 4, text: "Sistema de liderança bem estruturado e amplamente aplicado" },
+      { value: 5, text: "Sistema de liderança robusto, integrado e continuamente aprimorado" }
+    ]
+  },
+  "q3": {
+    text: "Como a organização analisa criticamente o desempenho global?",
+    dimension: "Liderança",
+    options: [
+      { value: 1, text: "Não há análise crítica estruturada do desempenho" },
+      { value: 2, text: "Análises pontuais e informais do desempenho" },
+      { value: 3, text: "Análise crítica parcial com alguns indicadores" },
+      { value: 4, text: "Análise crítica sistemática com indicadores abrangentes" },
+      { value: 5, text: "Análise crítica robusta, integrada e orientada para melhoria contínua" }
+    ]
+  },
+  "q4": {
+    text: "Como a alta direção demonstra comprometimento com a excelência e sustentabilidade?",
+    dimension: "Liderança",
+    options: [
+      { value: 1, text: "Não há demonstração clara de comprometimento com excelência" },
+      { value: 2, text: "Comprometimento básico e esporádico" },
+      { value: 3, text: "Comprometimento parcial com algumas iniciativas" },
+      { value: 4, text: "Comprometimento claro e consistente na maioria das ações" },
+      { value: 5, text: "Comprometimento exemplar e inspirador em todas as dimensões" }
+    ]
+  },
+  "q5": {
+    text: "Como são formuladas as estratégias da organização?",
+    dimension: "Estratégias e Planos",
+    options: [
+      { value: 1, text: "Não há processo estruturado de formulação de estratégias" },
+      { value: 2, text: "Processo básico e informal de definição estratégica" },
+      { value: 3, text: "Processo de formulação estratégica parcialmente estruturado" },
+      { value: 4, text: "Processo bem estruturado com metodologia definida" },
+      { value: 5, text: "Processo robusto, sistemático e continuamente aprimorado" }
+    ]
+  },
+  "q6": {
+    text: "Como são implementadas as estratégias da organização?",
+    dimension: "Estratégias e Planos",
+    options: [
+      { value: 1, text: "Não há processo estruturado de implementação estratégica" },
+      { value: 2, text: "Implementação básica e informal das estratégias" },
+      { value: 3, text: "Implementação parcial com alguns mecanismos de controle" },
+      { value: 4, text: "Implementação sistemática com acompanhamento regular" },
+      { value: 5, text: "Implementação exemplar com gestão integrada e monitoramento contínuo" }
+    ]
+  },
+  "q7": {
+    text: "Como são elaborados os planos de ação da organização?",
+    dimension: "Estratégias e Planos",
+    options: [
+      { value: 1, text: "Não há elaboração estruturada de planos de ação" },
+      { value: 2, text: "Planos básicos e informais" },
+      { value: 3, text: "Planos parcialmente estruturados" },
+      { value: 4, text: "Planos bem elaborados e integrados" },
+      { value: 5, text: "Planos robustos, detalhados e continuamente atualizados" }
+    ]
+  },
+  "q8": {
+    text: "Como a organização identifica, analisa e trata os riscos?",
+    dimension: "Estratégias e Planos",
+    options: [
+      { value: 1, text: "Não há identificação ou tratamento estruturado de riscos" },
+      { value: 2, text: "Identificação básica e informal de riscos" },
+      { value: 3, text: "Processo parcial de gestão de riscos" },
+      { value: 4, text: "Gestão sistemática e abrangente de riscos" },
+      { value: 5, text: "Gestão exemplar e integrada de riscos" }
+    ]
+  },
+  "q9": {
+    text: "Como são gerenciados os processos finalísticos da organização?",
+    dimension: "Processos",
+    options: [
+      { value: 1, text: "Não há gestão estruturada dos processos finalísticos" },
+      { value: 2, text: "Gestão básica e informal dos processos" },
+      { value: 3, text: "Gestão parcial com alguns controles" },
+      { value: 4, text: "Gestão sistemática e bem estruturada" },
+      { value: 5, text: "Gestão exemplar com melhoria contínua" }
+    ]
+  },
+  "q10": {
+    text: "Como são gerenciados os processos de apoio da organização?",
+    dimension: "Processos",
+    options: [
+      { value: 1, text: "Não há gestão estruturada dos processos de apoio" },
+      { value: 2, text: "Gestão básica e informal" },
+      { value: 3, text: "Gestão parcial com alguns controles" },
+      { value: 4, text: "Gestão sistemática e integrada" },
+      { value: 5, text: "Gestão exemplar com otimização contínua" }
+    ]
+  },
+  "q11": {
+    text: "Como são gerenciados os fornecedores da organização?",
+    dimension: "Processos",
+    options: [
+      { value: 1, text: "Não há gestão estruturada de fornecedores" },
+      { value: 2, text: "Gestão básica e informal" },
+      { value: 3, text: "Gestão parcial com alguns critérios" },
+      { value: 4, text: "Gestão sistemática com critérios definidos" },
+      { value: 5, text: "Gestão exemplar com parcerias estratégicas" }
+    ]
+  },
+  "q12": {
+    text: "Como são gerenciadas as finanças da organização?",
+    dimension: "Processos",
+    options: [
+      { value: 1, text: "Não há gestão financeira estruturada" },
+      { value: 2, text: "Gestão financeira básica" },
+      { value: 3, text: "Gestão financeira parcial" },
+      { value: 4, text: "Gestão financeira sistemática" },
+      { value: 5, text: "Gestão financeira exemplar e estratégica" }
+    ]
+  },
+  "q13": {
+    text: "Como são definidos os sistemas de trabalho da organização?",
+    dimension: "Pessoas",
+    options: [
+      { value: 1, text: "Não há definição estruturada dos sistemas de trabalho" },
+      { value: 2, text: "Definição básica e informal" },
+      { value: 3, text: "Definição parcial com alguns padrões" },
+      { value: 4, text: "Definição sistemática e bem estruturada" },
+      { value: 5, text: "Definição exemplar com alta performance" }
+    ]
+  },
+  "q14": {
+    text: "Como são desenvolvidas as competências das pessoas?",
+    dimension: "Pessoas",
+    options: [
+      { value: 1, text: "Não há desenvolvimento estruturado de competências" },
+      { value: 2, text: "Desenvolvimento básico e esporádico" },
+      { value: 3, text: "Desenvolvimento parcial com alguns programas" },
+      { value: 4, text: "Desenvolvimento sistemático e abrangente" },
+      { value: 5, text: "Desenvolvimento exemplar e estratégico" }
+    ]
+  },
+  "q15": {
+    text: "Como é promovida a qualidade de vida das pessoas?",
+    dimension: "Pessoas",
+    options: [
+      { value: 1, text: "Não há promoção estruturada da qualidade de vida" },
+      { value: 2, text: "Iniciativas básicas e pontuais" },
+      { value: 3, text: "Programas parciais de qualidade de vida" },
+      { value: 4, text: "Programas sistemáticos e abrangentes" },
+      { value: 5, text: "Programas exemplares e inovadores" }
+    ]
+  },
+  "q16": {
+    text: "Como são segmentados os clientes e mercados?",
+    dimension: "Clientes",
+    options: [
+      { value: 1, text: "Não há segmentação estruturada" },
+      { value: 2, text: "Segmentação básica e informal" },
+      { value: 3, text: "Segmentação parcial com alguns critérios" },
+      { value: 4, text: "Segmentação sistemática e bem definida" },
+      { value: 5, text: "Segmentação exemplar e estratégica" }
+    ]
+  },
+  "q17": {
+    text: "Como são desenvolvidos os produtos e serviços?",
+    dimension: "Clientes",
+    options: [
+      { value: 1, text: "Não há processo estruturado de desenvolvimento" },
+      { value: 2, text: "Desenvolvimento básico e informal" },
+      { value: 3, text: "Processo parcial com alguns controles" },
+      { value: 4, text: "Processo sistemático e bem estruturado" },
+      { value: 5, text: "Processo exemplar com inovação contínua" }
+    ]
+  },
+  "q18": {
+    text: "Como é realizado o relacionamento com os clientes?",
+    dimension: "Clientes",
+    options: [
+      { value: 1, text: "Não há gestão estruturada do relacionamento" },
+      { value: 2, text: "Relacionamento básico e informal" },
+      { value: 3, text: "Relacionamento parcial com alguns canais" },
+      { value: 4, text: "Relacionamento sistemático e multicanal" },
+      { value: 5, text: "Relacionamento exemplar e personalizado" }
+    ]
+  },
+  "q19": {
+    text: "Como a organização atua em relação à responsabilidade socioambiental?",
+    dimension: "Sociedade",
+    options: [
+      { value: 1, text: "Não há atuação estruturada em responsabilidade socioambiental" },
+      { value: 2, text: "Atuação básica e esporádica" },
+      { value: 3, text: "Atuação parcial com algumas iniciativas" },
+      { value: 4, text: "Atuação sistemática e abrangente" },
+      { value: 5, text: "Atuação exemplar e transformadora" }
+    ]
+  },
+  "q20": {
+    text: "Como a organização trata as questões éticas?",
+    dimension: "Sociedade",
+    options: [
+      { value: 1, text: "Não há tratamento estruturado de questões éticas" },
+      { value: 2, text: "Tratamento básico e informal" },
+      { value: 3, text: "Tratamento parcial com alguns códigos" },
+      { value: 4, text: "Tratamento sistemático com códigos bem definidos" },
+      { value: 5, text: "Tratamento exemplar com cultura ética sólida" }
+    ]
+  },
+  "q21": {
+    text: "Como são gerenciadas as informações da organização?",
+    dimension: "Informações e Conhecimento",
+    options: [
+      { value: 1, text: "Não há gestão estruturada das informações" },
+      { value: 2, text: "Gestão básica e informal" },
+      { value: 3, text: "Gestão parcial com alguns sistemas" },
+      { value: 4, text: "Gestão sistemática e integrada" },
+      { value: 5, text: "Gestão exemplar com inteligência de negócios" }
+    ]
+  },
+  "q22": {
+    text: "Como são gerenciados os conhecimentos da organização?",
+    dimension: "Informações e Conhecimento",
+    options: [
+      { value: 1, text: "Não há gestão estruturada do conhecimento" },
+      { value: 2, text: "Gestão básica e informal" },
+      { value: 3, text: "Gestão parcial com alguns repositórios" },
+      { value: 4, text: "Gestão sistemática e compartilhada" },
+      { value: 5, text: "Gestão exemplar com inovação contínua" }
+    ]
+  },
+  "q23": {
+    text: "Como são avaliados os resultados relativos aos clientes e mercados?",
+    dimension: "Resultados",
+    options: [
+      { value: 1, text: "Não há avaliação estruturada dos resultados" },
+      { value: 2, text: "Avaliação básica e esporádica" },
+      { value: 3, text: "Avaliação parcial com alguns indicadores" },
+      { value: 4, text: "Avaliação sistemática e abrangente" },
+      { value: 5, text: "Avaliação exemplar com benchmarking" }
+    ]
+  },
+  "q24": {
+    text: "Como são avaliados os resultados relativos às pessoas?",
+    dimension: "Resultados",
+    options: [
+      { value: 1, text: "Não há avaliação estruturada dos resultados" },
+      { value: 2, text: "Avaliação básica e informal" },
+      { value: 3, text: "Avaliação parcial com alguns indicadores" },
+      { value: 4, text: "Avaliação sistemática e regular" },
+      { value: 5, text: "Avaliação exemplar com ações de melhoria" }
+    ]
+  },
+  "q25": {
+    text: "Como são avaliados os resultados dos processos principais do negócio?",
+    dimension: "Resultados",
+    options: [
+      { value: 1, text: "Não há avaliação estruturada dos processos" },
+      { value: 2, text: "Avaliação básica e esporádica" },
+      { value: 3, text: "Avaliação parcial com alguns controles" },
+      { value: 4, text: "Avaliação sistemática e regular" },
+      { value: 5, text: "Avaliação exemplar com otimização contínua" }
+    ]
+  },
+  "q26": {
+    text: "Como são avaliados os resultados relativos à sociedade?",
+    dimension: "Resultados",
+    options: [
+      { value: 1, text: "Não há avaliação dos impactos sociais" },
+      { value: 2, text: "Avaliação básica e informal" },
+      { value: 3, text: "Avaliação parcial com alguns indicadores" },
+      { value: 4, text: "Avaliação sistemática e transparente" },
+      { value: 5, text: "Avaliação exemplar com impacto positivo" }
+    ]
+  },
+  "q27": {
+    text: "Como são avaliados os resultados econômico-financeiros?",
+    dimension: "Resultados",
+    options: [
+      { value: 1, text: "Não há avaliação estruturada dos resultados financeiros" },
+      { value: 2, text: "Avaliação básica e esporádica" },
+      { value: 3, text: "Avaliação parcial com alguns indicadores" },
+      { value: 4, text: "Avaliação sistemática e regular" },
+      { value: 5, text: "Avaliação exemplar com análises preditivas" }
+    ]
+  }
+};
+
+// Função para formatar as respostas do assessment
+function formatAssessmentAnswers(answers: Record<string, any>): string {
+  const dimensionGroups: Record<string, Array<{ question: string; answer: string }>> = {};
+  
+  // Agrupar respostas por dimensão
+  Object.entries(answers).forEach(([questionId, answerData]) => {
+    const questionInfo = questionMapping[questionId];
+    if (questionInfo) {
+      const dimension = questionInfo.dimension;
+      if (!dimensionGroups[dimension]) {
+        dimensionGroups[dimension] = [];
+      }
+      
+      let answerText = '';
+      if (typeof answerData === 'object' && answerData.answer_text) {
+        answerText = answerData.answer_text;
+      } else if (typeof answerData === 'number') {
+        const option = questionInfo.options.find(opt => opt.value === answerData);
+        answerText = option ? option.text : `Pontuação: ${answerData}`;
+      } else {
+        answerText = String(answerData);
+      }
+      
+      dimensionGroups[dimension].push({
+        question: questionInfo.text,
+        answer: answerText
+      });
+    }
+  });
+  
+  // Gerar HTML formatado por dimensão
+  let formattedHtml = '';
+  Object.entries(dimensionGroups).forEach(([dimension, questions]) => {
+    formattedHtml += `
+      <div style="margin-bottom: 25px; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f8f9fa;">
+        <h4 style="color: #2c3e50; margin-bottom: 15px; font-size: 16px; font-weight: bold;">${dimension}</h4>
+        <div style="space-y: 10px;">`;
+    
+    questions.forEach(({ question, answer }) => {
+      formattedHtml += `
+          <div style="margin-bottom: 12px; padding: 10px; background-color: #ffffff; border-radius: 5px; border-left: 3px solid #3498db;">
+            <p style="margin: 0 0 5px 0; font-weight: bold; color: #2c3e50; font-size: 14px;">${question}</p>
+            <p style="margin: 0; color: #555; font-size: 13px; line-height: 1.4;">${answer}</p>
+          </div>`;
+    });
+    
+    formattedHtml += `
+        </div>
+      </div>`;
+  });
+  
+  return formattedHtml;
+}
+
 // Função para obter recomendações por dimensão e nível
 function getDimensionRecommendations(dimension: string, level: number): string {
   const recommendations: Record<string, Record<number, string>> = {
@@ -212,9 +567,7 @@ serve(async (req) => {
            console.log('Attempting to send assessment email to Resend...')
            
            // Format answers for email display
-           const answersHtml = Object.entries(answers).map(([key, value]) => {
-             return `<p><strong>${key}:</strong> ${JSON.stringify(value)}</p>`
-           }).join('')
+           const answersHtml = formatAssessmentAnswers(answers)
            
            // Gerar análise por dimensão se disponível
            let dimensionAnalysisHtml = '';
