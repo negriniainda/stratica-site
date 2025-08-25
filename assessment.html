@@ -542,10 +542,46 @@ Consultoria Estratégica Powered by AI
             return recommendations[level] || recommendations[1];
         }
 
+        // Função para gerar análise detalhada por dimensão para email
+        function generateDimensionAnalysisForEmail(dimensionAnalysis, assessmentData) {
+            let analysisHtml = '';
+            
+            Object.keys(dimensionAnalysis).forEach(dimension => {
+                const analysis = dimensionAnalysis[dimension];
+                const recommendations = getDimensionRecommendations(dimension, analysis.level.level);
+                
+                analysisHtml += `
+                <div style="margin-bottom: 30px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 18px;">${dimension}</h3>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <p style="margin: 5px 0;"><strong>Pontuação:</strong> ${analysis.score} pontos</p>
+                        <p style="margin: 5px 0;"><strong>Percentual:</strong> ${Math.round(analysis.percentage)}%</p>
+                        <p style="margin: 5px 0;"><strong>Nível de Maturidade:</strong> ${analysis.level.level} - ${analysis.level.title}</p>
+                    </div>
+                    
+                    <div style="background-color: #ffffff; padding: 15px; border-radius: 5px; border-left: 4px solid #3498db;">
+                        <h4 style="color: #2c3e50; margin-bottom: 10px; font-size: 16px;">Descrição do Nível:</h4>
+                        <p style="margin: 0; line-height: 1.6; color: #555;">${analysis.level.description}</p>
+                    </div>
+                    
+                    <div style="background-color: #ffffff; padding: 15px; border-radius: 5px; border-left: 4px solid #27ae60; margin-top: 15px;">
+                        <h4 style="color: #2c3e50; margin-bottom: 10px; font-size: 16px;">Recomendações Específicas:</h4>
+                        <p style="margin: 0; line-height: 1.6; color: #555;">${recommendations}</p>
+                    </div>
+                </div>`;
+            });
+            
+            return analysisHtml;
+        }
+
         // Função para enviar relatório por email
         function sendEmailReport() {
             const assessmentData = JSON.parse(localStorage.getItem('stratica_assessment_result') || '{}');
             const dimensionAnalysis = analyzeDimensionScores(assessmentData.answers || {});
+            
+            // Gerar análise detalhada por dimensão
+            const detailedAnalysis = generateDimensionAnalysisForEmail(dimensionAnalysis, assessmentData);
             
             // Criar resumo das dimensões
             let dimensionSummary = '';
@@ -557,16 +593,29 @@ Consultoria Estratégica Powered by AI
             const subject = `Relatório de Maturidade Estratégica - ${assessmentData.userInfo?.company || 'Sua Empresa'}`;
             const body = `Olá,
 
-Segue o resultado do Assessment de Maturidade Estratégica:
+Segue o resultado completo do Assessment de Maturidade Estratégica:
 
-RESULTADO GERAL:
+=== RESULTADO GERAL ===
 Nível: ${assessmentData.result?.level || 'N/A'} - ${assessmentData.result?.title || 'N/A'}
-Pontuação: ${Math.round(assessmentData.percentage || 0)}%
+Descrição: ${assessmentData.result?.description || 'N/A'}
+Pontuação Total: ${assessmentData.totalScore || 0} pontos
+Percentual: ${Math.round(assessmentData.percentage || 0)}%
 
-ANÁLISE POR DIMENSÃO:
+=== ANÁLISE DETALHADA POR DIMENSÃO ===
+${Object.keys(dimensionAnalysis).map(dimension => {
+    const analysis = dimensionAnalysis[dimension];
+    const recommendations = getDimensionRecommendations(dimension, analysis.level.level);
+    return `\n${dimension.toUpperCase()}:
+• Pontuação: ${analysis.score} pontos (${Math.round(analysis.percentage)}%)
+• Nível: ${analysis.level.level} - ${analysis.level.title}
+• Descrição: ${analysis.level.description}
+• Recomendações: ${recommendations}\n`;
+}).join('\n')}
+
+=== RESUMO POR DIMENSÃO ===
 ${dimensionSummary}
 
-Para receber o relatório completo e detalhado com recomendações específicas, entre em contato conosco em stratica@stratica.com.br
+Para mais informações ou consultoria especializada, entre em contato conosco em stratica@stratica.com.br
 
 Atenciosamente,
 Equipe Stratica
@@ -1287,13 +1336,31 @@ www.stratica.com.br`;
                     const maxStraticaScore = 1000;
                     const calculatedPercentage = (totalStraticaScore / maxStraticaScore) * 100;
                     
+                    // Gerar análise por dimensão para o email
+                    const dimensionAnalysis = [];
+                    for (const [dimension, dimensionData] of Object.entries(data.dimensionScores)) {
+                        const percentage = Math.round((dimensionData.score / dimensionData.maxScore) * 100);
+                        const level = getDimensionLevel(dimensionData.straticaScore, dimensionData.weight);
+                        
+                        dimensionAnalysis.push({
+                            dimension: dimension,
+                            score: dimensionData.score,
+                            maxScore: dimensionData.maxScore,
+                            percentage: percentage,
+                            straticaScore: dimensionData.straticaScore,
+                            level: level,
+                            recommendations: getDimensionRecommendations(dimension, level)
+                        });
+                    }
+                    
                     // Preparar dados para envio
                     const assessmentData = {
                         userInfo: data.userInfo,
                         result: data.result,
                         totalScore: totalStraticaScore,
                         percentage: Math.round(calculatedPercentage * 100) / 100, // Arredondar para 2 casas decimais
-                        answers: data.answers
+                        answers: data.answers,
+                        dimensionAnalysis: dimensionAnalysis
                     };
 
                     // Tentar enviar dados para a Edge Function do Supabase
