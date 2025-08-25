@@ -1337,20 +1337,21 @@ www.stratica.com.br`;
                     const calculatedPercentage = (totalStraticaScore / maxStraticaScore) * 100;
                     
                     // Gerar análise por dimensão para o email
-                    const dimensionAnalysis = [];
+                    const dimensionAnalysis = {};
                     for (const [dimension, dimensionData] of Object.entries(data.dimensionScores)) {
                         const percentage = Math.round((dimensionData.score / dimensionData.maxScore) * 100);
-                        const level = getDimensionLevel(dimensionData.straticaScore, dimensionData.weight);
+                        const levelNumber = getDimensionLevel(dimensionData.straticaScore, dimensionData.weight);
+                        const levelDetails = getResultDetailsStratica(dimensionData.straticaScore);
                         
-                        dimensionAnalysis.push({
-                            dimension: dimension,
+                        dimensionAnalysis[dimension] = {
                             score: dimensionData.score,
-                            maxScore: dimensionData.maxScore,
                             percentage: percentage,
-                            straticaScore: dimensionData.straticaScore,
-                            level: level,
-                            recommendations: getDimensionRecommendations(dimension, level)
-                        });
+                            level: {
+                                level: levelNumber,
+                                title: levelDetails.title,
+                                description: levelDetails.description
+                            }
+                        };
                     }
                     
                     // Preparar dados para envio
