@@ -73,7 +73,7 @@
         <section id="home" class="relative text-gray-800 hero-gradient">
              <div class="container mx-auto px-6 py-20 md:py-32 text-center">
                 <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Avaliação de Maturidade em Gestão</h1>
-                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Responda ao questionário abaixo para medir o nível de maturidade da gestão de sua empresa nos 8 critérios de excelência Stratica e receba um diagnóstico instantâneo e acionável com pontuação de 0 a 1000 pontos.</p>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Responda ao questionário abaixo para medir o nível de maturidade da gestão de sua empresa em 8 critérios de excelência e receba um diagnóstico instantâneo e acionável com pontuação de 0 a 1000 pontos.</p>
             </div>
         </section>
 
@@ -1207,38 +1207,38 @@ www.stratica.com.br`;
                 if (straticaScore <= 125) {
                     return {
                         level: 1,
-                        title: "Inicial",
-                        description: "Maturidade muito baixa (0-125 pontos Stratica). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
+                        title: "Limitado",
+                        description: "Maturidade muito baixa (0-125 pontos). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
                     };
                 } else if (straticaScore <= 250) {
                     return {
                         level: 2,
                         title: "Emergente",
-                        description: "Maturidade baixa (126-250 pontos Stratica). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
+                        description: "Maturidade baixa (126-250 pontos). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
                     };
                 } else if (straticaScore <= 375) {
                     return {
                         level: 3,
                         title: "Estruturado",
-                        description: "Maturidade intermediária (251-375 pontos Stratica). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
+                        description: "Maturidade intermediária (251-375 pontos). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
                     };
                 } else if (straticaScore <= 500) {
                     return {
                         level: 4,
                         title: "Avançado",
-                        description: "Maturidade alta (376-500 pontos Stratica). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
+                        description: "Maturidade alta (376-500 pontos). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
                     };
                 } else if (straticaScore <= 750) {
                     return {
                         level: 5,
-                        title: "Excelência",
-                        description: "Maturidade muito alta (501-750 pontos Stratica). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
+                        title: "Integrado",
+                        description: "Maturidade muito alta (501-750 pontos). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
                     };
                 } else {
                     return {
                         level: 6,
-                        title: "Classe Mundial",
-                        description: "Maturidade excepcional (751-1000 pontos Stratica). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
+                        title: "Excelente",
+                        description: "Maturidade excepcional (751-1000 pontos). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
                     };
                 }
             }
