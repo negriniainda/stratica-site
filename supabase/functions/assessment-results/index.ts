@@ -141,72 +141,39 @@ const questionMapping: Record<string, { text: string; dimension: string; options
     ]
   },
   "q13": {
-    text: "Como são definidos os sistemas de trabalho da organização?",
-    dimension: "Pessoas",
-    options: [
-      { value: 1, text: "Não há definição estruturada dos sistemas de trabalho" },
-      { value: 2, text: "Definição básica e informal" },
-      { value: 3, text: "Definição parcial com alguns padrões" },
-      { value: 4, text: "Definição sistemática e bem estruturada" },
-      { value: 5, text: "Definição exemplar com alta performance" }
-    ]
-  },
-  "q14": {
-    text: "Como são desenvolvidas as competências das pessoas?",
-    dimension: "Pessoas",
-    options: [
-      { value: 1, text: "Não há desenvolvimento estruturado de competências" },
-      { value: 2, text: "Desenvolvimento básico e esporádico" },
-      { value: 3, text: "Desenvolvimento parcial com alguns programas" },
-      { value: 4, text: "Desenvolvimento sistemático e abrangente" },
-      { value: 5, text: "Desenvolvimento exemplar e estratégico" }
-    ]
-  },
-  "q15": {
-    text: "Como é promovida a qualidade de vida das pessoas?",
-    dimension: "Pessoas",
-    options: [
-      { value: 1, text: "Não há promoção estruturada da qualidade de vida" },
-      { value: 2, text: "Iniciativas básicas e pontuais" },
-      { value: 3, text: "Programas parciais de qualidade de vida" },
-      { value: 4, text: "Programas sistemáticos e abrangentes" },
-      { value: 5, text: "Programas exemplares e inovadores" }
-    ]
-  },
-  "q16": {
     text: "Como são segmentados os clientes e mercados?",
     dimension: "Clientes",
     options: [
-      { value: 1, text: "Não há segmentação estruturada" },
-      { value: 2, text: "Segmentação básica e informal" },
-      { value: 3, text: "Segmentação parcial com alguns critérios" },
-      { value: 4, text: "Segmentação sistemática e bem definida" },
-      { value: 5, text: "Segmentação exemplar e estratégica" }
-    ]
+        { value: 1, text: "Não há segmentação estruturada" },
+        { value: 2, text: "Segmentação básica e informal" },
+        { value: 3, text: "Segmentação parcial com alguns critérios" },
+        { value: 4, text: "Segmentação sistemática e bem definida" },
+        { value: 5, text: "Segmentação exemplar e estratégica" }
+      ]
   },
-  "q17": {
+  "q14": {
     text: "Como são desenvolvidos os produtos e serviços?",
     dimension: "Clientes",
     options: [
-      { value: 1, text: "Não há processo estruturado de desenvolvimento" },
-      { value: 2, text: "Desenvolvimento básico e informal" },
-      { value: 3, text: "Processo parcial com alguns controles" },
-      { value: 4, text: "Processo sistemático e bem estruturado" },
-      { value: 5, text: "Processo exemplar com inovação contínua" }
-    ]
+        { value: 1, text: "Não há processo estruturado de desenvolvimento" },
+        { value: 2, text: "Desenvolvimento básico e informal" },
+        { value: 3, text: "Processo parcial com alguns controles" },
+        { value: 4, text: "Processo sistemático e bem estruturado" },
+        { value: 5, text: "Processo exemplar com inovação contínua" }
+      ]
   },
-  "q18": {
+  "q15": {
     text: "Como é realizado o relacionamento com os clientes?",
     dimension: "Clientes",
     options: [
-      { value: 1, text: "Não há gestão estruturada do relacionamento" },
-      { value: 2, text: "Relacionamento básico e informal" },
-      { value: 3, text: "Relacionamento parcial com alguns canais" },
-      { value: 4, text: "Relacionamento sistemático e multicanal" },
-      { value: 5, text: "Relacionamento exemplar e personalizado" }
-    ]
+        { value: 1, text: "Não há gestão estruturada do relacionamento" },
+        { value: 2, text: "Relacionamento básico e informal" },
+        { value: 3, text: "Relacionamento parcial com alguns canais" },
+        { value: 4, text: "Relacionamento sistemático e multicanal" },
+        { value: 5, text: "Relacionamento exemplar e personalizado" }
+      ]
   },
-  "q19": {
+  "q16": {
     text: "Como a organização atua em relação à responsabilidade socioambiental?",
     dimension: "Sociedade",
     options: [
@@ -217,7 +184,7 @@ const questionMapping: Record<string, { text: string; dimension: string; options
       { value: 5, text: "Atuação exemplar e transformadora" }
     ]
   },
-  "q20": {
+  "q17": {
     text: "Como a organização trata as questões éticas?",
     dimension: "Sociedade",
     options: [
@@ -228,7 +195,18 @@ const questionMapping: Record<string, { text: string; dimension: string; options
       { value: 5, text: "Tratamento exemplar com cultura ética sólida" }
     ]
   },
-  "q21": {
+  "q18": {
+    text: "Como a organização desenvolve a cidadania?",
+    dimension: "Sociedade",
+    options: [
+      { value: 1, text: "Não há desenvolvimento estruturado de cidadania" },
+      { value: 2, text: "Desenvolvimento básico e esporádico" },
+      { value: 3, text: "Desenvolvimento parcial com algumas ações" },
+      { value: 4, text: "Desenvolvimento sistemático e abrangente" },
+      { value: 5, text: "Desenvolvimento exemplar e transformador" }
+    ]
+  },
+  "q19": {
     text: "Como são gerenciadas as informações da organização?",
     dimension: "Informações e Conhecimento",
     options: [
@@ -239,7 +217,7 @@ const questionMapping: Record<string, { text: string; dimension: string; options
       { value: 5, text: "Gestão exemplar com inteligência de negócios" }
     ]
   },
-  "q22": {
+  "q20": {
     text: "Como são gerenciados os conhecimentos da organização?",
     dimension: "Informações e Conhecimento",
     options: [
@@ -250,8 +228,30 @@ const questionMapping: Record<string, { text: string; dimension: string; options
       { value: 5, text: "Gestão exemplar com inovação contínua" }
     ]
   },
+  "q21": {
+    text: "Como são desenvolvidas as tecnologias da informação?",
+    dimension: "Informações e Conhecimento",
+    options: [
+      { value: 1, text: "Não há desenvolvimento estruturado de TI" },
+      { value: 2, text: "Desenvolvimento básico e informal" },
+      { value: 3, text: "Desenvolvimento parcial com alguns projetos" },
+      { value: 4, text: "Desenvolvimento sistemático e estratégico" },
+      { value: 5, text: "Desenvolvimento exemplar com inovação tecnológica" }
+    ]
+  },
+  "q22": {
+    text: "Quais são os resultados econômico-financeiros da organização?",
+    dimension: "Resultados",
+    options: [
+      { value: 1, text: "Não há gestão estruturada do conhecimento" },
+      { value: 2, text: "Gestão básica e informal" },
+      { value: 3, text: "Gestão parcial com alguns repositórios" },
+      { value: 4, text: "Gestão sistemática e compartilhada" },
+      { value: 5, text: "Gestão exemplar com inovação contínua" }
+    ]
+  },
   "q23": {
-    text: "Como são avaliados os resultados relativos aos clientes e mercados?",
+    text: "Quais são os resultados relativos a clientes e mercado?",
     dimension: "Resultados",
     options: [
       { value: 1, text: "Não há avaliação estruturada dos resultados" },
@@ -262,7 +262,7 @@ const questionMapping: Record<string, { text: string; dimension: string; options
     ]
   },
   "q24": {
-    text: "Como são avaliados os resultados relativos às pessoas?",
+    text: "Quais são os resultados relativos à sociedade?",
     dimension: "Resultados",
     options: [
       { value: 1, text: "Não há avaliação estruturada dos resultados" },
@@ -273,7 +273,7 @@ const questionMapping: Record<string, { text: string; dimension: string; options
     ]
   },
   "q25": {
-    text: "Como são avaliados os resultados dos processos principais do negócio?",
+    text: "Quais são os resultados relativos às pessoas?",
     dimension: "Resultados",
     options: [
       { value: 1, text: "Não há avaliação estruturada dos processos" },
@@ -281,28 +281,6 @@ const questionMapping: Record<string, { text: string; dimension: string; options
       { value: 3, text: "Avaliação parcial com alguns controles" },
       { value: 4, text: "Avaliação sistemática e regular" },
       { value: 5, text: "Avaliação exemplar com otimização contínua" }
-    ]
-  },
-  "q26": {
-    text: "Como são avaliados os resultados relativos à sociedade?",
-    dimension: "Resultados",
-    options: [
-      { value: 1, text: "Não há avaliação dos impactos sociais" },
-      { value: 2, text: "Avaliação básica e informal" },
-      { value: 3, text: "Avaliação parcial com alguns indicadores" },
-      { value: 4, text: "Avaliação sistemática e transparente" },
-      { value: 5, text: "Avaliação exemplar com impacto positivo" }
-    ]
-  },
-  "q27": {
-    text: "Como são avaliados os resultados econômico-financeiros?",
-    dimension: "Resultados",
-    options: [
-      { value: 1, text: "Não há avaliação estruturada dos resultados financeiros" },
-      { value: 2, text: "Avaliação básica e esporádica" },
-      { value: 3, text: "Avaliação parcial com alguns indicadores" },
-      { value: 4, text: "Avaliação sistemática e regular" },
-      { value: 5, text: "Avaliação exemplar com análises preditivas" }
     ]
   }
 };

@@ -193,7 +193,9 @@ ${assessmentData.userInfo?.name || 'N/A'}`;
                 'Processos': ['q7', 'q8', 'q9'],
                 'Pessoas': ['q10', 'q11', 'q12'],
                 'Clientes': ['q13', 'q14', 'q15'],
-                'Resultados': ['q16', 'q17', 'q18']
+                'Sociedade': ['q16', 'q17', 'q18'],
+                'Informações e Conhecimento': ['q19', 'q20', 'q21'],
+                'Resultados': ['q22', 'q23', 'q24', 'q25']
             };
 
             const analysis = {};
@@ -804,7 +806,7 @@ www.stratica.com.br`;
                     weight: 70,
                     questions: [
                         {
-                            id: "q8",
+                            id: "q13",
                             text: "Como são identificadas as necessidades e expectativas dos clientes?",
                             options: [
                                 { value: 1, text: "Não há processo estruturado para identificar necessidades dos clientes" },
@@ -815,7 +817,7 @@ www.stratica.com.br`;
                             ]
                         },
                         {
-                            id: "q9",
+                            id: "q14",
                             text: "Como é desenvolvido o relacionamento com os clientes?",
                             options: [
                                 { value: 1, text: "Não há estratégia estruturada de relacionamento com clientes" },
@@ -826,7 +828,7 @@ www.stratica.com.br`;
                             ]
                         },
                         {
-                            id: "q10",
+                            id: "q15",
                             text: "Como são tratadas as reclamações dos clientes?",
                             options: [
                                 { value: 1, text: "Não há processo estruturado para tratar reclamações" },
@@ -844,7 +846,7 @@ www.stratica.com.br`;
                     weight: 70,
                     questions: [
                         {
-                            id: "q11",
+                            id: "q16",
                             text: "Como são identificadas as necessidades da sociedade?",
                             options: [
                                 { value: 1, text: "Não há processo para identificar necessidades da sociedade" },
@@ -855,7 +857,7 @@ www.stratica.com.br`;
                             ]
                         },
                         {
-                            id: "q12",
+                            id: "q17",
                             text: "Como são desenvolvidos os produtos e processos considerando a preservação do meio ambiente?",
                             options: [
                                 { value: 1, text: "Não há consideração ambiental no desenvolvimento" },
@@ -866,7 +868,7 @@ www.stratica.com.br`;
                             ]
                         },
                         {
-                            id: "q13",
+                            id: "q18",
                             text: "Como é promovido o desenvolvimento social?",
                             options: [
                                 { value: 1, text: "Não há ações estruturadas de desenvolvimento social" },
@@ -884,7 +886,7 @@ www.stratica.com.br`;
                     weight: 70,
                     questions: [
                         {
-                            id: "q14",
+                            id: "q19",
                             text: "Como são identificadas as necessidades de informações?",
                             options: [
                                 { value: 1, text: "Não há processo para identificar necessidades de informações" },
@@ -895,7 +897,7 @@ www.stratica.com.br`;
                             ]
                         },
                         {
-                            id: "q15",
+                            id: "q20",
                             text: "Como são desenvolvidos os sistemas de informação?",
                             options: [
                                 { value: 1, text: "Não há desenvolvimento estruturado de sistemas" },
@@ -906,7 +908,7 @@ www.stratica.com.br`;
                             ]
                         },
                         {
-                            id: "q16",
+                            id: "q21",
                             text: "Como são desenvolvidos os ativos intangíveis?",
                             options: [
                                 { value: 1, text: "Não há gestão de ativos intangíveis" },
@@ -924,7 +926,7 @@ www.stratica.com.br`;
                     weight: 450,
                     questions: [
                         {
-                            id: "q23",
+                            id: "q22",
                             text: "Quais são os resultados econômico-financeiros da organização?",
                             options: [
                                 { value: 1, text: "Resultados financeiros inadequados ou em declínio" },
@@ -935,7 +937,7 @@ www.stratica.com.br`;
                             ]
                         },
                         {
-                            id: "q24",
+                            id: "q23",
                             text: "Quais são os resultados relativos a clientes e mercado?",
                             options: [
                                 { value: 1, text: "Resultados de clientes inadequados ou em declínio" },
@@ -946,7 +948,7 @@ www.stratica.com.br`;
                             ]
                         },
                         {
-                            id: "q25",
+                            id: "q24",
                             text: "Quais são os resultados relativos à sociedade?",
                             options: [
                                 { value: 1, text: "Resultados sociais inadequados ou inexistentes" },
@@ -957,7 +959,7 @@ www.stratica.com.br`;
                             ]
                         },
                         {
-                            id: "q26",
+                            id: "q25",
                             text: "Quais são os resultados relativos às pessoas?",
                             options: [
                                 { value: 1, text: "Resultados de pessoas inadequados" },
@@ -1298,6 +1300,54 @@ www.stratica.com.br`;
                 return getResultDetailsStratica(straticaScore);
             }
 
+            // Função para obter os detalhes do nível de maturidade baseado no nível calculado por dimensão
+            function getResultDetailsForDimension(levelNumber) {
+                switch(levelNumber) {
+                    case 1:
+                        return {
+                            level: 1,
+                            title: "Limitado",
+                            description: "Maturidade muito baixa (0-125 pontos). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
+                        };
+                    case 2:
+                        return {
+                            level: 2,
+                            title: "Emergente",
+                            description: "Maturidade baixa (126-250 pontos). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
+                        };
+                    case 3:
+                        return {
+                            level: 3,
+                            title: "Estruturado",
+                            description: "Maturidade intermediária (251-375 pontos). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
+                        };
+                    case 4:
+                        return {
+                            level: 4,
+                            title: "Avançado",
+                            description: "Maturidade alta (376-500 pontos). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
+                        };
+                    case 5:
+                        return {
+                            level: 5,
+                            title: "Integrado",
+                            description: "Maturidade muito alta (501-750 pontos). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
+                        };
+                    case 6:
+                        return {
+                            level: 6,
+                            title: "Excelente",
+                            description: "Maturidade excepcional (751-1000 pontos). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
+                        };
+                    default:
+                        return {
+                            level: 1,
+                            title: "Limitado",
+                            description: "Maturidade muito baixa (0-125 pontos). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
+                        };
+                }
+            }
+
             // Função para fallback mailto: do assessment
             function sendAssessmentEmailFallback(data) {
                 const subject = encodeURIComponent('Resultado Assessment - Maturidade Organizacional');
@@ -1341,7 +1391,7 @@ www.stratica.com.br`;
                     for (const [dimension, dimensionData] of Object.entries(data.dimensionScores)) {
                         const percentage = Math.round((dimensionData.score / dimensionData.maxScore) * 100);
                         const levelNumber = getDimensionLevel(dimensionData.straticaScore, dimensionData.weight);
-                        const levelDetails = getResultDetailsStratica(dimensionData.straticaScore);
+                        const levelDetails = getResultDetailsForDimension(levelNumber);
                         
                         dimensionAnalysis[dimension] = {
                             score: dimensionData.score,
