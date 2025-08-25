@@ -9,289 +9,289 @@ const SUPABASE_ANON_KEY = Deno.env.get('SUPABASE_ANON_KEY')!
 // Mapeamento das perguntas do questionário
 const questionMapping: Record<string, { text: string; dimension: string; options: Array<{ value: number; text: string }> }> = {
   "q1": {
-    text: "Como a alta direção exerce a liderança e interage com as partes interessadas?",
+    text: "A alta direção exerce liderança de forma estruturada e sistemática, promovendo interação regular e efetiva com todas as partes interessadas (colaboradores, clientes, fornecedores, comunidade)?",
     dimension: "Liderança",
     options: [
-      { value: 1, text: "Práticas iniciais e informais de liderança, com pouca interação estruturada" },
-      { value: 2, text: "Práticas básicas de liderança com interação informal" },
-      { value: 3, text: "Práticas de liderança parcialmente estruturadas" },
-      { value: 4, text: "Práticas de liderança bem estruturadas e sistemáticas" },
-      { value: 5, text: "Práticas de liderança exemplares e inovadoras" }
+      { value: 1, text: "Não fazemos isso - a liderança é exercida de forma informal e esporádica, com pouca ou nenhuma interação estruturada com as partes interessadas" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos algumas práticas básicas de liderança, mas a interação com stakeholders ainda é informal e inconsistente" },
+      { value: 3, text: "Fazemos de alguma forma - possuímos práticas de liderança parcialmente estruturadas com interação regular, mas não sistemática, com as principais partes interessadas" },
+      { value: 4, text: "Fazemos bem feito - temos práticas de liderança bem estruturadas e sistemáticas, com interação regular e planejada com todas as partes interessadas relevantes" },
+      { value: 5, text: "Fazemos muito bem feito - nossa liderança é exemplar e inovadora, com interação estratégica e contínua com stakeholders, servindo como referência no mercado" }
     ]
   },
   "q2": {
-    text: "Como é implementado o sistema de liderança da organização?",
+    text: "A organização possui um sistema de liderança bem definido e implementado, com estrutura organizacional clara, papéis e responsabilidades estabelecidos, e processos de tomada de decisão documentados?",
     dimension: "Liderança",
     options: [
-      { value: 1, text: "Sistema de liderança básico e informal" },
-      { value: 2, text: "Sistema de liderança com alguns elementos estruturados" },
-      { value: 3, text: "Sistema de liderança parcialmente implementado" },
-      { value: 4, text: "Sistema de liderança bem implementado e abrangente" },
-      { value: 5, text: "Sistema de liderança robusto e continuamente aprimorado" }
+      { value: 1, text: "Não fazemos isso - não temos um sistema de liderança definido, a estrutura é informal e os processos de decisão são ad hoc" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos alguns elementos básicos de um sistema de liderança, mas ainda é predominantemente informal" },
+      { value: 3, text: "Fazemos de alguma forma - possuímos um sistema de liderança parcialmente implementado, com alguns processos definidos mas não totalmente integrados" },
+      { value: 4, text: "Fazemos bem feito - temos um sistema de liderança bem implementado e abrangente, com estrutura clara e processos bem definidos" },
+      { value: 5, text: "Fazemos muito bem feito - nosso sistema de liderança é robusto, continuamente aprimorado e serve como modelo para outras organizações" }
     ]
   },
   "q3": {
-    text: "Como a organização analisa criticamente o desempenho global?",
+    text: "A organização realiza análise crítica sistemática e abrangente do seu desempenho global, utilizando indicadores balanceados e comparações com referenciais de excelência para orientar decisões estratégicas?",
     dimension: "Liderança",
     options: [
-      { value: 1, text: "Análises pontuais e informais do desempenho" },
-      { value: 2, text: "Análises básicas com alguns indicadores" },
-      { value: 3, text: "Análise crítica parcial com indicadores definidos" },
-      { value: 4, text: "Análise crítica sistemática e abrangente" },
-      { value: 5, text: "Análise crítica robusta e orientada para melhoria contínua" }
+      { value: 1, text: "Não fazemos isso - realizamos apenas análises pontuais e informais do desempenho, sem sistematização ou indicadores estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - fazemos análises básicas com alguns indicadores, mas de forma esporádica e não integrada" },
+      { value: 3, text: "Fazemos de alguma forma - realizamos análise crítica parcial com indicadores definidos, mas ainda não de forma sistemática e abrangente" },
+      { value: 4, text: "Fazemos bem feito - temos análise crítica sistemática e abrangente do desempenho, com indicadores balanceados e revisões regulares" },
+      { value: 5, text: "Fazemos muito bem feito - nossa análise crítica é robusta, orientada para melhoria contínua e utiliza benchmarking com as melhores práticas do mercado" }
     ]
   },
   "q4": {
-    text: "Como a alta direção demonstra comprometimento com a excelência e sustentabilidade?",
+    text: "A alta direção demonstra comprometimento visível e consistente com a excelência e sustentabilidade, promovendo cultura de melhoria contínua e responsabilidade socioambiental em todas as decisões e ações organizacionais?",
     dimension: "Liderança",
     options: [
-      { value: 1, text: "Comprometimento básico e esporádico" },
-      { value: 2, text: "Comprometimento com algumas iniciativas" },
-      { value: 3, text: "Comprometimento parcial mas consistente" },
-      { value: 4, text: "Comprometimento claro e sistemático" },
-      { value: 5, text: "Comprometimento exemplar e inspirador" }
+      { value: 1, text: "Não fazemos isso - o comprometimento com excelência e sustentabilidade é básico e esporádico, sem reflexo nas práticas organizacionais" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - demonstramos comprometimento através de algumas iniciativas isoladas, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - temos comprometimento parcial mas consistente, com algumas práticas estruturadas de excelência e sustentabilidade" },
+      { value: 4, text: "Fazemos bem feito - demonstramos comprometimento claro e sistemático, com práticas bem estabelecidas e cultura organizacional alinhada" },
+      { value: 5, text: "Fazemos muito bem feito - nosso comprometimento é exemplar e inspirador, servindo como referência no mercado e influenciando positivamente todo o ecossistema" }
     ]
   },
   "q5": {
-    text: "Como são formuladas as estratégias da organização?",
+    text: "A organização possui um processo estruturado e sistemático para formular suas estratégias, considerando análise de cenários, stakeholders e objetivos de longo prazo, com metodologia definida e participação das lideranças?",
     dimension: "Estratégias e Planos",
     options: [
-      { value: 1, text: "Processo básico e informal de definição estratégica" },
-      { value: 2, text: "Processo com alguns elementos estruturados" },
-      { value: 3, text: "Processo de formulação estratégica parcialmente estruturado" },
-      { value: 4, text: "Processo bem estruturado com metodologia definida" },
-      { value: 5, text: "Processo robusto, sistemático e continuamente aprimorado" }
+      { value: 1, text: "Não fazemos isso - a formulação estratégica é básica e informal, sem processo estruturado ou metodologia definida" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos um processo com alguns elementos estruturados, mas ainda predominantemente informal" },
+      { value: 3, text: "Fazemos de alguma forma - possuímos processo de formulação estratégica parcialmente estruturado, com alguns elementos metodológicos" },
+      { value: 4, text: "Fazemos bem feito - temos processo bem estruturado com metodologia definida, análise de cenários e participação das lideranças" },
+      { value: 5, text: "Fazemos muito bem feito - nosso processo é robusto, sistemático e continuamente aprimorado, servindo como referência no mercado" }
     ]
   },
   "q6": {
-    text: "Como são implementadas as estratégias da organização?",
+    text: "A organização implementa suas estratégias de forma sistemática e coordenada, com desdobramento claro em planos de ação, responsáveis definidos, prazos estabelecidos e acompanhamento regular do progresso?",
     dimension: "Estratégias e Planos",
     options: [
-      { value: 1, text: "Implementação básica e informal das estratégias" },
-      { value: 2, text: "Implementação com alguns controles" },
-      { value: 3, text: "Implementação parcial com mecanismos de controle" },
-      { value: 4, text: "Implementação sistemática com acompanhamento regular" },
-      { value: 5, text: "Implementação exemplar com gestão integrada" }
+      { value: 1, text: "Não fazemos isso - a implementação das estratégias é básica e informal, sem desdobramento estruturado ou acompanhamento" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - implementamos com alguns controles básicos, mas sem sistematização completa" },
+      { value: 3, text: "Fazemos de alguma forma - temos implementação parcial com alguns mecanismos de controle e acompanhamento" },
+      { value: 4, text: "Fazemos bem feito - implementamos de forma sistemática com acompanhamento regular, responsáveis definidos e controles estabelecidos" },
+      { value: 5, text: "Fazemos muito bem feito - nossa implementação é exemplar com gestão integrada, monitoramento contínuo e ajustes proativos" }
     ]
   },
   "q7": {
-    text: "Como são elaborados os planos de ação da organização?",
+    text: "A organização elabora planos de ação detalhados e estruturados, com objetivos específicos, metas mensuráveis, recursos definidos, cronogramas realistas e indicadores de acompanhamento para garantir a execução efetiva das estratégias?",
     dimension: "Estratégias e Planos",
     options: [
-      { value: 1, text: "Planos básicos e informais" },
-      { value: 2, text: "Planos com alguns elementos estruturados" },
-      { value: 3, text: "Planos parcialmente estruturados" },
-      { value: 4, text: "Planos bem estruturados e detalhados" },
-      { value: 5, text: "Planos robustos e integrados" }
+      { value: 1, text: "Não fazemos isso - elaboramos planos básicos e informais, sem estruturação adequada ou detalhamento suficiente" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos planos com alguns elementos estruturados, mas ainda incompletos" },
+      { value: 3, text: "Fazemos de alguma forma - elaboramos planos parcialmente estruturados, com alguns elementos bem definidos" },
+      { value: 4, text: "Fazemos bem feito - nossos planos são bem estruturados e detalhados, com todos os elementos necessários para execução efetiva" },
+      { value: 5, text: "Fazemos muito bem feito - elaboramos planos robustos e integrados, com metodologia avançada e alinhamento estratégico total" }
     ]
   },
   "q8": {
-    text: "Os principais processos do negócio estão mapeados e documentados?",
+    text: "Os principais processos do negócio estão mapeados e documentados, com padrões definidos para garantir consistência?",
     dimension: "Processos",
     options: [
-      { value: 1, text: "Processos básicos e informais" },
-      { value: 2, text: "Alguns processos mapeados" },
-      { value: 3, text: "Processos parcialmente mapeados e documentados" },
-      { value: 4, text: "Processos bem mapeados e documentados" },
-      { value: 5, text: "Processos totalmente mapeados, documentados e otimizados" }
+      { value: 1, text: "Não fazemos isso - os processos são básicos e informais, sem mapeamento ou documentação estruturada" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - alguns processos estão mapeados, mas sem padronização" },
+      { value: 3, text: "Fazemos de alguma forma - processos parcialmente mapeados e documentados com alguns padrões definidos" },
+      { value: 4, text: "Fazemos bem feito - processos bem mapeados e documentados com padrões consistentes" },
+      { value: 5, text: "Fazemos muito bem feito - processos totalmente mapeados, documentados e otimizados com padrões exemplares" }
     ]
   },
   "q9": {
-    text: "Como são gerenciados os processos de apoio da organização?",
+    text: "Os processos de apoio da organização são gerenciados de forma sistemática e integrada, com procedimentos definidos, indicadores de desempenho e melhoria contínua para garantir eficiência e eficácia?",
     dimension: "Processos",
     options: [
-      { value: 1, text: "Gestão básica e informal" },
-      { value: 2, text: "Gestão com alguns procedimentos" },
-      { value: 3, text: "Gestão parcial com procedimentos definidos" },
-      { value: 4, text: "Gestão sistemática e bem estruturada" },
-      { value: 5, text: "Gestão exemplar com integração total" }
+      { value: 1, text: "Não fazemos isso - a gestão dos processos de apoio é básica e informal, sem procedimentos estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - gestão com alguns procedimentos básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - gestão parcial com procedimentos definidos e alguns indicadores" },
+      { value: 4, text: "Fazemos bem feito - gestão sistemática e bem estruturada com indicadores e melhoria contínua" },
+      { value: 5, text: "Fazemos muito bem feito - gestão exemplar com integração total e otimização contínua dos processos" }
     ]
   },
   "q10": {
-    text: "Como são gerenciados os fornecedores da organização?",
+    text: "A organização possui um sistema estruturado de gestão de fornecedores, incluindo critérios de seleção, avaliação de desempenho, desenvolvimento de parcerias e monitoramento contínuo para garantir qualidade e valor?",
     dimension: "Processos",
     options: [
-      { value: 1, text: "Gestão básica e informal" },
-      { value: 2, text: "Gestão com alguns critérios" },
-      { value: 3, text: "Gestão parcial com critérios definidos" },
-      { value: 4, text: "Gestão sistemática e bem estruturada" },
-      { value: 5, text: "Gestão exemplar com parcerias estratégicas" }
+      { value: 1, text: "Não fazemos isso - a gestão de fornecedores é básica e informal, sem critérios estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - gestão com alguns critérios básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - gestão parcial com critérios definidos e avaliação ocasional" },
+      { value: 4, text: "Fazemos bem feito - gestão sistemática e bem estruturada com critérios claros e monitoramento regular" },
+      { value: 5, text: "Fazemos muito bem feito - gestão exemplar com parcerias estratégicas e desenvolvimento conjunto" }
     ]
   },
   "q11": {
-    text: "Como são gerenciadas as finanças da organização?",
+    text: "A organização possui um sistema abrangente de gestão financeira, incluindo planejamento orçamentário, controles internos, análise de indicadores, gestão de riscos e alinhamento com objetivos estratégicos?",
     dimension: "Processos",
     options: [
-      { value: 1, text: "Gestão básica e informal" },
-      { value: 2, text: "Gestão com alguns controles" },
-      { value: 3, text: "Gestão parcial com controles definidos" },
-      { value: 4, text: "Gestão sistemática e bem estruturada" },
-      { value: 5, text: "Gestão exemplar com planejamento estratégico" }
+      { value: 1, text: "Não fazemos isso - a gestão financeira é básica e informal, sem controles estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - gestão com alguns controles básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - gestão parcial com controles definidos e planejamento básico" },
+      { value: 4, text: "Fazemos bem feito - gestão sistemática e bem estruturada com controles abrangentes e análise regular" },
+      { value: 5, text: "Fazemos muito bem feito - gestão exemplar com planejamento estratégico integrado e gestão avançada de riscos" }
     ]
   },
   "q12": {
-    text: "Como são definidos os sistemas de trabalho da organização?",
+    text: "A organização define e estrutura seus sistemas de trabalho considerando a organização do trabalho, métodos e práticas de gestão que promovam alto desempenho, colaboração e bem-estar das pessoas?",
     dimension: "Pessoas",
     options: [
-      { value: 1, text: "Fazemos raramente ou de forma inicial - processos informais de avaliação" },
-      { value: 2, text: "Fazemos raramente ou de forma inicial - processos básicos de avaliação" },
-      { value: 3, text: "Fazemos raramente ou de forma inicial - processos de avaliação" },
-      { value: 4, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma" },
-      { value: 5, text: "Fazemos raramente ou de forma inicial - realizamos de forma pontual" }
+      { value: 1, text: "Não fazemos isso - os sistemas de trabalho são básicos e informais, sem estruturação adequada" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos alguns sistemas básicos, mas sem integração" },
+      { value: 3, text: "Fazemos de alguma forma - sistemas parcialmente estruturados com algumas práticas de gestão definidas" },
+      { value: 4, text: "Fazemos bem feito - sistemas bem estruturados que promovem alto desempenho e colaboração" },
+      { value: 5, text: "Fazemos muito bem feito - sistemas exemplares que maximizam o potencial das pessoas e servem como referência" }
     ]
   },
   "q13": {
-    text: "Como são desenvolvidas as competências das pessoas?",
+    text: "A organização desenvolve sistematicamente as competências das pessoas através de programas estruturados de capacitação, educação continuada, mentoring e outras práticas que promovam o crescimento profissional e pessoal?",
     dimension: "Pessoas",
     options: [
-      { value: 1, text: "Fazemos raramente ou de forma inicial - processos informais de avaliação" },
-      { value: 2, text: "Fazemos raramente ou de forma inicial - processos básicos de avaliação" },
-      { value: 3, text: "Fazemos raramente ou de forma inicial - processos de avaliação" },
-      { value: 4, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma" },
-      { value: 5, text: "Fazemos raramente ou de forma inicial - realizamos de forma pontual" }
+      { value: 1, text: "Não fazemos isso - o desenvolvimento de competências é básico e informal, sem programas estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos alguns programas básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - programas parciais com algumas práticas de desenvolvimento definidas" },
+      { value: 4, text: "Fazemos bem feito - programas sistemáticos e abrangentes que promovem o crescimento das pessoas" },
+      { value: 5, text: "Fazemos muito bem feito - programas exemplares e inovadores que maximizam o potencial e servem como referência" }
     ]
   },
   "q14": {
-    text: "Como é promovida a qualidade de vida das pessoas?",
+    text: "A organização promove ativamente a qualidade de vida das pessoas através de programas de bem-estar, equilíbrio trabalho-vida, saúde ocupacional, ambiente de trabalho saudável e práticas que valorizem a pessoa integral?",
     dimension: "Pessoas",
     options: [
-      { value: 1, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma pontual" },
-      { value: 2, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma" },
-      { value: 3, text: "Fazemos raramente ou de forma inicial - realizamos de forma pontual" },
-      { value: 4, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma" },
-      { value: 5, text: "Fazemos raramente ou de forma inicial - realizamos de forma pontual" }
+      { value: 1, text: "Não fazemos isso - a promoção da qualidade de vida é básica e informal, sem programas estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos algumas iniciativas básicas, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - programas parciais com algumas práticas de bem-estar definidas" },
+      { value: 4, text: "Fazemos bem feito - programas sistemáticos que promovem efetivamente a qualidade de vida" },
+      { value: 5, text: "Fazemos muito bem feito - programas exemplares e abrangentes que servem como referência em qualidade de vida" }
     ]
   },
   "q15": {
-    text: "Como são segmentados os clientes e mercados?",
+    text: "A organização identifica e compreende sistematicamente as necessidades e expectativas dos clientes e mercados, utilizando métodos estruturados de pesquisa e análise para orientar o desenvolvimento de produtos e serviços?",
     dimension: "Clientes",
     options: [
-      { value: 1, text: "Segmentação básica e informal" },
-      { value: 2, text: "Segmentação com alguns critérios" },
-      { value: 3, text: "Segmentação parcial com critérios definidos" },
-      { value: 4, text: "Segmentação sistemática e bem definida" },
-      { value: 5, text: "Segmentação exemplar e estratégica" }
+      { value: 1, text: "Não fazemos isso - a identificação das necessidades dos clientes é básica e informal, sem métodos estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - utilizamos alguns métodos básicos de identificação, mas de forma esporádica" },
+      { value: 3, text: "Fazemos de alguma forma - temos processos parciais de identificação das necessidades, com alguns métodos estruturados" },
+      { value: 4, text: "Fazemos bem feito - identificamos sistematicamente as necessidades dos clientes através de métodos bem estruturados e análises regulares" },
+      { value: 5, text: "Fazemos muito bem feito - nossa identificação das necessidades é exemplar, utilizando métodos avançados e servindo como referência no mercado" }
     ]
   },
   "q16": {
-    text: "Como são desenvolvidos os produtos e serviços?",
+    text: "A organização desenvolve produtos e serviços de forma estruturada e sistemática, considerando as necessidades dos clientes, requisitos de qualidade, viabilidade técnica e econômica, com processos de inovação e melhoria contínua?",
     dimension: "Clientes",
     options: [
-      { value: 1, text: "Desenvolvimento básico e informal" },
-      { value: 2, text: "Desenvolvimento com alguns controles" },
-      { value: 3, text: "Processo parcial com alguns controles" },
-      { value: 4, text: "Processo sistemático e bem estruturado" },
-      { value: 5, text: "Processo exemplar com inovação contínua" }
+      { value: 1, text: "Não fazemos isso - o desenvolvimento de produtos e serviços é básico e informal, sem processo estruturado" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos desenvolvimento com alguns controles básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - possuímos processo parcial com alguns controles e consideração das necessidades dos clientes" },
+      { value: 4, text: "Fazemos bem feito - desenvolvemos de forma sistemática e bem estruturada, considerando todos os aspectos relevantes" },
+      { value: 5, text: "Fazemos muito bem feito - nosso processo é exemplar com inovação contínua e serve como referência no mercado" }
     ]
   },
   "q17": {
-    text: "Como é realizado o relacionamento com os clientes?",
+    text: "A organização mantém relacionamento próximo e efetivo com os clientes, utilizando múltiplos canais de comunicação, coletando feedback regularmente e tratando reclamações de forma sistemática para garantir satisfação e fidelização?",
     dimension: "Clientes",
     options: [
-      { value: 1, text: "Relacionamento básico e informal" },
-      { value: 2, text: "Relacionamento com alguns canais" },
-      { value: 3, text: "Relacionamento parcial com alguns canais" },
-      { value: 4, text: "Relacionamento sistemático e multicanal" },
-      { value: 5, text: "Relacionamento exemplar e personalizado" }
+      { value: 1, text: "Não fazemos isso - o relacionamento com clientes é básico e informal, sem canais estruturados ou coleta sistemática de feedback" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - mantemos relacionamento através de alguns canais básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - temos relacionamento parcial com alguns canais estruturados e coleta ocasional de feedback" },
+      { value: 4, text: "Fazemos bem feito - mantemos relacionamento sistemático e multicanal, com coleta regular de feedback e tratamento estruturado de reclamações" },
+      { value: 5, text: "Fazemos muito bem feito - nosso relacionamento é exemplar e personalizado, com múltiplos canais integrados e gestão proativa da experiência do cliente" }
     ]
   },
   "q18": {
-    text: "Como a organização atua em relação à responsabilidade socioambiental?",
+    text: "A organização identifica e monitora sistematicamente as necessidades e expectativas da sociedade e comunidades onde atua, considerando aspectos sociais, ambientais e econômicos para orientar suas ações de responsabilidade social?",
     dimension: "Sociedade",
     options: [
-      { value: 1, text: "Atuação básica e esporádica" },
-      { value: 2, text: "Atuação com algumas iniciativas" },
-      { value: 3, text: "Atuação parcial com algumas iniciativas" },
-      { value: 4, text: "Atuação sistemática e abrangente" },
-      { value: 5, text: "Atuação exemplar e transformadora" }
+      { value: 1, text: "Não fazemos isso - a identificação das necessidades da sociedade é básica e informal, sem métodos estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - utilizamos alguns métodos básicos de identificação, mas de forma esporádica" },
+      { value: 3, text: "Fazemos de alguma forma - temos identificação parcial com alguns métodos definidos e consideração de aspectos socioambientais" },
+      { value: 4, text: "Fazemos bem feito - identificamos sistematicamente as necessidades através de métodos estruturados e monitoramento regular" },
+      { value: 5, text: "Fazemos muito bem feito - nossa identificação é exemplar e proativa, servindo como referência em responsabilidade social" }
     ]
   },
   "q19": {
-    text: "Como a organização trata as questões éticas?",
+    text: "A organização desenvolve produtos, serviços e processos considerando sistematicamente os impactos ambientais, utilizando critérios de sustentabilidade, ecoeficiência e economia circular para minimizar pegada ecológica e promover desenvolvimento sustentável?",
     dimension: "Sociedade",
     options: [
-      { value: 1, text: "Tratamento básico e informal" },
-      { value: 2, text: "Tratamento com alguns códigos" },
-      { value: 3, text: "Tratamento parcial com alguns códigos" },
-      { value: 4, text: "Tratamento sistemático com códigos bem definidos" },
-      { value: 5, text: "Tratamento exemplar com cultura ética sólida" }
+      { value: 1, text: "Não fazemos isso - a consideração ambiental no desenvolvimento é básica e informal, sem critérios estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - aplicamos alguns critérios ambientais básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - temos consideração parcial com alguns critérios definidos de sustentabilidade" },
+      { value: 4, text: "Fazemos bem feito - consideramos sistematicamente os impactos ambientais com critérios estruturados e práticas de ecoeficiência" },
+      { value: 5, text: "Fazemos muito bem feito - nossa abordagem é exemplar e inovadora, servindo como referência em desenvolvimento sustentável" }
     ]
   },
   "q20": {
-    text: "Como a organização desenvolve a cidadania?",
+    text: "A organização promove ativamente o desenvolvimento social das comunidades onde atua, através de programas estruturados, parcerias estratégicas, investimento social privado e ações que geram impacto positivo duradouro na sociedade?",
     dimension: "Sociedade",
     options: [
-      { value: 1, text: "Desenvolvimento básico e esporádico" },
-      { value: 2, text: "Desenvolvimento com algumas ações" },
-      { value: 3, text: "Desenvolvimento parcial com algumas ações" },
-      { value: 4, text: "Desenvolvimento sistemático e abrangente" },
-      { value: 5, text: "Desenvolvimento exemplar e transformador" }
+      { value: 1, text: "Não fazemos isso - a promoção do desenvolvimento social é básica e informal, sem programas estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - realizamos algumas ações sociais básicas, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - temos promoção parcial com algumas ações definidas e parcerias pontuais" },
+      { value: 4, text: "Fazemos bem feito - promovemos sistematicamente o desenvolvimento social através de programas estruturados e parcerias estratégicas" },
+      { value: 5, text: "Fazemos muito bem feito - nossa promoção é exemplar e transformadora, gerando impacto social significativo e servindo como referência" }
     ]
   },
   "q21": {
-    text: "Como são gerenciadas as informações da organização?",
+    text: "A organização identifica sistematicamente suas necessidades de informações estratégicas, operacionais e de apoio, desenvolvendo e mantendo sistemas integrados de gestão da informação que garantam qualidade, segurança, disponibilidade e uso efetivo dos dados?",
     dimension: "Informações e Conhecimento",
     options: [
-      { value: 1, text: "Gestão básica e informal" },
-      { value: 2, text: "Gestão com alguns sistemas" },
-      { value: 3, text: "Gestão parcial com alguns sistemas" },
-      { value: 4, text: "Gestão sistemática e bem estruturada" },
-      { value: 5, text: "Gestão exemplar com integração total" }
+      { value: 1, text: "Não fazemos isso - a gestão de informações é básica e informal, sem identificação sistemática das necessidades" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos gestão com alguns sistemas básicos, mas sem integração" },
+      { value: 3, text: "Fazemos de alguma forma - possuímos gestão parcial com alguns sistemas estruturados e identificação de necessidades" },
+      { value: 4, text: "Fazemos bem feito - gerenciamos sistematicamente as informações através de sistemas bem estruturados e integrados" },
+      { value: 5, text: "Fazemos muito bem feito - nossa gestão é exemplar com integração total e serve como referência em gestão da informação" }
     ]
   },
   "q22": {
-    text: "Como são gerenciados os conhecimentos da organização?",
+    text: "A organização desenvolve e mantém sistemas estruturados de gestão do conhecimento organizacional, promovendo a criação, captura, organização, compartilhamento e aplicação do conhecimento para gerar valor e vantagem competitiva sustentável?",
     dimension: "Informações e Conhecimento",
     options: [
-      { value: 1, text: "Gestão básica e informal" },
-      { value: 2, text: "Gestão com alguns repositórios" },
-      { value: 3, text: "Gestão parcial com alguns repositórios" },
-      { value: 4, text: "Gestão sistemática e compartilhada" },
-      { value: 5, text: "Gestão exemplar com inovação contínua" }
+      { value: 1, text: "Não fazemos isso - a gestão do conhecimento é básica e informal, sem sistemas estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - temos gestão com alguns repositórios básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - possuímos gestão parcial com alguns repositórios e processos de compartilhamento" },
+      { value: 4, text: "Fazemos bem feito - gerenciamos sistematicamente o conhecimento com processos estruturados de criação e compartilhamento" },
+      { value: 5, text: "Fazemos muito bem feito - nossa gestão é exemplar com inovação contínua e serve como referência em gestão do conhecimento" }
     ]
   },
   "q23": {
-    text: "Como são avaliados os resultados econômico-financeiros?",
+    text: "A organização monitora e avalia sistematicamente seus resultados econômico-financeiros através de indicadores abrangentes de desempenho, incluindo rentabilidade, liquidez, endividamento e crescimento, comparando-os com metas estabelecidas e benchmarks do mercado?",
     dimension: "Resultados",
     options: [
-      { value: 1, text: "Avaliação básica e esporádica" },
-      { value: 2, text: "Avaliação com alguns indicadores" },
-      { value: 3, text: "Avaliação parcial com alguns indicadores" },
-      { value: 4, text: "Avaliação sistemática e abrangente" },
-      { value: 5, text: "Avaliação exemplar com benchmarking" }
+      { value: 1, text: "Não fazemos isso - a avaliação dos resultados econômico-financeiros é básica e esporádica, sem indicadores estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - realizamos avaliação com alguns indicadores básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - temos avaliação parcial com alguns indicadores estruturados e comparação com metas" },
+      { value: 4, text: "Fazemos bem feito - monitoramos sistematicamente através de indicadores abrangentes e comparação com benchmarks" },
+      { value: 5, text: "Fazemos muito bem feito - nossa avaliação é exemplar com benchmarking avançado e serve como referência no mercado" }
     ]
   },
   "q24": {
-    text: "Como são avaliados os resultados relativos aos clientes e mercado?",
+    text: "A organização monitora e avalia sistematicamente seus resultados relativos aos clientes e mercado, incluindo satisfação, fidelização, participação de mercado, crescimento da base de clientes e efetividade das estratégias comerciais?",
     dimension: "Resultados",
     options: [
-      { value: 1, text: "Avaliação básica e informal" },
-      { value: 2, text: "Avaliação com alguns indicadores" },
-      { value: 3, text: "Avaliação parcial com alguns indicadores" },
-      { value: 4, text: "Avaliação sistemática e regular" },
-      { value: 5, text: "Avaliação exemplar com ações de melhoria" }
+      { value: 1, text: "Não fazemos isso - a avaliação dos resultados de clientes e mercado é básica e informal, sem indicadores estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - realizamos avaliação com alguns indicadores básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - temos avaliação parcial com alguns indicadores de satisfação e participação de mercado" },
+      { value: 4, text: "Fazemos bem feito - monitoramos sistematicamente através de indicadores abrangentes e análises regulares" },
+      { value: 5, text: "Fazemos muito bem feito - nossa avaliação é exemplar com ações de melhoria contínua e serve como referência no mercado" }
     ]
   },
   "q25": {
-    text: "Como são avaliados os resultados relativos à sociedade?",
+    text: "A organização monitora e avalia sistematicamente seus resultados e impactos relativos à sociedade, incluindo responsabilidade socioambiental, sustentabilidade, contribuição para o desenvolvimento social e relacionamento com comunidades?",
     dimension: "Resultados",
     options: [
-      { value: 1, text: "Avaliação básica e informal" },
-      { value: 2, text: "Avaliação com alguns indicadores" },
-      { value: 3, text: "Avaliação parcial com alguns indicadores" },
-      { value: 4, text: "Avaliação sistemática e documentada" },
-      { value: 5, text: "Avaliação exemplar com impacto positivo" }
+      { value: 1, text: "Não fazemos isso - a avaliação dos resultados sociais é básica e informal, sem indicadores estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - realizamos avaliação com alguns indicadores básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - temos avaliação parcial com alguns indicadores de impacto social e ambiental" },
+      { value: 4, text: "Fazemos bem feito - monitoramos sistematicamente através de indicadores estruturados e documentação adequada" },
+      { value: 5, text: "Fazemos muito bem feito - nossa avaliação é exemplar com impacto positivo comprovado e serve como referência em responsabilidade social" }
     ]
   },
   "q26": {
-    text: "Como são avaliados os resultados relativos às pessoas?",
+    text: "A organização monitora e avalia sistematicamente seus resultados relativos às pessoas, incluindo satisfação, engajamento, desenvolvimento, retenção de talentos, clima organizacional e efetividade das práticas de gestão de pessoas?",
     dimension: "Resultados",
     options: [
-      { value: 1, text: "Avaliação básica e informal" },
-      { value: 2, text: "Avaliação com alguns indicadores" },
-      { value: 3, text: "Avaliação parcial com alguns indicadores" },
-      { value: 4, text: "Avaliação sistemática e regular" },
-      { value: 5, text: "Avaliação exemplar com ações de melhoria" }
+      { value: 1, text: "Não fazemos isso - a avaliação dos resultados de pessoas é básica e informal, sem indicadores estruturados" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - realizamos avaliação com alguns indicadores básicos, mas sem sistematização" },
+      { value: 3, text: "Fazemos de alguma forma - temos avaliação parcial com alguns indicadores de satisfação e clima organizacional" },
+      { value: 4, text: "Fazemos bem feito - monitoramos sistematicamente através de indicadores abrangentes e análises regulares" },
+      { value: 5, text: "Fazemos muito bem feito - nossa avaliação é exemplar com ações de melhoria contínua e serve como referência em gestão de pessoas" }
     ]
   }
 };
