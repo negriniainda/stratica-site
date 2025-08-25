@@ -213,10 +213,13 @@ ${assessmentData.userInfo?.name || 'N/A'}`;
                 const avgScore = count > 0 ? totalScore / count : 0;
                 const percentage = (avgScore / 5) * 100;
                 
+                // Calcular pontuação Stratica para esta dimensão
+                const straticaScore = Math.round((percentage / 100) * 1000);
+                
                 analysis[dimension] = {
                     avgScore: avgScore,
                     percentage: percentage,
-                    level: getMaturityLevel(percentage),
+                    level: getResultDetailsStratica(straticaScore),
                     questions: questionIds.map(qId => answers[qId]).filter(Boolean)
                 };
             });
@@ -224,14 +227,7 @@ ${assessmentData.userInfo?.name || 'N/A'}`;
             return analysis;
         }
 
-        // Função para determinar nível de maturidade
-        function getMaturityLevel(percentage) {
-            if (percentage <= 20) return { level: 1, title: "Inicial" };
-            if (percentage <= 40) return { level: 2, title: "Emergente" };
-            if (percentage <= 60) return { level: 3, title: "Estruturado" };
-            if (percentage <= 80) return { level: 4, title: "Avançado" };
-            return { level: 5, title: "Excelência" };
-        }
+        // Função getMaturityLevel removida - agora usamos apenas getResultDetailsStratica
 
         // Função para gerar recomendações específicas por dimensão
         function getDimensionRecommendations(dimension, analysis) {
@@ -584,8 +580,8 @@ www.stratica.com.br`;
             const quizData = [
                 {
                     dimension: "Liderança",
-                    icon: "users",
-                    weight: 110,
+                    icon: "crown",
+                    weight: 100,
                     questions: [
                         {
                             id: "q1",
@@ -636,7 +632,7 @@ www.stratica.com.br`;
                 {
                     dimension: "Estratégias e Planos",
                     icon: "target",
-                    weight: 60,
+                    weight: 70,
                     questions: [
                         {
                             id: "q5",
@@ -676,6 +672,7 @@ www.stratica.com.br`;
                 {
                     dimension: "Processos",
                     icon: "settings-2",
+                    weight: 100,
                      questions: [
                         {
                             id: "q7",
@@ -715,6 +712,7 @@ www.stratica.com.br`;
                  {
                     dimension: "Pessoas",
                     icon: "user-check",
+                    weight: 70,
                      questions: [
                         {
                             id: "q10",
@@ -754,7 +752,7 @@ www.stratica.com.br`;
                 {
                     dimension: "Clientes",
                     icon: "heart",
-                    weight: 60,
+                    weight: 70,
                     questions: [
                         {
                             id: "q8",
@@ -794,7 +792,7 @@ www.stratica.com.br`;
                 {
                     dimension: "Sociedade",
                     icon: "globe",
-                    weight: 60,
+                    weight: 70,
                     questions: [
                         {
                             id: "q11",
@@ -834,7 +832,7 @@ www.stratica.com.br`;
                 {
                     dimension: "Informações e Conhecimento",
                     icon: "database",
-                    weight: 60,
+                    weight: 70,
                     questions: [
                         {
                             id: "q14",
@@ -866,86 +864,6 @@ www.stratica.com.br`;
                                 { value: 2, text: "Gestão básica e informal" },
                                 { value: 3, text: "Algumas práticas de gestão implementadas" },
                                 { value: 4, text: "Processo bem estruturado de gestão" },
-                                { value: 5, text: "Práticas exemplares de gestão integradas" }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    dimension: "Pessoas",
-                    icon: "users",
-                    weight: 90,
-                    questions: [
-                        {
-                            id: "q17",
-                            text: "Como são organizados os sistemas de trabalho?",
-                            options: [
-                                { value: 1, text: "Não há organização estruturada dos sistemas de trabalho" },
-                                { value: 2, text: "Organização básica e informal" },
-                                { value: 3, text: "Algumas práticas de organização implementadas" },
-                                { value: 4, text: "Sistema bem estruturado de organização" },
-                                { value: 5, text: "Práticas exemplares de organização integradas" }
-                            ]
-                        },
-                        {
-                            id: "q18",
-                            text: "Como são desenvolvidas as competências das pessoas?",
-                            options: [
-                                { value: 1, text: "Não há desenvolvimento estruturado de competências" },
-                                { value: 2, text: "Desenvolvimento básico e informal" },
-                                { value: 3, text: "Algumas práticas de desenvolvimento implementadas" },
-                                { value: 4, text: "Programa bem estruturado de desenvolvimento" },
-                                { value: 5, text: "Práticas exemplares de desenvolvimento integradas" }
-                            ]
-                        },
-                        {
-                            id: "q19",
-                            text: "Como é promovida a qualidade de vida das pessoas?",
-                            options: [
-                                { value: 1, text: "Não há ações estruturadas para qualidade de vida" },
-                                { value: 2, text: "Ações básicas e esporádicas" },
-                                { value: 3, text: "Algumas práticas de qualidade de vida implementadas" },
-                                { value: 4, text: "Programa bem estruturado de qualidade de vida" },
-                                { value: 5, text: "Práticas exemplares de qualidade de vida integradas" }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    dimension: "Processos",
-                    icon: "settings",
-                    weight: 110,
-                    questions: [
-                        {
-                            id: "q20",
-                            text: "Como são gerenciados os processos principais do negócio?",
-                            options: [
-                                { value: 1, text: "Não há gestão estruturada dos processos principais" },
-                                { value: 2, text: "Gestão básica e informal" },
-                                { value: 3, text: "Algumas práticas de gestão implementadas" },
-                                { value: 4, text: "Sistema bem estruturado de gestão" },
-                                { value: 5, text: "Práticas exemplares de gestão integradas" }
-                            ]
-                        },
-                        {
-                            id: "q21",
-                            text: "Como são gerenciados os processos de apoio?",
-                            options: [
-                                { value: 1, text: "Não há gestão estruturada dos processos de apoio" },
-                                { value: 2, text: "Gestão básica e informal" },
-                                { value: 3, text: "Algumas práticas de gestão implementadas" },
-                                { value: 4, text: "Sistema bem estruturado de gestão" },
-                                { value: 5, text: "Práticas exemplares de gestão integradas" }
-                            ]
-                        },
-                        {
-                            id: "q22",
-                            text: "Como são gerenciados os processos econômico-financeiros?",
-                            options: [
-                                { value: 1, text: "Não há gestão estruturada dos processos financeiros" },
-                                { value: 2, text: "Gestão básica e informal" },
-                                { value: 3, text: "Algumas práticas de gestão implementadas" },
-                                { value: 4, text: "Sistema bem estruturado de gestão" },
                                 { value: 5, text: "Práticas exemplares de gestão integradas" }
                             ]
                         }
@@ -1158,7 +1076,7 @@ www.stratica.com.br`;
                 
                 for (const [dimension, data] of Object.entries(dimensionScores)) {
                     const percentage = Math.round((data.score / data.maxScore) * 100);
-                    const level = getResultDetailsStratica(data.straticaScore).level;
+                    const level = getDimensionLevel(data.straticaScore, data.weight);
                     
                     analysisHTML += `
                         <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
@@ -1257,6 +1175,31 @@ www.stratica.com.br`;
                 return recommendations[dimension] && recommendations[dimension][level] 
                     ? recommendations[dimension][level] 
                     : 'Continue desenvolvendo este critério para alcançar melhores resultados.';
+            }
+
+            // Função para obter o nível de uma dimensão específica baseado no seu peso
+            function getDimensionLevel(straticaScore, dimensionWeight) {
+                // Calcular os intervalos baseados no peso da dimensão
+                const level1Max = Math.round(dimensionWeight * 0.125); // 12.5% do peso
+                const level2Max = Math.round(dimensionWeight * 0.25);  // 25% do peso
+                const level3Max = Math.round(dimensionWeight * 0.375); // 37.5% do peso
+                const level4Max = Math.round(dimensionWeight * 0.5);   // 50% do peso
+                const level5Max = Math.round(dimensionWeight * 0.75);  // 75% do peso
+                // level 6 = acima de 75% do peso
+                
+                if (straticaScore <= level1Max) {
+                    return 1;
+                } else if (straticaScore <= level2Max) {
+                    return 2;
+                } else if (straticaScore <= level3Max) {
+                    return 3;
+                } else if (straticaScore <= level4Max) {
+                    return 4;
+                } else if (straticaScore <= level5Max) {
+                    return 5;
+                } else {
+                    return 6;
+                }
             }
 
             // Função para obter os detalhes do nível de maturidade Stratica
