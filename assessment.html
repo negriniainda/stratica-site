@@ -1128,6 +1128,7 @@ www.stratica.com.br`;
                 for (const [dimension, data] of Object.entries(dimensionScores)) {
                     const percentage = Math.round((data.score / data.maxScore) * 100);
                     const level = getDimensionLevel(data.straticaScore, data.weight);
+                    const levelDetails = getResultDetailsForDimension(level);
                     
                     analysisHTML += `
                         <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
@@ -1140,11 +1141,15 @@ www.stratica.com.br`;
                                 <div class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: ${percentage}%"></div>
                             </div>
                             <div class="text-center mb-4">
-                                <span class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">Nível ${level}</span>
+                                <span class="inline-block px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">Nível ${level} - ${levelDetails.title}</span>
+                            </div>
+                            <div class="text-sm text-gray-700 leading-relaxed mb-4">
+                                <strong class="text-gray-800">Descrição do Nível:</strong>
+                                <p class="mt-2 p-3 bg-blue-50 border-l-4 border-blue-400 rounded">${levelDetails.description}</p>
                             </div>
                             <div class="text-sm text-gray-700 leading-relaxed">
-                                <strong class="text-gray-800">Recomendações:</strong>
-                                <p class="mt-2">${getDimensionRecommendations(dimension, level)}</p>
+                                <strong class="text-gray-800">Recomendações Específicas:</strong>
+                                <p class="mt-2 p-3 bg-green-50 border-l-4 border-green-400 rounded">${getDimensionRecommendations(dimension, level)}</p>
                             </div>
                         </div>
                     `;
