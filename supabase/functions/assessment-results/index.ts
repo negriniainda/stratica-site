@@ -12,52 +12,52 @@ const questionMapping: Record<string, { text: string; dimension: string; options
     text: "Como a alta direção exerce a liderança e interage com as partes interessadas?",
     dimension: "Liderança",
     options: [
-      { value: 1, text: "Não há liderança estruturada ou interação com partes interessadas" },
-      { value: 2, text: "Liderança básica com interação informal" },
-      { value: 3, text: "Liderança parcialmente estruturada com algumas interações" },
-      { value: 4, text: "Liderança bem estruturada com interação sistemática" },
-      { value: 5, text: "Liderança exemplar com engajamento proativo de todas as partes" }
+      { value: 1, text: "Práticas iniciais e informais de liderança, com pouca interação estruturada" },
+      { value: 2, text: "Práticas básicas de liderança com interação informal" },
+      { value: 3, text: "Práticas de liderança parcialmente estruturadas" },
+      { value: 4, text: "Práticas de liderança bem estruturadas e sistemáticas" },
+      { value: 5, text: "Práticas de liderança exemplares e inovadoras" }
     ]
   },
   "q2": {
     text: "Como é implementado o sistema de liderança da organização?",
     dimension: "Liderança",
     options: [
-      { value: 1, text: "Não existe um sistema de liderança estruturado" },
-      { value: 2, text: "Sistema de liderança básico e informal" },
+      { value: 1, text: "Sistema de liderança básico e informal" },
+      { value: 2, text: "Sistema de liderança com alguns elementos estruturados" },
       { value: 3, text: "Sistema de liderança parcialmente implementado" },
-      { value: 4, text: "Sistema de liderança bem estruturado e amplamente aplicado" },
-      { value: 5, text: "Sistema de liderança robusto, integrado e continuamente aprimorado" }
+      { value: 4, text: "Sistema de liderança bem implementado e abrangente" },
+      { value: 5, text: "Sistema de liderança robusto e continuamente aprimorado" }
     ]
   },
   "q3": {
     text: "Como a organização analisa criticamente o desempenho global?",
     dimension: "Liderança",
     options: [
-      { value: 1, text: "Não há análise crítica estruturada do desempenho" },
-      { value: 2, text: "Análises pontuais e informais do desempenho" },
-      { value: 3, text: "Análise crítica parcial com alguns indicadores" },
-      { value: 4, text: "Análise crítica sistemática com indicadores abrangentes" },
-      { value: 5, text: "Análise crítica robusta, integrada e orientada para melhoria contínua" }
+      { value: 1, text: "Análises pontuais e informais do desempenho" },
+      { value: 2, text: "Análises básicas com alguns indicadores" },
+      { value: 3, text: "Análise crítica parcial com indicadores definidos" },
+      { value: 4, text: "Análise crítica sistemática e abrangente" },
+      { value: 5, text: "Análise crítica robusta e orientada para melhoria contínua" }
     ]
   },
   "q4": {
     text: "Como a alta direção demonstra comprometimento com a excelência e sustentabilidade?",
     dimension: "Liderança",
     options: [
-      { value: 1, text: "Não há demonstração clara de comprometimento com excelência" },
-      { value: 2, text: "Comprometimento básico e esporádico" },
-      { value: 3, text: "Comprometimento parcial com algumas iniciativas" },
-      { value: 4, text: "Comprometimento claro e consistente na maioria das ações" },
-      { value: 5, text: "Comprometimento exemplar e inspirador em todas as dimensões" }
+      { value: 1, text: "Comprometimento básico e esporádico" },
+      { value: 2, text: "Comprometimento com algumas iniciativas" },
+      { value: 3, text: "Comprometimento parcial mas consistente" },
+      { value: 4, text: "Comprometimento claro e sistemático" },
+      { value: 5, text: "Comprometimento exemplar e inspirador" }
     ]
   },
   "q5": {
     text: "Como são formuladas as estratégias da organização?",
     dimension: "Estratégias e Planos",
     options: [
-      { value: 1, text: "Não há processo estruturado de formulação de estratégias" },
-      { value: 2, text: "Processo básico e informal de definição estratégica" },
+      { value: 1, text: "Processo básico e informal de definição estratégica" },
+      { value: 2, text: "Processo com alguns elementos estruturados" },
       { value: 3, text: "Processo de formulação estratégica parcialmente estruturado" },
       { value: 4, text: "Processo bem estruturado com metodologia definida" },
       { value: 5, text: "Processo robusto, sistemático e continuamente aprimorado" }
@@ -67,220 +67,231 @@ const questionMapping: Record<string, { text: string; dimension: string; options
     text: "Como são implementadas as estratégias da organização?",
     dimension: "Estratégias e Planos",
     options: [
-      { value: 1, text: "Não há processo estruturado de implementação estratégica" },
-      { value: 2, text: "Implementação básica e informal das estratégias" },
-      { value: 3, text: "Implementação parcial com alguns mecanismos de controle" },
+      { value: 1, text: "Implementação básica e informal das estratégias" },
+      { value: 2, text: "Implementação com alguns controles" },
+      { value: 3, text: "Implementação parcial com mecanismos de controle" },
       { value: 4, text: "Implementação sistemática com acompanhamento regular" },
-      { value: 5, text: "Implementação exemplar com gestão integrada e monitoramento contínuo" }
+      { value: 5, text: "Implementação exemplar com gestão integrada" }
     ]
   },
   "q7": {
-    text: "Como são gerenciados os processos finalísticos da organização?",
-    dimension: "Processos",
+    text: "Como são elaborados os planos de ação da organização?",
+    dimension: "Estratégias e Planos",
     options: [
-      { value: 1, text: "Não há gestão estruturada dos processos finalísticos" },
-      { value: 2, text: "Gestão básica e informal" },
-      { value: 3, text: "Gestão parcial com alguns controles" },
-      { value: 4, text: "Gestão sistemática e bem estruturada" },
-      { value: 5, text: "Gestão exemplar com otimização contínua" }
+      { value: 1, text: "Planos básicos e informais" },
+      { value: 2, text: "Planos com alguns elementos estruturados" },
+      { value: 3, text: "Planos parcialmente estruturados" },
+      { value: 4, text: "Planos bem estruturados e detalhados" },
+      { value: 5, text: "Planos robustos e integrados" }
     ]
   },
   "q8": {
+    text: "Os principais processos do negócio estão mapeados e documentados?",
+    dimension: "Processos",
+    options: [
+      { value: 1, text: "Processos básicos e informais" },
+      { value: 2, text: "Alguns processos mapeados" },
+      { value: 3, text: "Processos parcialmente mapeados e documentados" },
+      { value: 4, text: "Processos bem mapeados e documentados" },
+      { value: 5, text: "Processos totalmente mapeados, documentados e otimizados" }
+    ]
+  },
+  "q9": {
     text: "Como são gerenciados os processos de apoio da organização?",
     dimension: "Processos",
     options: [
-      { value: 1, text: "Não há gestão estruturada dos processos de apoio" },
-      { value: 2, text: "Gestão básica e informal" },
-      { value: 3, text: "Gestão parcial com alguns procedimentos definidos" },
+      { value: 1, text: "Gestão básica e informal" },
+      { value: 2, text: "Gestão com alguns procedimentos" },
+      { value: 3, text: "Gestão parcial com procedimentos definidos" },
       { value: 4, text: "Gestão sistemática e bem estruturada" },
       { value: 5, text: "Gestão exemplar com integração total" }
     ]
   },
-  "q9": {
+  "q10": {
     text: "Como são gerenciados os fornecedores da organização?",
     dimension: "Processos",
     options: [
-      { value: 1, text: "Não há gestão estruturada de fornecedores" },
-      { value: 2, text: "Gestão básica e informal" },
-      { value: 3, text: "Gestão parcial com alguns métodos" },
+      { value: 1, text: "Gestão básica e informal" },
+      { value: 2, text: "Gestão com alguns critérios" },
+      { value: 3, text: "Gestão parcial com critérios definidos" },
       { value: 4, text: "Gestão sistemática e bem estruturada" },
       { value: 5, text: "Gestão exemplar com parcerias estratégicas" }
     ]
   },
-  "q10": {
+  "q11": {
     text: "Como são gerenciadas as finanças da organização?",
     dimension: "Processos",
     options: [
-      { value: 1, text: "Não há gestão estruturada das finanças" },
-      { value: 2, text: "Gestão básica e informal" },
-      { value: 3, text: "Gestão parcial com alguns controles" },
+      { value: 1, text: "Gestão básica e informal" },
+      { value: 2, text: "Gestão com alguns controles" },
+      { value: 3, text: "Gestão parcial com controles definidos" },
       { value: 4, text: "Gestão sistemática e bem estruturada" },
       { value: 5, text: "Gestão exemplar com planejamento estratégico" }
     ]
   },
-  "q11": {
+  "q12": {
     text: "Como são definidos os sistemas de trabalho da organização?",
     dimension: "Pessoas",
     options: [
-      { value: 1, text: "Não há definição estruturada dos sistemas de trabalho" },
-      { value: 2, text: "Definição básica e informal" },
-      { value: 3, text: "Definição parcial com alguns métodos" },
-      { value: 4, text: "Definição sistemática e bem estruturada" },
-      { value: 5, text: "Definição exemplar com inovação contínua" }
-    ]
-  },
-  "q12": {
-    text: "Como são desenvolvidas as competências das pessoas?",
-    dimension: "Pessoas",
-    options: [
-      { value: 1, text: "Não há desenvolvimento estruturado de competências" },
-      { value: 2, text: "Desenvolvimento básico e informal" },
-      { value: 3, text: "Desenvolvimento parcial com alguns métodos" },
-      { value: 4, text: "Desenvolvimento sistemático e bem estruturado" },
-      { value: 5, text: "Desenvolvimento exemplar com inovação contínua" }
+      { value: 1, text: "Fazemos raramente ou de forma inicial - processos informais de avaliação" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - processos básicos de avaliação" },
+      { value: 3, text: "Fazemos raramente ou de forma inicial - processos de avaliação" },
+      { value: 4, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma" },
+      { value: 5, text: "Fazemos raramente ou de forma inicial - realizamos de forma pontual" }
     ]
   },
   "q13": {
-    text: "Como é promovida a qualidade de vida das pessoas?",
+    text: "Como são desenvolvidas as competências das pessoas?",
     dimension: "Pessoas",
     options: [
-      { value: 1, text: "Não há promoção estruturada da qualidade de vida" },
-      { value: 2, text: "Promoção básica e informal" },
-      { value: 3, text: "Promoção parcial com algumas iniciativas" },
-      { value: 4, text: "Promoção sistemática e bem estruturada" },
-      { value: 5, text: "Promoção exemplar com programas abrangentes" }
+      { value: 1, text: "Fazemos raramente ou de forma inicial - processos informais de avaliação" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - processos básicos de avaliação" },
+      { value: 3, text: "Fazemos raramente ou de forma inicial - processos de avaliação" },
+      { value: 4, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma" },
+      { value: 5, text: "Fazemos raramente ou de forma inicial - realizamos de forma pontual" }
     ]
   },
   "q14": {
+    text: "Como é promovida a qualidade de vida das pessoas?",
+    dimension: "Pessoas",
+    options: [
+      { value: 1, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma pontual" },
+      { value: 2, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma" },
+      { value: 3, text: "Fazemos raramente ou de forma inicial - realizamos de forma pontual" },
+      { value: 4, text: "Fazemos raramente ou de forma inicial - realizamos de alguma forma" },
+      { value: 5, text: "Fazemos raramente ou de forma inicial - realizamos de forma pontual" }
+    ]
+  },
+  "q15": {
     text: "Como são segmentados os clientes e mercados?",
     dimension: "Clientes",
     options: [
-        { value: 1, text: "Não há segmentação estruturada" },
-        { value: 2, text: "Segmentação básica e informal" },
-        { value: 3, text: "Segmentação parcial com alguns critérios" },
-        { value: 4, text: "Segmentação sistemática e bem definida" },
-        { value: 5, text: "Segmentação exemplar e estratégica" }
-      ]
+      { value: 1, text: "Segmentação básica e informal" },
+      { value: 2, text: "Segmentação com alguns critérios" },
+      { value: 3, text: "Segmentação parcial com critérios definidos" },
+      { value: 4, text: "Segmentação sistemática e bem definida" },
+      { value: 5, text: "Segmentação exemplar e estratégica" }
+    ]
   },
-  "q15": {
+  "q16": {
     text: "Como são desenvolvidos os produtos e serviços?",
     dimension: "Clientes",
     options: [
-        { value: 1, text: "Não há processo estruturado de desenvolvimento" },
-        { value: 2, text: "Desenvolvimento básico e informal" },
-        { value: 3, text: "Processo parcial com alguns controles" },
-        { value: 4, text: "Processo sistemático e bem estruturado" },
-        { value: 5, text: "Processo exemplar com inovação contínua" }
-      ]
+      { value: 1, text: "Desenvolvimento básico e informal" },
+      { value: 2, text: "Desenvolvimento com alguns controles" },
+      { value: 3, text: "Processo parcial com alguns controles" },
+      { value: 4, text: "Processo sistemático e bem estruturado" },
+      { value: 5, text: "Processo exemplar com inovação contínua" }
+    ]
   },
-  "q16": {
+  "q17": {
     text: "Como é realizado o relacionamento com os clientes?",
     dimension: "Clientes",
     options: [
-        { value: 1, text: "Não há gestão estruturada do relacionamento" },
-        { value: 2, text: "Relacionamento básico e informal" },
-        { value: 3, text: "Relacionamento parcial com alguns canais" },
-        { value: 4, text: "Relacionamento sistemático e multicanal" },
-        { value: 5, text: "Relacionamento exemplar e personalizado" }
-      ]
+      { value: 1, text: "Relacionamento básico e informal" },
+      { value: 2, text: "Relacionamento com alguns canais" },
+      { value: 3, text: "Relacionamento parcial com alguns canais" },
+      { value: 4, text: "Relacionamento sistemático e multicanal" },
+      { value: 5, text: "Relacionamento exemplar e personalizado" }
+    ]
   },
-  "q17": {
+  "q18": {
     text: "Como a organização atua em relação à responsabilidade socioambiental?",
     dimension: "Sociedade",
     options: [
-      { value: 1, text: "Não há atuação estruturada em responsabilidade socioambiental" },
-      { value: 2, text: "Atuação básica e esporádica" },
+      { value: 1, text: "Atuação básica e esporádica" },
+      { value: 2, text: "Atuação com algumas iniciativas" },
       { value: 3, text: "Atuação parcial com algumas iniciativas" },
       { value: 4, text: "Atuação sistemática e abrangente" },
       { value: 5, text: "Atuação exemplar e transformadora" }
     ]
   },
-  "q18": {
+  "q19": {
     text: "Como a organização trata as questões éticas?",
     dimension: "Sociedade",
     options: [
-      { value: 1, text: "Não há tratamento estruturado de questões éticas" },
-      { value: 2, text: "Tratamento básico e informal" },
+      { value: 1, text: "Tratamento básico e informal" },
+      { value: 2, text: "Tratamento com alguns códigos" },
       { value: 3, text: "Tratamento parcial com alguns códigos" },
       { value: 4, text: "Tratamento sistemático com códigos bem definidos" },
       { value: 5, text: "Tratamento exemplar com cultura ética sólida" }
     ]
   },
-  "q19": {
+  "q20": {
     text: "Como a organização desenvolve a cidadania?",
     dimension: "Sociedade",
     options: [
-      { value: 1, text: "Não há desenvolvimento estruturado de cidadania" },
-      { value: 2, text: "Desenvolvimento básico e esporádico" },
+      { value: 1, text: "Desenvolvimento básico e esporádico" },
+      { value: 2, text: "Desenvolvimento com algumas ações" },
       { value: 3, text: "Desenvolvimento parcial com algumas ações" },
       { value: 4, text: "Desenvolvimento sistemático e abrangente" },
       { value: 5, text: "Desenvolvimento exemplar e transformador" }
     ]
   },
-  "q20": {
+  "q21": {
     text: "Como são gerenciadas as informações da organização?",
     dimension: "Informações e Conhecimento",
     options: [
-      { value: 1, text: "Não há gestão estruturada das informações" },
-      { value: 2, text: "Gestão básica e informal" },
+      { value: 1, text: "Gestão básica e informal" },
+      { value: 2, text: "Gestão com alguns sistemas" },
       { value: 3, text: "Gestão parcial com alguns sistemas" },
       { value: 4, text: "Gestão sistemática e bem estruturada" },
       { value: 5, text: "Gestão exemplar com integração total" }
     ]
   },
-  "q21": {
+  "q22": {
     text: "Como são gerenciados os conhecimentos da organização?",
     dimension: "Informações e Conhecimento",
     options: [
-      { value: 1, text: "Não há gestão estruturada do conhecimento" },
-      { value: 2, text: "Gestão básica e informal" },
+      { value: 1, text: "Gestão básica e informal" },
+      { value: 2, text: "Gestão com alguns repositórios" },
       { value: 3, text: "Gestão parcial com alguns repositórios" },
       { value: 4, text: "Gestão sistemática e compartilhada" },
       { value: 5, text: "Gestão exemplar com inovação contínua" }
     ]
   },
-  "q22": {
-    text: "Como são avaliados os resultados relativos aos clientes e mercados?",
+  "q23": {
+    text: "Como são avaliados os resultados econômico-financeiros?",
     dimension: "Resultados",
     options: [
-      { value: 1, text: "Não há avaliação estruturada dos resultados" },
-      { value: 2, text: "Avaliação básica e esporádica" },
+      { value: 1, text: "Avaliação básica e esporádica" },
+      { value: 2, text: "Avaliação com alguns indicadores" },
       { value: 3, text: "Avaliação parcial com alguns indicadores" },
       { value: 4, text: "Avaliação sistemática e abrangente" },
       { value: 5, text: "Avaliação exemplar com benchmarking" }
     ]
   },
-  "q23": {
-    text: "Como são avaliados os resultados relativos às pessoas?",
+  "q24": {
+    text: "Como são avaliados os resultados relativos aos clientes e mercado?",
     dimension: "Resultados",
     options: [
-      { value: 1, text: "Não há avaliação estruturada dos resultados" },
-      { value: 2, text: "Avaliação básica e informal" },
+      { value: 1, text: "Avaliação básica e informal" },
+      { value: 2, text: "Avaliação com alguns indicadores" },
       { value: 3, text: "Avaliação parcial com alguns indicadores" },
       { value: 4, text: "Avaliação sistemática e regular" },
       { value: 5, text: "Avaliação exemplar com ações de melhoria" }
-    ]
-  },
-  "q24": {
-    text: "Como são avaliados os resultados dos processos principais do negócio?",
-    dimension: "Resultados",
-    options: [
-      { value: 1, text: "Não há avaliação estruturada dos resultados" },
-      { value: 2, text: "Avaliação básica e esporádica" },
-      { value: 3, text: "Avaliação parcial com alguns indicadores" },
-      { value: 4, text: "Avaliação sistemática e regular" },
-      { value: 5, text: "Avaliação exemplar com melhoria contínua" }
     ]
   },
   "q25": {
     text: "Como são avaliados os resultados relativos à sociedade?",
     dimension: "Resultados",
     options: [
-      { value: 1, text: "Não há avaliação estruturada dos resultados" },
-      { value: 2, text: "Avaliação básica e informal" },
+      { value: 1, text: "Avaliação básica e informal" },
+      { value: 2, text: "Avaliação com alguns indicadores" },
       { value: 3, text: "Avaliação parcial com alguns indicadores" },
       { value: 4, text: "Avaliação sistemática e documentada" },
       { value: 5, text: "Avaliação exemplar com impacto positivo" }
+    ]
+  },
+  "q26": {
+    text: "Como são avaliados os resultados relativos às pessoas?",
+    dimension: "Resultados",
+    options: [
+      { value: 1, text: "Avaliação básica e informal" },
+      { value: 2, text: "Avaliação com alguns indicadores" },
+      { value: 3, text: "Avaliação parcial com alguns indicadores" },
+      { value: 4, text: "Avaliação sistemática e regular" },
+      { value: 5, text: "Avaliação exemplar com ações de melhoria" }
     ]
   }
 };
@@ -299,17 +310,26 @@ function formatAssessmentAnswers(answers: Record<string, any>): string {
       }
       
       let answerText = '';
-      if (typeof answerData === 'object' && answerData.answer_text) {
-        answerText = answerData.answer_text;
+      let questionText = '';
+      
+      // Verificar se answerData é um objeto com as propriedades esperadas
+      if (typeof answerData === 'object' && answerData !== null) {
+        // Os dados vêm do frontend com question, answer_text e score
+        questionText = answerData.question || questionInfo.text;
+        answerText = answerData.answer_text || '';
       } else if (typeof answerData === 'number') {
+        // Fallback para dados numéricos
+        questionText = questionInfo.text;
         const option = questionInfo.options.find(opt => opt.value === answerData);
         answerText = option ? option.text : `Pontuação: ${answerData}`;
       } else {
+        // Fallback para outros tipos
+        questionText = questionInfo.text;
         answerText = String(answerData);
       }
       
       dimensionGroups[dimension].push({
-        question: questionInfo.text,
+        question: questionText,
         answer: answerText
       });
     }
@@ -343,25 +363,25 @@ function formatAssessmentAnswers(answers: Record<string, any>): string {
 function getDimensionRecommendations(dimension: string, level: number): string {
   const recommendations: Record<string, Record<number, string>> = {
     "Liderança": {
-      1: "• Definir missão, visão e valores organizacionais claros\n• Estabelecer estrutura básica de liderança\n• Implementar reuniões regulares de liderança\n• Criar canais básicos de comunicação interna\n• Desenvolver competências fundamentais de liderança",
-      2: "• Implementar sistema de liderança estruturado\n• Estabelecer políticas de gestão documentadas\n• Criar ferramentas de gestão de desempenho\n• Desenvolver programas de treinamento em liderança\n• Implementar feedback 360 graus",
-      3: "• Fortalecer cultura de liderança\n• Implementar programas de desenvolvimento contínuo\n• Estabelecer indicadores de eficácia da liderança\n• Criar programas de sucessão\n• Promover liderança colaborativa",
-      4: "• Consolidar práticas de liderança de alta performance\n• Implementar analytics de pessoas\n• Desenvolver liderança digital\n• Estabelecer programas de liderança estratégica\n• Promover liderança adaptativa",
-      5: "• Manter excelência reconhecida em liderança\n• Tornar-se referência no mercado\n• Desenvolver líderes visionários\n• Implementar liderança consciente\n• Estabelecer-se como benchmark de liderança"
+      1: "Estabeleça os fundamentos da liderança organizacional definindo claramente a missão, visão e valores que orientarão todas as decisões e ações da empresa, comunicando-os de forma consistente a todos os colaboradores. Crie uma estrutura básica de liderança com papéis e responsabilidades bem definidos, estabelecendo hierarquias claras e canais de comunicação efetivos. Implemente reuniões regulares de liderança para alinhamento estratégico e operacional, garantindo que as informações fluam adequadamente por toda a organização. Desenvolva competências fundamentais de liderança através de treinamentos básicos e mentoring.",
+      2: "Desenvolva um sistema estruturado de liderança implementando políticas de gestão documentadas que padronizem processos decisórios e estabeleçam diretrizes claras para a atuação dos líderes em diferentes situações. Crie ferramentas robustas de gestão de desempenho que permitam acompanhar o desenvolvimento dos colaboradores e identificar oportunidades de melhoria. Estabeleça programas abrangentes de treinamento em liderança que desenvolvam competências técnicas e comportamentais. Implemente sistemas de feedback 360 graus para promover autoconhecimento e desenvolvimento contínuo dos líderes.",
+      3: "Fortaleça a cultura de liderança organizacional através da implementação de programas de desenvolvimento contínuo que preparem líderes para desafios futuros e promovam a excelência na gestão de pessoas. Estabeleça indicadores específicos de eficácia da liderança que permitam mensurar o impacto das práticas de gestão nos resultados organizacionais. Crie programas estruturados de sucessão que identifiquem e desenvolvam talentos internos para posições de liderança. Promova liderança colaborativa através de metodologias que incentivem o trabalho em equipe e a tomada de decisões participativa.",
+      4: "Consolide práticas de liderança de alta performance através da implementação de metodologias avançadas de gestão que integrem analytics de pessoas, inteligência artificial e ferramentas digitais para otimizar a gestão de talentos. Desenvolva capacidades de liderança digital que preparem os gestores para liderar em ambientes tecnológicos complexos e em constante transformação. Estabeleça programas estratégicos de liderança que alinhem o desenvolvimento de competências com os objetivos de longo prazo da organização. Promova liderança adaptativa que permita responder rapidamente a mudanças do mercado e do ambiente de negócios.",
+      5: "Mantenha e expanda a excelência reconhecida em liderança tornando-se uma referência no mercado através da implementação de práticas inovadoras que sirvam de benchmark para outras organizações. Desenvolva líderes visionários capazes de antecipar tendências, inspirar equipes e conduzir transformações organizacionais significativas. Implemente práticas de liderança consciente que integrem responsabilidade social, sustentabilidade e ética em todas as decisões de gestão. Estabeleça a organização como um centro de excelência em desenvolvimento de liderança, compartilhando conhecimento e influenciando positivamente o ecossistema empresarial."
     },
     "Estratégias e Planos": {
-      1: "• Definir missão, visão e valores organizacionais\n• Estabelecer objetivos estratégicos de curto prazo\n• Criar planos de ação básicos\n• Implementar reuniões de acompanhamento\n• Documentar planos estratégicos",
-      2: "• Desenvolver processo de planejamento estruturado\n• Implementar análise SWOT\n• Estabelecer objetivos de médio prazo\n• Criar sistema de indicadores estratégicos\n• Promover alinhamento entre áreas",
-      3: "• Estruturar sistema de gestão estratégica\n• Implementar análise de tendências de mercado\n• Estabelecer balanced scorecard\n• Criar gestão de portfólio de projetos\n• Desenvolver inteligência competitiva",
-      4: "• Consolidar sistema integrado de gestão estratégica\n• Implementar business intelligence\n• Desenvolver inteligência de mercado\n• Estabelecer estratégias de transformação digital\n• Promover cultura de inovação",
-      5: "• Praticar excelência em gestão estratégica\n• Tornar-se referência no setor\n• Desenvolver estratégias disruptivas\n• Liderar transformações setoriais\n• Implementar estratégias de sustentabilidade"
+      1: "Estabeleça os fundamentos do planejamento organizacional definindo objetivos claros e mensuráveis que orientem todas as atividades da empresa, criando um planejamento anual estruturado que contemple metas de curto e médio prazo. Desenvolva uma estrutura básica de acompanhamento que permita monitorar o progresso das iniciativas e identificar desvios precocemente. Implemente reuniões regulares de planejamento que envolvam as principais lideranças e garantam alinhamento entre as diferentes áreas. Crie indicadores fundamentais de desempenho que reflitam os objetivos estratégicos e permitam avaliar o sucesso das iniciativas implementadas.",
+      2: "Desenvolva um processo estruturado de planejamento estratégico que integre análise do ambiente interno e externo, definição de direcionamento estratégico e elaboração de planos de ação detalhados. Estabeleça uma metodologia robusta de desdobramento de metas que traduza os objetivos estratégicos em metas específicas para cada área e colaborador. Implemente um sistema abrangente de monitoramento de indicadores que permita acompanhar o desempenho em tempo real e tomar decisões baseadas em dados. Desenvolva capacidades de análise de cenários que preparem a organização para diferentes situações futuras e implementem revisões periódicas da estratégia.",
+      3: "Fortaleça o processo de planejamento estratégico através da implementação de metodologias avançadas que integrem gestão de portfólio de projetos, análise de riscos e oportunidades, e sistemas de inteligência competitiva. Estabeleça processos sistemáticos de análise do ambiente competitivo que identifiquem tendências, ameaças e oportunidades de mercado. Crie sistemas integrados de gestão estratégica que conectem planejamento, execução e monitoramento em um ciclo contínuo de melhoria. Promova alinhamento estratégico organizacional através de comunicação efetiva e engajamento de todos os níveis hierárquicos na implementação da estratégia.",
+      4: "Consolide a excelência em gestão estratégica através da implementação de metodologias de planejamento de cenários avançado que considerem múltiplas variáveis e incertezas do ambiente de negócios. Desenvolva capacidades organizacionais de inovação estratégica que permitam identificar e explorar novas oportunidades de crescimento e diferenciação competitiva. Estabeleça práticas de gestão de ecossistemas que integrem parceiros, fornecedores e stakeholders na criação de valor compartilhado. Promova agilidade estratégica através de estruturas organizacionais flexíveis e processos adaptativos que permitam resposta rápida a mudanças do mercado.",
+      5: "Mantenha a liderança em planejamento estratégico tornando-se uma referência no mercado através da implementação de práticas inovadoras que sirvam de benchmark para outras organizações. Desenvolva e implemente estratégias disruptivas que transformem mercados e criem novas categorias de valor para clientes e stakeholders. Integre princípios de sustentabilidade e responsabilidade social em todos os aspectos do planejamento estratégico, criando valor de longo prazo para a sociedade. Estabeleça a organização como um centro de excelência em gestão estratégica, influenciando positivamente o desenvolvimento de melhores práticas no setor."
     },
     "Processos": {
-      1: "• Mapear processos críticos da organização\n• Estabelecer procedimentos operacionais padronizados\n• Implementar controles básicos de qualidade\n• Definir responsabilidades claras\n• Criar documentação fundamental",
-      2: "• Desenvolver sistema estruturado de gestão de processos\n• Implementar documentação detalhada\n• Estabelecer indicadores de performance\n• Criar ciclos de melhoria contínua\n• Promover treinamento em gestão de processos",
-      3: "• Estruturar sistema avançado de gestão de processos\n• Implementar automação básica\n• Estabelecer metodologias de melhoria contínua\n• Criar gestão proativa de riscos\n• Promover cultura de excelência operacional",
-      4: "• Consolidar processos de alta performance\n• Implementar automação avançada\n• Desenvolver capacidades analíticas\n• Estabelecer processos ágeis\n• Implementar gestão end-to-end",
-      5: "• Praticar excelência em gestão de processos\n• Tornar-se referência no setor\n• Desenvolver processos inovadores\n• Estabelecer benchmarks de eficiência\n• Implementar processos sustentáveis"
+      1: "Inicie o desenvolvimento da gestão de processos mapeando os processos principais da organização para compreender como o trabalho flui através das diferentes áreas e identificar oportunidades de melhoria. Estabeleça procedimentos básicos documentados que padronizem as atividades mais críticas e garantam consistência na execução. Implemente controles de qualidade simples que permitam identificar e corrigir problemas antes que afetem os resultados finais. Crie fluxos de trabalho padronizados que eliminem redundâncias e otimizem o uso de recursos. Desenvolva indicadores básicos de processo que permitam monitorar eficiência, qualidade e tempo de execução das atividades principais.",
+      2: "Desenvolva um sistema estruturado de gestão de processos implementando metodologias reconhecidas de melhoria contínua que envolvam colaboradores na identificação e solução de problemas. Estabeleça um sistema robusto de controle de qualidade que integre verificações em pontos críticos dos processos e garanta conformidade com padrões estabelecidos. Inicie a automação básica de processos repetitivos e de baixo valor agregado para liberar recursos humanos para atividades mais estratégicas. Implemente práticas de gestão de riscos operacionais que identifiquem, avaliem e mitiguem riscos que possam impactar a continuidade dos negócios.",
+      3: "Fortaleça o sistema de gestão de processos através da implementação de metodologias avançadas como Lean e Six Sigma que eliminem desperdícios e reduzam variabilidade nos resultados. Estabeleça uma visão integrada da cadeia de valor que otimize o fluxo de valor desde fornecedores até clientes finais. Crie um centro de excelência em processos que concentre conhecimento, metodologias e ferramentas para apoiar a melhoria contínua em toda a organização. Promova uma cultura organizacional de melhoria contínua que engaje todos os colaboradores na busca constante por eficiência e qualidade.",
+      4: "Consolide a excelência operacional através da implementação de automação inteligente que utilize tecnologias como RPA, IA e machine learning para otimizar processos complexos e melhorar a tomada de decisões. Desenvolva processos adaptativos que possam se ajustar automaticamente a mudanças nas condições de negócio e demandas do mercado. Estabeleça práticas avançadas de gestão de ecossistemas que integrem processos internos com parceiros, fornecedores e clientes em uma cadeia de valor otimizada. Promova a transformação digital abrangente dos processos, criando operações totalmente integradas e orientadas por dados.",
+      5: "Mantenha a liderança em excelência operacional tornando-se uma referência no mercado através da implementação de processos inovadores que sirvam de benchmark para outras organizações. Desenvolva e implemente processos revolucionários que transformem a forma como o trabalho é realizado no setor, criando vantagens competitivas sustentáveis. Integre princípios de sustentabilidade em todos os processos organizacionais, criando operações que gerem valor econômico, social e ambiental. Estabeleça a organização como um centro de excelência operacional que influencie positivamente o desenvolvimento de melhores práticas na indústria."
     },
     "Pessoas": {
       1: "Organize uma estrutura básica de recursos humanos estabelecendo políticas fundamentais de contratação, demissão e gestão de pessoal, criando um manual do colaborador com direitos e deveres claramente definidos. Defina descrições detalhadas de cargos e responsabilidades para todas as posições, estabelecendo organogramas claros e linhas de reporte bem definidas. Implemente controles básicos de ponto, folha de pagamento e benefícios obrigatórios. Crie processos simples de integração de novos colaboradores e estabeleça canais básicos de comunicação interna.",
@@ -371,18 +391,18 @@ function getDimensionRecommendations(dimension: string, level: number): string {
       5: "Torne-se uma referência reconhecida em gestão de pessoas no seu setor através da implementação de práticas inovadoras de people analytics, employee experience design e future of work. Inove constantemente em práticas de RH desenvolvendo metodologias próprias de desenvolvimento humano, programas de well-being holísticos e modelos de trabalho flexíveis que sirvam de benchmark. Implemente tecnologias de ponta como IA para personalização de experiências e desenvolvimento de competências. Estabeleça parcerias com universidades para pesquisa em gestão de pessoas."
     },
     "Clientes": {
-      1: "• Organizar processos fundamentais de atendimento\n• Estabelecer canais de comunicação claros\n• Implementar pesquisas básicas de satisfação\n• Criar banco de dados básico de clientes\n• Desenvolver políticas de relacionamento",
-      2: "• Desenvolver sistema estruturado de CRM\n• Implementar segmentação básica de clientes\n• Estabelecer métricas de satisfação\n• Promover treinamento em atendimento\n• Criar processos de recuperação de clientes",
-      3: "• Estruturar gestão avançada de relacionamento\n• Implementar análise de comportamento do cliente\n• Estabelecer jornada do cliente\n• Desenvolver programas de experiência\n• Promover cultura customer-centric",
-      4: "• Consolidar excelência em experiência do cliente\n• Implementar analytics avançados\n• Desenvolver estratégia omnichannel\n• Estabelecer capacidades de antecipação\n• Promover co-criação de valor",
-      5: "• Praticar excelência em experiência do cliente\n• Tornar-se referência no mercado\n• Desenvolver experiências únicas\n• Estabelecer programas de advocacy\n• Criar impacto positivo na comunidade"
+      1: "Desenvolva o conhecimento fundamental sobre seus clientes identificando os segmentos principais e compreendendo suas necessidades, expectativas e comportamentos básicos de compra. Estabeleça canais básicos de comunicação que permitam interação efetiva com clientes através de múltiplos pontos de contato. Implemente um sistema simples de atendimento que garanta respostas rápidas e soluções adequadas para as demandas mais comuns. Crie processos básicos de coleta de feedback que permitam capturar a voz do cliente e identificar oportunidades de melhoria. Desenvolva competências fundamentais de relacionamento que coloquem o cliente no centro das decisões organizacionais.",
+      2: "Implemente um sistema estruturado de CRM que centralize informações de clientes e permita gestão eficaz do relacionamento ao longo de todo o ciclo de vida. Estabeleça pesquisas regulares de satisfação que forneçam insights quantitativos e qualitativos sobre a experiência do cliente. Crie programas estruturados de relacionamento que fortaleçam vínculos emocionais e aumentem a lealdade dos clientes. Desenvolva segmentação avançada de mercado que permita ofertas personalizadas e comunicação direcionada. Implemente análises sistemáticas de comportamento do cliente que identifiquem padrões, preferências e oportunidades de cross-selling e up-selling.",
+      3: "Fortaleça a gestão da experiência do cliente através da implementação de metodologias que mapeiem e otimizem todos os pontos de contato na jornada do cliente. Desenvolva uma jornada do cliente estruturada que identifique momentos da verdade e oportunidades de criação de valor em cada etapa. Estabeleça programas robustos de fidelização que reconheçam e recompensem clientes leais, criando incentivos para relacionamentos de longo prazo. Implemente sistemas eficazes de gestão de reclamações que transformem problemas em oportunidades de fortalecimento do relacionamento. Promova uma cultura organizacional customer-centric que coloque a satisfação do cliente como prioridade em todas as decisões.",
+      4: "Consolide a excelência em experiência do cliente através da implementação de analytics avançado que utilize big data e inteligência artificial para compreender profundamente comportamentos e predizer necessidades futuras. Desenvolva capacidades de personalização em massa que permitam ofertas individualizadas em escala, criando experiências únicas para cada cliente. Estabeleça estratégias omnicanal que integrem perfeitamente todos os pontos de contato, proporcionando experiências consistentes e fluidas. Promova inovação centrada no cliente através de metodologias de design thinking e co-criação que envolvam clientes no desenvolvimento de produtos e serviços.",
+      5: "Mantenha a liderança em experiência do cliente tornando-se uma referência no mercado através da criação de experiências memoráveis que superem consistentemente as expectativas e gerem advocacy espontâneo. Desenvolva soluções inovadoras que antecipem necessidades não expressas dos clientes e criem novas categorias de valor. Implemente experiências transformadoras que não apenas satisfaçam, mas inspirem e emocionem clientes, criando conexões profundas e duradouras. Estabeleça a organização como benchmark de excelência em atendimento e relacionamento, influenciando positivamente as práticas de mercado e servindo de referência para outras empresas."
     },
     "Resultados": {
-      1: "• Estabelecer sistema básico de métricas\n• Implementar rotinas de monitoramento\n• Desenvolver práticas de acompanhamento\n• Promover cultura inicial de resultados\n• Estabelecer responsabilização por metas",
-      2: "• Desenvolver sistema estruturado de gestão\n• Implementar KPIs bem definidos\n• Estabelecer dashboards de acompanhamento\n• Criar análise sistemática de tendências\n• Promover gestão efetiva por resultados",
-      3: "• Implementar gestão estratégica de resultados\n• Desenvolver balanced scorecard\n• Estabelecer capacidades preditivas\n• Criar gestão efetiva de valor\n• Promover cultura de alta performance",
-      4: "• Consolidar gestão avançada de resultados\n• Implementar analytics preditivos\n• Desenvolver gestão integrada de valor\n• Estabelecer capacidades de transformação\n• Criar liderança reconhecida em resultados",
-      5: "• Praticar excelência sustentável em resultados\n• Tornar-se referência reconhecida\n• Desenvolver capacidades inovadoras\n• Liderar transformação de mercado\n• Implementar criação de valor sustentável"
+      1: "Estabeleça um sistema básico de métricas organizacionais através da definição de indicadores fundamentais que permitam acompanhar o desempenho das principais atividades da empresa. Implemente rotinas regulares de monitoramento que incluam coleta sistemática de dados, análise básica de tendências e comunicação dos resultados para as equipes. Desenvolva práticas estruturadas de acompanhamento que envolvam reuniões periódicas de análise, definição de planos de ação corretivos e documentação das lições aprendidas. Promova uma cultura inicial orientada a resultados através de treinamentos básicos, comunicação clara das metas organizacionais e reconhecimento de conquistas. Estabeleça mecanismos simples de responsabilização por metas que incluam definição clara de responsáveis, prazos específicos e consequências por não cumprimento.",
+      2: "Desenvolva um sistema estruturado de gestão de resultados implementando metodologias consolidadas como BSC (Balanced Scorecard) básico, definindo indicadores nas perspectivas financeira, clientes, processos internos e aprendizado. Implemente KPIs bem definidos e mensuráveis que estejam alinhados com os objetivos estratégicos da organização, incluindo metas específicas, prazos claros e responsáveis designados. Estabeleça dashboards de acompanhamento que apresentem informações de forma visual e acessível, permitindo análise rápida do desempenho e identificação de desvios. Crie processos sistemáticos de análise de tendências que incluam comparações históricas, benchmarking setorial e projeções futuras. Promova uma gestão efetiva por resultados através de reuniões estruturadas de análise, planos de ação detalhados e acompanhamento rigoroso da implementação.",
+      3: "Implemente uma gestão estratégica de resultados integrando completamente os indicadores de desempenho com o planejamento estratégico da organização, criando um sistema coeso que conecte objetivos de longo prazo com metas operacionais. Desenvolva um balanced scorecard abrangente que inclua todas as perspectivas relevantes para o negócio, com indicadores leading e lagging que permitam tanto o acompanhamento de resultados quanto a antecipação de tendências. Estabeleça capacidades preditivas através da implementação de ferramentas de análise avançada, modelagem estatística e inteligência de negócios que permitam projeções confiáveis e tomada de decisões proativas. Crie sistemas efetivos de gestão de valor que monitorem não apenas resultados financeiros, mas também valor para stakeholders, impacto social e sustentabilidade ambiental. Promova uma cultura de alta performance através de programas de desenvolvimento, sistemas de reconhecimento baseados em mérito e criação de ambiente que estimule a excelência.",
+      4: "Consolide uma gestão avançada de resultados através da implementação de sistemas integrados que conectem todos os níveis organizacionais, desde indicadores estratégicos até métricas operacionais, criando visibilidade completa do desempenho. Implemente analytics preditivos utilizando big data, machine learning e inteligência artificial para identificar padrões, antecipar tendências e otimizar a tomada de decisões estratégicas. Desenvolva uma gestão integrada de valor que considere múltiplas dimensões como valor econômico, social, ambiental e para stakeholders, criando uma visão holística do impacto organizacional. Estabeleça capacidades de transformação através de metodologias ágeis, gestão de mudanças e inovação contínua que permitam adaptação rápida a mudanças de mercado. Crie liderança reconhecida em resultados através da excelência operacional, benchmarking setorial e compartilhamento de melhores práticas que posicionem a organização como referência.",
+      5: "Pratique excelência sustentável em resultados através da implementação de sistemas de gestão de classe mundial que integrem performance financeira, impacto social, sustentabilidade ambiental e inovação contínua, criando valor de longo prazo para todos os stakeholders. Torne-se uma referência reconhecida no mercado através da consistência na entrega de resultados superiores, liderança em práticas de gestão e contribuição para o desenvolvimento do setor. Desenvolva capacidades inovadoras que incluam pesquisa e desenvolvimento, parcerias estratégicas com universidades e centros de pesquisa, e criação de soluções disruptivas que transformem o mercado. Lidere a transformação do mercado através da definição de novos padrões de excelência, influência em políticas setoriais e criação de ecossistemas de valor que beneficiem toda a cadeia. Implemente criação de valor sustentável que vá além dos resultados financeiros, incluindo regeneração ambiental, desenvolvimento social e criação de legado positivo para futuras gerações."
     },
     "Sociedade": {
       1: "Inicie um processo de identificação e mapeamento dos impactos sociais básicos da sua organização através de diagnósticos participativos envolvendo colaboradores, comunidade local e stakeholders relevantes. Estabeleça um programa rigoroso de cumprimento da legislação ambiental e social, criando check-lists de conformidade e realizando auditorias internas regulares. Implemente práticas básicas de responsabilidade social como separação de resíduos, uso consciente de recursos naturais e respeito aos direitos trabalhistas. Crie canais de comunicação com a comunidade local para receber feedback sobre impactos das operações.",
