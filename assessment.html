@@ -1127,8 +1127,9 @@ www.stratica.com.br`;
                 
                 for (const [dimension, data] of Object.entries(dimensionScores)) {
                     const percentage = Math.round((data.score / data.maxScore) * 100);
-                    const level = getDimensionLevel(data.straticaScore, data.weight);
-                    const levelDetails = getResultDetailsForDimension(level);
+                    const dimensionPercentage = (data.score / data.maxScore) * 100;
+                        const levelNumber = getDimensionLevel(dimensionPercentage);
+                    const levelDetails = getResultDetailsForDimension(levelNumber);
                     
                     analysisHTML += `
                         <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
@@ -1234,19 +1235,17 @@ www.stratica.com.br`;
             }
 
             // Função para obter o nível de uma dimensão específica baseado no seu peso
-            function getDimensionLevel(straticaScore, dimensionWeight) {
-                // Usar intervalos absolutos baseados na pontuação Stratica total
-                // Os intervalos são fixos independente do peso da dimensão
-                
-                if (straticaScore <= 125) {
+            function getDimensionLevel(dimensionPercentage) {
+                // Usar intervalos baseados na porcentagem (0-100%)
+                if (dimensionPercentage <= 12.5) {
                     return 1;
-                } else if (straticaScore <= 250) {
+                } else if (dimensionPercentage <= 25) {
                     return 2;
-                } else if (straticaScore <= 375) {
+                } else if (dimensionPercentage <= 37.5) {
                     return 3;
-                } else if (straticaScore <= 500) {
+                } else if (dimensionPercentage <= 50) {
                     return 4;
-                } else if (straticaScore <= 750) {
+                } else if (dimensionPercentage <= 75) {
                     return 5;
                 } else {
                     return 6;
@@ -1390,7 +1389,8 @@ www.stratica.com.br`;
                     const dimensionAnalysis = {};
                     for (const [dimension, dimensionData] of Object.entries(data.dimensionScores)) {
                         const percentage = Math.round((dimensionData.score / dimensionData.maxScore) * 100);
-                        const levelNumber = getDimensionLevel(dimensionData.straticaScore, dimensionData.weight);
+                        const dimensionPercentage = (dimensionData.score / dimensionData.maxScore) * 100;
+                        const levelNumber = getDimensionLevel(dimensionPercentage);
                         const levelDetails = getResultDetailsForDimension(levelNumber);
                         
                         dimensionAnalysis[dimension] = {
