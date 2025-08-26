@@ -39,10 +39,10 @@
         }
         
         .logos-slide img {
-            height: 72px;
+            height: 108px;
             width: auto;
             object-fit: contain;
-            margin: 0 20px;
+            margin: 0 30px;
             opacity: 0.9;
             transition: opacity 0.3s, transform 0.3s;
             vertical-align: middle;
@@ -59,43 +59,43 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(calc(-112px * 59));
+                transform: translateX(calc(-168px * 59));
             }
         }
         
         /* Responsividade para o carrossel */
         @media (max-width: 768px) {
             .logos-slide img {
-                height: 60px;
-                margin: 0 15px;
+                height: 90px;
+                margin: 0 22px;
             }
             @keyframes scroll {
                 0% {
                     transform: translateX(0);
                 }
                 100% {
-                    transform: translateX(calc(-90px * 59));
+                    transform: translateX(calc(-134px * 59));
                 }
             }
         }
         
         @media (max-width: 480px) {
             .logos-slide img {
-                height: 48px;
-                margin: 0 10px;
+                height: 72px;
+                margin: 0 15px;
             }
             .logos-carousel {
-                padding: 15px 0;
+                padding: 20px 0;
             }
             .logos-slide {
-                animation: scroll 74s linear infinite;
+                animation: scroll 80s linear infinite;
             }
             @keyframes scroll {
                 0% {
                     transform: translateX(0);
                 }
                 100% {
-                    transform: translateX(calc(-68px * 59));
+                    transform: translateX(calc(-102px * 59));
                 }
             }
         }
