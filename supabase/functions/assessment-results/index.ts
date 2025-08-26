@@ -492,24 +492,24 @@ function getDimensionRecommendations(dimension: string, level: number): string {
 
 // Função para gerar análise detalhada por dimensão em HTML
 function generateDimensionAnalysisHtml(dimensionAnalysis: Record<string, DimensionAnalysis>): string {
-  let analysisHtml = '<div style="margin: 20px 0;">';
+  let analysisHtml = '<div style="margin: 10px 0;">';
   
   Object.keys(dimensionAnalysis).forEach(dimension => {
     const analysis = dimensionAnalysis[dimension];
     const recommendations = getDimensionRecommendations(dimension, analysis.level.level);
     
     analysisHtml += `
-      <div style="margin-bottom: 30px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;">
-        <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 18px; font-weight: bold;">${dimension}</h3>
+      <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;">
+        <h3 style="color: #2c3e50; margin-bottom: 12px; font-size: 18px; font-weight: bold;">${dimension}</h3>
         
-        <div style="margin-bottom: 15px;">
-          <p style="margin: 5px 0; font-size: 14px;"><strong>Pontuação:</strong> ${analysis.score} pontos</p>
-          <p style="margin: 5px 0; font-size: 14px;"><strong>Percentual:</strong> ${Math.round(analysis.percentage)}%</p>
-          <p style="margin: 5px 0; font-size: 14px;"><strong>Nível de Maturidade:</strong> ${analysis.level.level} - ${analysis.level.title}</p>
+        <div style="margin-bottom: 12px;">
+          <p style="margin: 3px 0; font-size: 14px;"><strong>Pontuação:</strong> ${analysis.score} pontos</p>
+          <p style="margin: 3px 0; font-size: 14px;"><strong>Percentual:</strong> ${Math.round(analysis.percentage)}%</p>
+          <p style="margin: 3px 0; font-size: 14px;"><strong>Nível de Maturidade:</strong> ${analysis.level.level} - ${analysis.level.title}</p>
         </div>
         
-        <div style="background-color: #ffffff; padding: 15px; border-radius: 5px; border-left: 4px solid #27ae60;">
-          <h4 style="color: #2c3e50; margin-bottom: 10px; font-size: 16px; font-weight: bold;">Recomendações Específicas:</h4>
+        <div style="border-left: 4px solid #27ae60; padding-left: 12px; margin-top: 12px;">
+          <h4 style="color: #2c3e50; margin-bottom: 8px; font-size: 16px; font-weight: bold;">Recomendações Específicas:</h4>
           <p style="margin: 0; line-height: 1.6; color: #555; font-size: 14px;">${recommendations}</p>
         </div>
       </div>`;
@@ -633,8 +633,8 @@ serve(async (req) => {
            let dimensionAnalysisHtml = '';
            if (assessmentData.dimensionAnalysis) {
              dimensionAnalysisHtml = `
-               <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
-                 <h3 style="color: #495057; margin-bottom: 20px;">Análise Detalhada por Dimensão</h3>
+               <div style="background-color: #f8f9fa; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
+                 <h3 style="color: #495057; margin-bottom: 15px;">Análise Detalhada por Dimensão</h3>
                  ${generateDimensionAnalysisHtml(assessmentData.dimensionAnalysis)}
                </div>
              `;
@@ -645,9 +645,9 @@ serve(async (req) => {
              to: ['marcelo@ainda.app'],
              subject: `Novo Assessment Completado - ${userInfo.name} (${userInfo.company})`,
              html: `
-               <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
-                 <div style="background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                   <h1 style="color: #2c3e50; text-align: center; margin-bottom: 30px;">Novo Assessment de Maturidade Digital Completado</h1>
+               <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 10px; background-color: #f9f9f9;">
+                 <div style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                   <h1 style="color: #2c3e50; text-align: center; margin-bottom: 30px;">Seu Diagnóstico de Maturidade</h1>
                    
                    <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
                      <h2 style="color: #34495e; margin-bottom: 15px;">Informações do Usuário</h2>
