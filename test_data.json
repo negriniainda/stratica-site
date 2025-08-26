@@ -1,0 +1,27 @@
+{
+  "userInfo": {
+    "name": "Teste Usuario",
+    "email": "teste@teste.com",
+    "company": "Empresa Teste",
+    "position": "Cargo Teste"
+  },
+  "result": {
+    "level": 3,
+    "title": "Desenvolvido",
+    "description": "Maturidade intermediária"
+  },
+  "totalScore": 500,
+  "percentage": 50,
+  "answers": {},
+  "dimensionAnalysis": {
+    "Liderança": {
+      "score": 250,
+      "percentage": 50,
+      "level": {
+        "level": 3,
+        "title": "Desenvolvido",
+        "description": "Maturidade intermediária. Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
+      }
+    }
+  }
+}

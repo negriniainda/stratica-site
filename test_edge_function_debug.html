@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Edge Function - Teste de Recomendações</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .json-display {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .dimension-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Debug Edge Function - Teste de Recomendações</h1>
+        
+        <div class="test-section">
+            <h2>🎯 Objetivo</h2>
+            <p>Este teste envia dados específicos para a Edge Function e analisa detalhadamente as recomendações retornadas para identificar possíveis divergências.</p>
+            
+            <button onclick="testSpecificCase()">🚀 Testar Caso Específico</button>
+            <button onclick="testMultipleCases()">📊 Testar Múltiplos Casos</button>
+            <button onclick="clearResults()">🧹 Limpar Resultados</button>
+        </div>
+        
+        <div id="results" class="test-section" style="display: none;">
+            <h2>📋 Resultados do Teste</h2>
+            <div id="test-results"></div>
+        </div>
+    </div>
+
+    <script>
+        // Casos de teste específicos
+        const testCases = [
+            {
+                name: "Caso 1 - Liderança Baixa",
+                userInfo: {
+                    name: "Teste Usuario 1",
+                    email: "teste1@empresa.com",
+                    company: "Empresa Teste",
+                    position: "Gerente",
+                    phone: "(11) 99999-9999"
+                },
+                dimensionAnalysis: {
+                    "Liderança": {
+                        score: 8,
+                        maxScore: 20,
+                        percentage: 40,
+                        level: {
+                            level: 2,
+                            title: "Desenvolvimento Inicial",
+                            description: "Algumas práticas básicas implementadas, resultados iniciais, processos em formação e oportunidades claras de melhoria."
+                        }
+                    },
+                    "Estratégias e Planos": {
+                        score: 12,
+                        maxScore: 15,
+                        percentage: 80,
+                        level: {
+                            level: 4,
+                            title: "Maturidade Avançada",
+                            description: "Práticas bem estabelecidas, resultados consistentes, melhoria contínua e abordagem sistemática consolidada."
+                        }
+                    }
+                }
+            },
+            {
+                name: "Caso 2 - Todas Dimensões Médias",
+                userInfo: {
+                    name: "Teste Usuario 2",
+                    email: "teste2@empresa.com",
+                    company: "Empresa Teste 2",
+                    position: "Diretor",
+                    phone: "(11) 88888-8888"
+                },
+                dimensionAnalysis: {
+                    "Liderança": {
+                        score: 12,
+                        maxScore: 20,
+                        percentage: 60,
+                        level: {
+                            level: 3,
+                            title: "Maturidade Intermediária",
+                            description: "Práticas estruturadas implementadas, alguns resultados positivos, processos em desenvolvimento e melhorias identificadas."
+                        }
+                    },
+                    "Estratégias e Planos": {
+                        score: 9,
+                        maxScore: 15,
+                        percentage: 60,
+                        level: {
+                            level: 3,
+                            title: "Maturidade Intermediária",
+                            description: "Práticas estruturadas implementadas, alguns resultados positivos, processos em desenvolvimento e melhorias identificadas."
+                        }
+                    },
+                    "Processos": {
+                        score: 15,
+                        maxScore: 25,
+                        percentage: 60,
+                        level: {
+                            level: 3,
+                            title: "Maturidade Intermediária",
+                            description: "Práticas estruturadas implementadas, alguns resultados positivos, processos em desenvolvimento e melhorias identificadas."
+                        }
+                    }
+                }
+            }
+        ];
+
+        async function testSpecificCase() {
+            const resultsDiv = document.getElementById('results');
+            const testResultsDiv = document.getElementById('test-results');
+            
+            resultsDiv.style.display = 'block';
+            testResultsDiv.innerHTML = '<div class="info">🔄 Executando teste específico...</div>';
+
+            try {
+                const testCase = testCases[0]; // Usar o primeiro caso
+                
+                // Calcular dados adicionais
+                const totalScore = Object.values(testCase.dimensionAnalysis).reduce((sum, dim) => sum + dim.score, 0);
+                const avgPercentage = Object.values(testCase.dimensionAnalysis).reduce((sum, dim) => sum + dim.percentage, 0) / Object.keys(testCase.dimensionAnalysis).length;
+                
+                const requestData = {
+                    userInfo: testCase.userInfo,
+                    dimensionAnalysis: testCase.dimensionAnalysis,
+                    totalScore: totalScore,
+                    percentage: avgPercentage
+                };
+
+                console.log('Enviando dados para Edge Function:', requestData);
+                
+                // Enviar para Edge Function
+                const response = await fetch('http://localhost:54321/functions/v1/assessment-results', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Edge Function retornou status ${response.status}: ${await response.text()}`);
+                }
+                
+                const result = await response.json();
+                console.log('Resposta da Edge Function:', result);
+                
+                displayTestResult(testCase, requestData, result);
+                
+            } catch (error) {
+                console.error('Erro no teste:', error);
+                testResultsDiv.innerHTML = `<div class="error">❌ Erro durante o teste: ${error.message}</div>`;
+            }
+        }
+
+        async function testMultipleCases() {
+            const resultsDiv = document.getElementById('results');
+            const testResultsDiv = document.getElementById('test-results');
+            
+            resultsDiv.style.display = 'block';
+            testResultsDiv.innerHTML = '<div class="info">🔄 Executando múltiplos casos de teste...</div>';
+
+            let html = '<h3>📊 Resultados de Múltiplos Testes</h3>';
+            
+            for (let i = 0; i < testCases.length; i++) {
+                const testCase = testCases[i];
+                
+                try {
+                    html += `<h4>🧪 ${testCase.name}</h4>`;
+                    
+                    // Calcular dados adicionais
+                    const totalScore = Object.values(testCase.dimensionAnalysis).reduce((sum, dim) => sum + dim.score, 0);
+                    const avgPercentage = Object.values(testCase.dimensionAnalysis).reduce((sum, dim) => sum + dim.percentage, 0) / Object.keys(testCase.dimensionAnalysis).length;
+                    
+                    const requestData = {
+                        userInfo: testCase.userInfo,
+                        dimensionAnalysis: testCase.dimensionAnalysis,
+                        totalScore: totalScore,
+                        percentage: avgPercentage
+                    };
+
+                    // Enviar para Edge Function
+                    const response = await fetch('http://localhost:54321/functions/v1/assessment-results', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
+                        },
+                        body: JSON.stringify(requestData)
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        html += `<div class="success">✅ Teste executado com sucesso! Email ID: ${result.id || 'N/A'}</div>`;
+                        
+                        // Mostrar resumo das dimensões testadas
+                        html += '<div class="info"><strong>Dimensões testadas:</strong><br>';
+                        Object.keys(testCase.dimensionAnalysis).forEach(dimension => {
+                            const analysis = testCase.dimensionAnalysis[dimension];
+                            html += `• ${dimension}: ${analysis.percentage}% (Nível ${analysis.level.level})<br>`;
+                        });
+                        html += '</div>';
+                    } else {
+                        html += `<div class="error">❌ Erro: Status ${response.status}</div>`;
+                    }
+                    
+                } catch (error) {
+                    html += `<div class="error">❌ Erro no teste ${testCase.name}: ${error.message}</div>`;
+                }
+                
+                // Pequena pausa entre testes
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            
+            html += '<div class="success">🎉 Todos os testes concluídos! Verifique os logs da Edge Function para mais detalhes.</div>';
+            testResultsDiv.innerHTML = html;
+        }
+
+        function displayTestResult(testCase, requestData, result) {
+            const testResultsDiv = document.getElementById('test-results');
+            
+            let html = `<h3>🧪 Resultado do Teste: ${testCase.name}</h3>`;
+            
+            // Status do teste
+            if (result.id) {
+                html += `<div class="success">✅ Teste executado com sucesso!<br><strong>Email ID:</strong> ${result.id}</div>`;
+            } else {
+                html += '<div class="warning">⚠️ Teste executado, mas sem ID de email retornado.</div>';
+            }
+            
+            // Dados enviados
+            html += '<div class="comparison-grid">';
+            html += '<div class="dimension-card">';
+            html += '<h4>📤 Dados Enviados</h4>';
+            html += `<div class="json-display">${JSON.stringify(requestData, null, 2)}</div>`;
+            html += '</div>';
+            
+            // Resposta recebida
+            html += '<div class="dimension-card">';
+            html += '<h4>📥 Resposta Recebida</h4>';
+            html += `<div class="json-display">${JSON.stringify(result, null, 2)}</div>`;
+            html += '</div>';
+            html += '</div>';
+            
+            // Análise das dimensões
+            html += '<h4>📊 Análise das Dimensões Testadas</h4>';
+            Object.keys(testCase.dimensionAnalysis).forEach(dimension => {
+                const analysis = testCase.dimensionAnalysis[dimension];
+                html += `<div class="dimension-card">
+                    <strong>${dimension}</strong><br>
+                    Pontuação: ${analysis.score}/${analysis.maxScore} (${analysis.percentage}%)<br>
+                    Nível: ${analysis.level.level} - ${analysis.level.title}<br>
+                    <small>${analysis.level.description}</small>
+                </div>`;
+            });
+            
+            // Instruções para verificação
+            html += '<div class="info">';
+            html += '<h4>🔍 Próximos Passos para Verificação:</h4>';
+            html += '<ol>';
+            html += '<li>Verificar se o email foi enviado para: <strong>' + testCase.userInfo.email + '</strong></li>';
+            html += '<li>Conferir se as recomendações no email correspondem aos níveis calculados</li>';
+            html += '<li>Comparar com as recomendações que seriam geradas pelo site</li>';
+            html += '<li>Verificar os logs da Edge Function no terminal para detalhes do processamento</li>';
+            html += '</ol>';
+            html += '</div>';
+            
+            testResultsDiv.innerHTML = html;
+        }
+
+        function clearResults() {
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('test-results').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

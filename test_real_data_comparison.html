@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Dados Reais - Comparação Site vs Edge Function</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+        .difference {
+            background-color: #ffebee;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Teste de Dados Reais - Comparação Site vs Edge Function</h1>
+        
+        <div class="test-section">
+            <h2>📊 Dados de Teste</h2>
+            <p>Este teste usa dados reais de um assessment para comparar os resultados entre o site e a Edge Function.</p>
+            <button onclick="runRealDataTest()">🚀 Executar Teste com Dados Reais</button>
+            <button onclick="testEdgeFunctionDirectly()">🌐 Testar Edge Function Diretamente</button>
+            <button onclick="clearResults()">🧹 Limpar Resultados</button>
+        </div>
+        
+        <div id="results" class="test-section" style="display: none;">
+            <h2>📋 Resultados da Comparação</h2>
+            <div id="comparison-results"></div>
+        </div>
+    </div>
+
+    <script>
+        // Dados reais de teste (baseados em um assessment típico)
+        const realTestData = {
+            userInfo: {
+                name: "João Silva",
+                email: "joao.silva@empresa.com",
+                company: "Empresa Teste Ltda",
+                position: "Diretor",
+                phone: "(11) 99999-9999"
+            },
+            answers: {
+                q1: 3, q2: 4, q3: 2, q4: 3,  // Liderança
+                q5: 3, q6: 2, q7: 4,         // Estratégias e Planos
+                q8: 2, q9: 3, q10: 3, q11: 4, q12: 2,  // Processos
+                q13: 3, q14: 4, q15: 2, q16: 3, q17: 3, // Pessoas
+                q18: 4, q19: 3, q20: 2, q21: 3,        // Clientes
+                q22: 2, q23: 3, q24: 4, q25: 2,        // Resultados
+                q26: 3, q27: 2, q28: 3,                // Sociedade
+                q29: 4, q30: 3, q31: 2, q32: 3         // Informações e Conhecimento
+            }
+        };
+
+        // Função para calcular análise de dimensões (copiada do site)
+        function analyzeDimensionScores(answers) {
+            const dimensionQuestions = {
+                "Liderança": ["q1", "q2", "q3", "q4"],
+                "Estratégias e Planos": ["q5", "q6", "q7"],
+                "Processos": ["q8", "q9", "q10", "q11", "q12"],
+                "Pessoas": ["q13", "q14", "q15", "q16", "q17"],
+                "Clientes": ["q18", "q19", "q20", "q21"],
+                "Resultados": ["q22", "q23", "q24", "q25"],
+                "Sociedade": ["q26", "q27", "q28"],
+                "Informações e Conhecimento": ["q29", "q30", "q31", "q32"]
+            };
+
+            const dimensionAnalysis = {};
+
+            Object.keys(dimensionQuestions).forEach(dimension => {
+                const questions = dimensionQuestions[dimension];
+                let totalScore = 0;
+                let maxScore = questions.length * 5;
+
+                questions.forEach(questionId => {
+                    totalScore += answers[questionId] || 0;
+                });
+
+                const percentage = (totalScore / maxScore) * 100;
+                const level = getDimensionLevel(percentage);
+
+                dimensionAnalysis[dimension] = {
+                    score: totalScore,
+                    maxScore: maxScore,
+                    percentage: percentage,
+                    level: level
+                };
+            });
+
+            return dimensionAnalysis;
+        }
+
+        // Função getDimensionLevel (copiada do site)
+        function getDimensionLevel(percentage) {
+            if (percentage >= 90) {
+                return {
+                    level: 5,
+                    title: "Excelência",
+                    description: "Práticas de classe mundial, benchmarking para o setor, inovação contínua e resultados excepcionais sustentados."
+                };
+            } else if (percentage >= 70) {
+                return {
+                    level: 4,
+                    title: "Maturidade Avançada",
+                    description: "Práticas bem estabelecidas, resultados consistentes, melhoria contínua e abordagem sistemática consolidada."
+                };
+            } else if (percentage >= 50) {
+                return {
+                    level: 3,
+                    title: "Maturidade Intermediária",
+                    description: "Práticas estruturadas implementadas, alguns resultados positivos, processos em desenvolvimento e melhorias identificadas."
+                };
+            } else if (percentage >= 30) {
+                return {
+                    level: 2,
+                    title: "Desenvolvimento Inicial",
+                    description: "Algumas práticas básicas implementadas, resultados iniciais, processos em formação e oportunidades claras de melhoria."
+                };
+            } else {
+                return {
+                    level: 1,
+                    title: "Estágio Inicial",
+                    description: "Práticas limitadas ou inexistentes, resultados inconsistentes, necessidade urgente de estruturação e desenvolvimento."
+                };
+            }
+        }
+
+        // Função getDimensionRecommendations (versão simplificada para teste)
+        function getDimensionRecommendations(dimension, level) {
+            const recommendations = {
+                "Liderança": {
+                    1: "Estabelecer práticas básicas de liderança e definir papéis e responsabilidades.",
+                    2: "Desenvolver sistema de liderança mais estruturado com processos definidos.",
+                    3: "Implementar práticas avançadas de liderança e análise crítica sistemática.",
+                    4: "Consolidar excelência em liderança e expandir práticas para toda organização.",
+                    5: "Manter liderança de classe mundial e servir como benchmark para o setor."
+                },
+                "Estratégias e Planos": {
+                    1: "Estabelecer processo básico de planejamento estratégico.",
+                    2: "Formalizar metodologia de formulação e implementação estratégica.",
+                    3: "Desenvolver capacidades avançadas de análise estratégica e execução.",
+                    4: "Consolidar excelência em gestão estratégica e integração organizacional.",
+                    5: "Manter práticas de classe mundial em estratégia e inovação contínua."
+                }
+                // Adicionar outras dimensões conforme necessário
+            };
+            
+            return recommendations[dimension]?.[level] || "Recomendação não disponível para esta dimensão e nível.";
+        }
+
+        async function runRealDataTest() {
+            const resultsDiv = document.getElementById('results');
+            const comparisonDiv = document.getElementById('comparison-results');
+            
+            resultsDiv.style.display = 'block';
+            comparisonDiv.innerHTML = '<div class="info">🔄 Executando teste com dados reais...</div>';
+
+            try {
+                // 1. Calcular análise no "site" (local)
+                const siteAnalysis = analyzeDimensionScores(realTestData.answers);
+                
+                // 2. Preparar dados para enviar à Edge Function
+                const edgeFunctionData = {
+                    userInfo: realTestData.userInfo,
+                    dimensionAnalysis: siteAnalysis,
+                    totalScore: Object.values(siteAnalysis).reduce((sum, dim) => sum + dim.score, 0),
+                    percentage: Object.values(siteAnalysis).reduce((sum, dim) => sum + dim.percentage, 0) / Object.keys(siteAnalysis).length
+                };
+
+                // 3. Testar Edge Function (simulação local)
+                const edgeResult = await testEdgeFunction(edgeFunctionData);
+                
+                // 4. Comparar resultados
+                displayComparison(siteAnalysis, edgeResult, edgeFunctionData);
+                
+            } catch (error) {
+                comparisonDiv.innerHTML = `<div class="error">❌ Erro durante o teste: ${error.message}</div>`;
+            }
+        }
+
+        async function testEdgeFunction(data) {
+            // Simular chamada à Edge Function local
+            try {
+                const response = await fetch('http://localhost:54321/functions/v1/assessment-results', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Edge Function retornou status ${response.status}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error('Erro ao testar Edge Function:', error);
+                return { error: error.message };
+            }
+        }
+
+        function displayComparison(siteAnalysis, edgeResult, originalData) {
+            const comparisonDiv = document.getElementById('comparison-results');
+            
+            let html = '<h3>📊 Resultados da Comparação</h3>';
+            
+            // Verificar se houve erro na Edge Function
+            if (edgeResult.error) {
+                html += `<div class="error">❌ Erro na Edge Function: ${edgeResult.error}</div>`;
+                html += '<div class="info">💡 Isso pode indicar que a Edge Function não está rodando ou há problemas de conectividade.</div>';
+            } else {
+                html += '<div class="success">✅ Edge Function respondeu com sucesso!</div>';
+            }
+            
+            // Mostrar dados enviados
+            html += '<h4>📤 Dados Enviados para Edge Function:</h4>';
+            html += '<table class="comparison-table">';
+            html += '<tr><th>Dimensão</th><th>Pontuação</th><th>Percentual</th><th>Nível</th></tr>';
+            
+            Object.keys(siteAnalysis).forEach(dimension => {
+                const analysis = siteAnalysis[dimension];
+                html += `<tr>
+                    <td>${dimension}</td>
+                    <td>${analysis.score}/${analysis.maxScore}</td>
+                    <td>${Math.round(analysis.percentage)}%</td>
+                    <td>${analysis.level.level} - ${analysis.level.title}</td>
+                </tr>`;
+            });
+            
+            html += '</table>';
+            
+            // Mostrar resumo
+            html += '<h4>📈 Resumo do Teste:</h4>';
+            html += `<div class="info">
+                <strong>Total de Dimensões:</strong> ${Object.keys(siteAnalysis).length}<br>
+                <strong>Pontuação Total:</strong> ${originalData.totalScore}<br>
+                <strong>Percentual Médio:</strong> ${Math.round(originalData.percentage)}%
+            </div>`;
+            
+            // Recomendações
+            html += '<h4>💡 Próximos Passos:</h4>';
+            if (edgeResult.error) {
+                html += `<div class="warning">
+                    <strong>Ação Necessária:</strong><br>
+                    1. Verificar se a Edge Function está rodando (npx supabase functions serve)<br>
+                    2. Verificar se não há erros no console da Edge Function<br>
+                    3. Testar com dados mais simples para isolar o problema
+                </div>`;
+            } else {
+                html += `<div class="success">
+                    <strong>Teste Bem-sucedido:</strong><br>
+                    1. A comunicação com a Edge Function está funcionando<br>
+                    2. Os dados estão sendo processados corretamente<br>
+                    3. Verificar se o email foi enviado com as recomendações corretas
+                </div>`;
+            }
+            
+            comparisonDiv.innerHTML = html;
+        }
+
+        async function testEdgeFunctionDirectly() {
+            const comparisonDiv = document.getElementById('comparison-results');
+            const resultsDiv = document.getElementById('results');
+            
+            resultsDiv.style.display = 'block';
+            comparisonDiv.innerHTML = '<div class="info">🔄 Testando conectividade com Edge Function...</div>';
+            
+            try {
+                const response = await fetch('http://localhost:54321/functions/v1/assessment-results', {
+                    method: 'OPTIONS'
+                });
+                
+                if (response.ok) {
+                    comparisonDiv.innerHTML = '<div class="success">✅ Edge Function está respondendo! Conectividade OK.</div>';
+                } else {
+                    comparisonDiv.innerHTML = `<div class="error">❌ Edge Function retornou status ${response.status}</div>`;
+                }
+            } catch (error) {
+                comparisonDiv.innerHTML = `<div class="error">❌ Não foi possível conectar à Edge Function: ${error.message}<br><br>💡 Verifique se a Edge Function está rodando com: <code>npx supabase functions serve assessment-results</code></div>`;
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('comparison-results').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
