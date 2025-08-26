@@ -1232,59 +1232,59 @@ www.stratica.com.br`;
 
             // Função para obter o nível de uma dimensão específica baseado no seu peso
             function getDimensionLevel(dimensionPercentage) {
-                // Usar intervalos baseados na porcentagem (0-100%)
-                if (dimensionPercentage <= 12.5) {
-                    return 1;
-                } else if (dimensionPercentage <= 25) {
-                    return 2;
-                } else if (dimensionPercentage <= 37.5) {
-                    return 3;
+                // Usar intervalos baseados na porcentagem (0-100%) - Nova escala
+                if (dimensionPercentage <= 20) {
+                    return 1;   // 0-200 pontos (0-20%)
+                } else if (dimensionPercentage <= 35) {
+                    return 2;   // 201-350 pontos (20.1-35%)
                 } else if (dimensionPercentage <= 50) {
-                    return 4;
-                } else if (dimensionPercentage <= 75) {
-                    return 5;
+                    return 3;   // 351-500 pontos (35.1-50%)
+                } else if (dimensionPercentage <= 65) {
+                    return 4;   // 501-650 pontos (50.1-65%)
+                } else if (dimensionPercentage <= 80) {
+                    return 5;   // 651-800 pontos (65.1-80%)
                 } else {
-                    return 6;
+                    return 6;   // 801-1000 pontos (80.1-100%)
                 }
             }
 
             // Função para obter os detalhes do nível de maturidade Stratica
             function getResultDetailsStratica(straticaScore) {
-                if (straticaScore <= 125) {
+                if (straticaScore <= 200) {
                     return {
                         level: 1,
                         title: "Limitado",
-                        description: "Maturidade muito baixa (0-125 pontos). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
+                        description: "Maturidade muito baixa (0-200 pontos). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
                     };
-                } else if (straticaScore <= 250) {
+                } else if (straticaScore <= 350) {
                     return {
                         level: 2,
                         title: "Emergente",
-                        description: "Maturidade baixa (126-250 pontos). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
-                    };
-                } else if (straticaScore <= 375) {
-                    return {
-                        level: 3,
-                        title: "Estruturado",
-                        description: "Maturidade intermediária (251-375 pontos). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
+                        description: "Maturidade baixa (201-350 pontos). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
                     };
                 } else if (straticaScore <= 500) {
                     return {
-                        level: 4,
-                        title: "Avançado",
-                        description: "Maturidade alta (376-500 pontos). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
+                        level: 3,
+                        title: "Desenvolvido",
+                        description: "Maturidade intermediária (351-500 pontos). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
                     };
-                } else if (straticaScore <= 750) {
+                } else if (straticaScore <= 650) {
+                    return {
+                        level: 4,
+                        title: "Gerenciado",
+                        description: "Maturidade alta (501-650 pontos). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
+                    };
+                } else if (straticaScore <= 800) {
                     return {
                         level: 5,
                         title: "Integrado",
-                        description: "Maturidade muito alta (501-750 pontos). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
+                        description: "Maturidade muito alta (651-800 pontos). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
                     };
                 } else {
                     return {
                         level: 6,
                         title: "Excelente",
-                        description: "Maturidade excepcional (751-1000 pontos). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
+                        description: "Maturidade excepcional (801-1000 pontos). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
                     };
                 }
             }
@@ -1302,43 +1302,43 @@ www.stratica.com.br`;
                         return {
                             level: 1,
                             title: "Limitado",
-                            description: "Maturidade muito baixa (0-125 pontos). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
+                            description: "Maturidade muito baixa (0-200 pontos). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
                         };
                     case 2:
                         return {
                             level: 2,
                             title: "Emergente",
-                            description: "Maturidade baixa (126-250 pontos). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
+                            description: "Maturidade baixa (201-350 pontos). Início de implementação básica de algumas práticas, de modo informal e pontual. A empresa reconhece a importância de melhorar, mas não há consistência."
                         };
                     case 3:
                         return {
                             level: 3,
-                            title: "Estruturado",
-                            description: "Maturidade intermediária (251-375 pontos). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
+                            title: "Desenvolvido",
+                            description: "Maturidade intermediária (351-500 pontos). Processos e práticas já formalizados, porém aplicados de maneira parcial ou descoordenada. Os elementos de gestão não são uniformes."
                         };
                     case 4:
                         return {
                             level: 4,
-                            title: "Avançado",
-                            description: "Maturidade alta (376-500 pontos). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
+                            title: "Gerenciado",
+                            description: "Maturidade alta (501-650 pontos). Práticas de gestão bem estabelecidas e coordenadas, aplicadas de forma consistente. A gestão é efetiva e proativa na maior parte da empresa."
                         };
                     case 5:
                         return {
                             level: 5,
                             title: "Integrado",
-                            description: "Maturidade muito alta (501-750 pontos). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
+                            description: "Maturidade muito alta (651-800 pontos). Excelência gerencial, com práticas integradas à cultura e melhoria contínua. A empresa é referência e possui desempenho superior e sustentado."
                         };
                     case 6:
                         return {
                             level: 6,
                             title: "Excelente",
-                            description: "Maturidade excepcional (751-1000 pontos). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
+                            description: "Maturidade excepcional (801-1000 pontos). Organização de classe mundial com práticas inovadoras, resultados excepcionais e reconhecimento como benchmark de mercado."
                         };
                     default:
                         return {
                             level: 1,
                             title: "Limitado",
-                            description: "Maturidade muito baixa (0-125 pontos). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
+                            description: "Maturidade muito baixa (0-200 pontos). Práticas de gestão inexistentes ou ad-hoc, resultados obtidos de forma não estruturada. A organização depende de esforços isolados."
                         };
                 }
             }
