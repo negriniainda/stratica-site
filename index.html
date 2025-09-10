@@ -222,6 +222,12 @@
                         <h4 class="text-xl font-bold mb-2">Desenvolvimento de Lideranças</h4>
                         <p class="text-gray-600">Programas para desenvolver líderes eficazes e aumentar a produtividade de suas equipes, com foco em alinhamento, engajamento, comunicação e resultados, com apoio de ferramentas de colaboração digital e Business Intelligence.</p>
                     </div>
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="globe" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Expansão Internacional (LatAm)</h4>
+                        <p class="text-gray-600">Expertise regional para desenvolvimento de estratégias para apoiar a entrada ou o crescimento de empresas estrangeiras em mercados da América Latina, incluindo o Brasil.</p>
+                    </div>
                 </div>
 
                 <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">Serviços Potencializados por IA</h3>
@@ -826,26 +832,3 @@
 
 </body>
 </html>
-
-try {
-    const response = await fetch('http://localhost:54321/functions/v1/contact-form', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    
-    if (!response.ok) {
-        const errorText = await response.text()
-        console.error('Erro da API:', errorText)
-        throw new Error(`HTTP ${response.status}: ${errorText}`)
-    }
-    
-    const result = await response.json()
-    console.log('Sucesso:', result)
-    
-} catch (error) {
-    console.error('Erro completo:', error)
-    // Mostrar erro específico para debug
-}
