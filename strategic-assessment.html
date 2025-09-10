@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment de Maturidade da Gestão da Estratégia - Stratica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: #f8f9fa;
+        }
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+        .question-card {
+            min-height: 400px;
+            transition: all 0.3s ease;
+        }
+        .option-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .option-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .option-card.selected {
+            border-color: #dc2626;
+            background-color: #fef2f2;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220,38,38,0.2);
+        }
+        .radar-chart {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Cabeçalho e Navegação -->
+    <header class="bg-white text-gray-800 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="Logo09.avif" alt="Stratica Logo" class="h-10">            
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html#visao" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Visão</a>
+                <a href="index.html#servicos" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Serviços</a>
+                <a href="index.html#diferenciais" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Diferenciais</a>
+                <a href="index.html#consultores" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Consultores</a>
+                <a href="index.html#contato" class="bg-red-700 text-white px-4 py-2 rounded-md hover:bg-red-800 transition duration-300">Contato</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6 text-gray-800"></i>
+            </button>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="index.html#visao" class="block py-2 hover:text-red-700">Visão</a>
+            <a href="index.html#servicos" class="block py-2 hover:text-red-700">Serviços</a>
+            <a href="index.html#diferenciais" class="block py-2 hover:text-red-700">Diferenciais</a>
+            <a href="index.html#consultores" class="block py-2 hover:text-red-700">Consultores</a>
+            <a href="index.html#contato" class="block py-2 hover:text-red-700">Contato</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Hero -->
+        <section id="intro" class="relative text-gray-800 hero-gradient py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Assessment de Maturidade da Gestão da Estratégia</h1>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Avalie o nível de maturidade da sua organização na gestão estratégica através de três dimensões fundamentais: Governança, Formulação e Desdobramento/Comunicação da Estratégia.</p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center max-w-2xl mx-auto">
+                    <button id="start-assessment" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">Iniciar Assessment</button>
+                    <a href="index.html" class="bg-white border-2 border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 text-center">Voltar ao Site Principal</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Metodologia -->
+        <section id="methodology" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Metodologia de Avaliação</h2>
+                    <div class="w-24 h-1 bg-red-700 mx-auto mb-8"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Nossa avaliação é baseada em três dimensões fundamentais da gestão estratégica, com 4 níveis de maturidade cada.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Dimensão Governança -->
+                    <div class="bg-gray-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="shield-check" class="w-8 h-8 text-red-700"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-red-700">Governança da Estratégia</h3>
+                        <p class="text-gray-600">Avalia a estrutura organizacional, processos de tomada de decisão e responsabilidades na gestão estratégica.</p>
+                    </div>
+
+                    <!-- Dimensão Formulação -->
+                    <div class="bg-gray-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="lightbulb" class="w-8 h-8 text-red-700"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-red-700">Formulação da Estratégia</h3>
+                        <p class="text-gray-600">Examina os processos de planejamento estratégico, análise de mercado e definição de objetivos organizacionais.</p>
+                    </div>
+
+                    <!-- Dimensão Desdobramento -->
+                    <div class="bg-gray-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="target" class="w-8 h-8 text-red-700"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-red-700">Desdobramento e Comunicação</h3>
+                        <p class="text-gray-600">Analisa como a estratégia é comunicada, implementada e monitorada em toda a organização.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Questionário -->
+        <section id="questionnaire" class="py-20 bg-gray-50 hidden">
+            <div class="container mx-auto px-6">
+                <!-- Barra de Progresso -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-700">Progresso</span>
+                        <span id="progress-text" class="text-sm font-medium text-gray-700">1 de 9</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress-bar" class="bg-red-700 h-2 rounded-full progress-bar" style="width: 11%"></div>
+                    </div>
+                </div>
+
+                <!-- Card da Pergunta -->
+                <div id="question-card" class="bg-white rounded-lg shadow-lg p-8 question-card">
+                    <div class="text-center mb-8">
+                        <h3 id="dimension-title" class="text-2xl font-bold text-red-700 mb-2">Governança da Gestão da Estratégia</h3>
+                        <h4 id="question-title" class="text-xl font-semibold text-gray-800 mb-4"></h4>
+                        <p id="question-text" class="text-gray-600"></p>
+                    </div>
+
+                    <!-- Opções de Resposta -->
+                    <div id="options-container" class="grid gap-4 mb-8">
+                        <!-- Opções serão inseridas dinamicamente -->
+                    </div>
+
+                    <!-- Botões de Navegação -->
+                    <div class="flex justify-between">
+                        <button id="prev-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            <i data-lucide="chevron-left" class="w-4 h-4 inline mr-2"></i>
+                            Anterior
+                        </button>
+                        <button id="next-btn" class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-6 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Próxima
+                            <i data-lucide="chevron-right" class="w-4 h-4 inline ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Resultados -->
+        <section id="results" class="py-20 bg-white hidden">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-red-700">Seus Resultados</h2>
+                    <div class="w-24 h-1 bg-red-700 mx-auto mb-8"></div>
+                    <p class="text-lg text-gray-600">Análise da maturidade da sua organização na gestão estratégica</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Gráfico Radar -->
+                    <div class="bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-xl font-bold text-center mb-6">Maturidade por Dimensão</h3>
+                        <div class="radar-chart">
+                            <canvas id="radarChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Scores por Dimensão -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold mb-6">Pontuação Detalhada</h3>
+                        
+                        <!-- Score Geral -->
+                        <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-700">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold text-red-700">Score Geral</h4>
+                                <span id="overall-score" class="text-2xl font-bold text-red-700">0.0</span>
+                            </div>
+                            <p class="text-gray-600 mt-2">Média das três dimensões avaliadas</p>
+                        </div>
+
+                        <!-- Score Governança -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold">Governança</h4>
+                                <span id="governance-score" class="text-xl font-bold text-gray-800">0</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div id="governance-bar" class="bg-red-700 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Score Formulação -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold">Formulação</h4>
+                                <span id="formulation-score" class="text-xl font-bold text-gray-800">0</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div id="formulation-bar" class="bg-red-700 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Score Desdobramento -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold">Desdobramento</h4>
+                                <span id="deployment-score" class="text-xl font-bold text-gray-800">0</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div id="deployment-bar" class="bg-red-700 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recomendações -->
+                <div class="mt-12">
+                    <h3 class="text-2xl font-bold text-center mb-8">Recomendações Personalizadas</h3>
+                    <div id="recommendations-container" class="grid md:grid-cols-3 gap-6">
+                        <!-- Recomendações serão inseridas dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Ações -->
+                <div class="mt-12 text-center">
+                    <div class="flex flex-col md:flex-row gap-4 justify-center">
+                        <button id="download-pdf" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+                            <i data-lucide="download" class="w-4 h-4 inline mr-2"></i>
+                            Baixar Relatório PDF
+                        </button>
+                        <button id="restart-assessment" class="bg-white border-2 border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+                            <i data-lucide="refresh-cw" class="w-4 h-4 inline mr-2"></i>
+                            Refazer Assessment
+                        </button>
+                        <a href="index.html#contato" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 text-center">
+                            <i data-lucide="calendar" class="w-4 h-4 inline mr-2"></i>
+                            Agendar Consultoria
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 Stratica. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dados do questionário baseado no arquivo original
+        const questionsData = {
+            governance: {
+                title: "Governança da Gestão da Estratégia",
+                questions: [
+                    {
+                        title: "Estrutura Organizacional",
+                        text: "Como está estruturada a governança da gestão da estratégia na sua organização?",
+                        options: [
+                            { level: 1, text: "Não há estrutura formal definida para a gestão da estratégia" },
+                            { level: 2, text: "Existe uma estrutura básica, mas com responsabilidades pouco claras" },
+                            { level: 3, text: "Estrutura bem definida com responsabilidades claras e processos estabelecidos" },
+                            { level: 4, text: "Estrutura otimizada com governança integrada e processos de melhoria contínua" }
+                        ]
+                    },
+                    {
+                        title: "Processos de Tomada de Decisão",
+                        text: "Como são tomadas as decisões estratégicas na sua organização?",
+                        options: [
+                            { level: 1, text: "Decisões tomadas de forma ad-hoc, sem processo estruturado" },
+                            { level: 2, text: "Processo básico de decisão com alguns critérios definidos" },
+                            { level: 3, text: "Processo estruturado com critérios claros e participação adequada" },
+                            { level: 4, text: "Processo otimizado com análise de dados, cenários e feedback contínuo" }
+                        ]
+                    },
+                    {
+                        title: "Responsabilidades e Accountability",
+                        text: "Como estão definidas as responsabilidades pela execução da estratégia?",
+                        options: [
+                            { level: 1, text: "Responsabilidades não estão claramente definidas" },
+                            { level: 2, text: "Responsabilidades básicas definidas, mas com pouco acompanhamento" },
+                            { level: 3, text: "Responsabilidades claras com acompanhamento regular" },
+                            { level: 4, text: "Sistema robusto de accountability com métricas e consequências definidas" }
+                        ]
+                    }
+                ]
+            },
+            formulation: {
+                title: "Formulação da Estratégia",
+                questions: [
+                    {
+                        title: "Processo de Planejamento",
+                        text: "Como é conduzido o processo de planejamento estratégico?",
+                        options: [
+                            { level: 1, text: "Planejamento informal ou inexistente" },
+                            { level: 2, text: "Planejamento básico com metodologia simples" },
+                            { level: 3, text: "Processo estruturado com metodologia consolidada" },
+                            { level: 4, text: "Processo avançado com metodologias inovadoras e análise preditiva" }
+                        ]
+                    },
+                    {
+                        title: "Análise de Mercado e Ambiente",
+                        text: "Como sua organização analisa o mercado e ambiente competitivo?",
+                        options: [
+                            { level: 1, text: "Análise limitada ou baseada apenas em intuição" },
+                            { level: 2, text: "Análise básica com algumas ferramentas estruturadas" },
+                            { level: 3, text: "Análise abrangente com ferramentas consolidadas" },
+                            { level: 4, text: "Análise sofisticada com IA, big data e análise preditiva" }
+                        ]
+                    },
+                    {
+                        title: "Definição de Objetivos",
+                        text: "Como são definidos os objetivos estratégicos?",
+                        options: [
+                            { level: 1, text: "Objetivos vagos ou não mensuráveis" },
+                            { level: 2, text: "Objetivos básicos com algumas métricas" },
+                            { level: 3, text: "Objetivos SMART bem estruturados" },
+                            { level: 4, text: "Objetivos integrados com cenários e análise de riscos" }
+                        ]
+                    }
+                ]
+            },
+            deployment: {
+                title: "Desdobramento e Comunicação da Estratégia",
+                questions: [
+                    {
+                        title: "Comunicação da Estratégia",
+                        text: "Como a estratégia é comunicada na organização?",
+                        options: [
+                            { level: 1, text: "Comunicação limitada ou inexistente" },
+                            { level: 2, text: "Comunicação básica para alguns níveis" },
+                            { level: 3, text: "Comunicação estruturada para toda a organização" },
+                            { level: 4, text: "Comunicação integrada com feedback e engajamento contínuo" }
+                        ]
+                    },
+                    {
+                        title: "Implementação e Execução",
+                        text: "Como é feita a implementação da estratégia?",
+                        options: [
+                            { level: 1, text: "Implementação ad-hoc sem acompanhamento" },
+                            { level: 2, text: "Implementação básica com algum acompanhamento" },
+                            { level: 3, text: "Implementação estruturada com acompanhamento regular" },
+                            { level: 4, text: "Implementação ágil com monitoramento em tempo real" }
+                        ]
+                    },
+                    {
+                        title: "Monitoramento e Controle",
+                        text: "Como é feito o monitoramento da execução estratégica?",
+                        options: [
+                            { level: 1, text: "Monitoramento inexistente ou muito básico" },
+                            { level: 2, text: "Monitoramento básico com alguns indicadores" },
+                            { level: 3, text: "Sistema estruturado de monitoramento com KPIs" },
+                            { level: 4, text: "Sistema avançado com dashboards em tempo real e análise preditiva" }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // Recomendações baseadas no nível de maturidade
+        const recommendations = {
+            governance: {
+                1: {
+                    title: "Institua o Básico de Governança",
+                    text: "Defina responsáveis claros pelo processo estratégico e estabeleça reuniões regulares de acompanhamento.",
+                    actions: ["Nomear um responsável pela estratégia", "Criar calendário de reuniões", "Definir papéis básicos"]
+                },
+                2: {
+                    title: "Formalize a Governança Existente",
+                    text: "Estruture melhor os processos existentes e crie um calendário fixo de atividades estratégicas.",
+                    actions: ["Documentar processos", "Criar comitê estratégico", "Estabelecer rituais de governança"]
+                },
+                3: {
+                    title: "Aprimore a Integração e Eficácia",
+                    text: "Envolva diferentes níveis hierárquicos na governança e melhore a integração entre áreas.",
+                    actions: ["Ampliar participação", "Integrar sistemas", "Melhorar comunicação"]
+                },
+                4: {
+                    title: "Mantenha a Excelência",
+                    text: "Continue evoluindo e realize avaliações periódicas da própria governança estratégica.",
+                    actions: ["Inovar processos", "Benchmarking externo", "Melhoria contínua"]
+                }
+            },
+            formulation: {
+                1: {
+                    title: "Inicie um Processo Estruturado",
+                    text: "Comece um processo de planejamento estratégico mais estruturado com metodologias básicas.",
+                    actions: ["Adotar metodologia básica", "Realizar análise SWOT", "Definir missão e visão"]
+                },
+                2: {
+                    title: "Estruture e Amplie o Processo",
+                    text: "Continue estruturando o processo de planejamento e incorpore mais ferramentas de análise.",
+                    actions: ["Ampliar análises", "Usar mais ferramentas", "Envolver mais pessoas"]
+                },
+                3: {
+                    title: "Aprimore com Melhores Práticas",
+                    text: "Incorpore metodologias avançadas e melhores práticas de planejamento estratégico.",
+                    actions: ["Metodologias avançadas", "Análise de cenários", "Planejamento por cenários"]
+                },
+                4: {
+                    title: "Inove e Torne Contínuo",
+                    text: "Transforme o planejamento em um processo vivo e contínuo com uso de tecnologias avançadas.",
+                    actions: ["Planejamento contínuo", "IA e analytics", "Inovação metodológica"]
+                }
+            },
+            deployment: {
+                1: {
+                    title: "Comece Comunicando o Básico",
+                    text: "Inicie comunicando os elementos básicos da estratégia para toda a organização.",
+                    actions: ["Comunicar visão e missão", "Reuniões de alinhamento", "Material básico"]
+                },
+                2: {
+                    title: "Estruture o Desdobramento",
+                    text: "Crie um processo formal de desdobramento estratégico com responsabilidades claras.",
+                    actions: ["Processo formal", "Responsabilidades claras", "Cronograma de ações"]
+                },
+                3: {
+                    title: "Aprimore o Alinhamento",
+                    text: "Melhore o alinhamento organizacional e o engajamento de todos os níveis.",
+                    actions: ["Melhorar alinhamento", "Aumentar engajamento", "Feedback regular"]
+                },
+                4: {
+                    title: "Mantenha o Alinhamento Total",
+                    text: "Mantenha o total alinhamento organizacional e busque inovação contínua na execução.",
+                    actions: ["Alinhamento total", "Inovação contínua", "Execução ágil"]
+                }
+            }
+        };
+
+        // Estado da aplicação
+        let currentDimension = 'governance';
+        let currentQuestionIndex = 0;
+        let answers = {};
+        let totalQuestions = 0;
+        let currentQuestionNumber = 1;
+
+        // Calcular total de perguntas
+        Object.keys(questionsData).forEach(dimension => {
+            totalQuestions += questionsData[dimension].questions.length;
+        });
+
+        // Elementos DOM
+        const startBtn = document.getElementById('start-assessment');
+        const introSection = document.getElementById('intro');
+        const methodologySection = document.getElementById('methodology');
+        const questionnaireSection = document.getElementById('questionnaire');
+        const resultsSection = document.getElementById('results');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const dimensionTitle = document.getElementById('dimension-title');
+        const questionTitle = document.getElementById('question-title');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-assessment');
+        const downloadBtn = document.getElementById('download-pdf');
+
+        // Event Listeners
+        startBtn.addEventListener('click', startAssessment);
+        prevBtn.addEventListener('click', previousQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartAssessment);
+        downloadBtn.addEventListener('click', downloadPDF);
+
+        // Menu mobile
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function startAssessment() {
+            introSection.classList.add('hidden');
+            methodologySection.classList.add('hidden');
+            questionnaireSection.classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const dimensions = Object.keys(questionsData);
+            const currentDimensionData = questionsData[currentDimension];
+            const currentQuestion = currentDimensionData.questions[currentQuestionIndex];
+
+            // Atualizar títulos
+            dimensionTitle.textContent = currentDimensionData.title;
+            questionTitle.textContent = currentQuestion.title;
+            questionText.textContent = currentQuestion.text;
+
+            // Atualizar progresso
+            const progress = (currentQuestionNumber / totalQuestions) * 100;
+            progressBar.style.width = progress + '%';
+            progressText.textContent = `${currentQuestionNumber} de ${totalQuestions}`;
+
+            // Limpar opções anteriores
+            optionsContainer.innerHTML = '';
+
+            // Criar opções
+            currentQuestion.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option-card bg-white border-2 border-gray-200 rounded-lg p-4 text-left';
+                optionDiv.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                            <span class="text-red-700 font-bold">${option.level}</span>
+                        </div>
+                        <div>
+                            <p class="text-gray-800 font-medium">${option.text}</p>
+                        </div>
+                    </div>
+                `;
+
+                optionDiv.addEventListener('click', () => selectOption(option.level, optionDiv));
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Verificar se já existe resposta
+            const questionKey = `${currentDimension}_${currentQuestionIndex}`;
+            if (answers[questionKey]) {
+                const selectedLevel = answers[questionKey];
+                const optionCards = optionsContainer.querySelectorAll('.option-card');
+                optionCards[selectedLevel - 1].classList.add('selected');
+                nextBtn.disabled = false;
+            } else {
+                nextBtn.disabled = true;
+            }
+
+            // Atualizar botões
+            prevBtn.disabled = currentQuestionNumber === 1;
+        }
+
+        function selectOption(level, optionElement) {
+            // Remover seleção anterior
+            optionsContainer.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Adicionar seleção atual
+            optionElement.classList.add('selected');
+
+            // Salvar resposta
+            const questionKey = `${currentDimension}_${currentQuestionIndex}`;
+            answers[questionKey] = level;
+
+            // Habilitar botão próxima
+            nextBtn.disabled = false;
+        }
+
+        function nextQuestion() {
+            const dimensions = Object.keys(questionsData);
+            const currentDimensionData = questionsData[currentDimension];
+
+            if (currentQuestionIndex < currentDimensionData.questions.length - 1) {
+                // Próxima pergunta da mesma dimensão
+                currentQuestionIndex++;
+                currentQuestionNumber++;
+            } else {
+                // Próxima dimensão
+                const currentDimensionIdx = dimensions.indexOf(currentDimension);
+                if (currentDimensionIdx < dimensions.length - 1) {
+                    currentDimension = dimensions[currentDimensionIdx + 1];
+                    currentQuestionIndex = 0;
+                    currentQuestionNumber++;
+                } else {
+                    // Fim do questionário
+                    showResults();
+                    return;
+                }
+            }
+
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            const dimensions = Object.keys(questionsData);
+
+            if (currentQuestionIndex > 0) {
+                // Pergunta anterior da mesma dimensão
+                currentQuestionIndex--;
+                currentQuestionNumber--;
+            } else {
+                // Dimensão anterior
+                const currentDimensionIdx = dimensions.indexOf(currentDimension);
+                if (currentDimensionIdx > 0) {
+                    currentDimension = dimensions[currentDimensionIdx - 1];
+                    currentQuestionIndex = questionsData[currentDimension].questions.length - 1;
+                    currentQuestionNumber--;
+                }
+            }
+
+            loadQuestion();
+        }
+
+        function calculateScores() {
+            const scores = {
+                governance: 0,
+                formulation: 0,
+                deployment: 0
+            };
+
+            // Calcular scores por dimensão
+            Object.keys(questionsData).forEach(dimension => {
+                let dimensionTotal = 0;
+                const questionCount = questionsData[dimension].questions.length;
+
+                for (let i = 0; i < questionCount; i++) {
+                    const questionKey = `${dimension}_${i}`;
+                    dimensionTotal += answers[questionKey] || 0;
+                }
+
+                scores[dimension] = Math.round(dimensionTotal / questionCount);
+            });
+
+            // Calcular score geral
+            const overallScore = ((scores.governance + scores.formulation + scores.deployment) / 3).toFixed(1);
+
+            return { ...scores, overall: parseFloat(overallScore) };
+        }
+
+        function showResults() {
+            questionnaireSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+
+            const scores = calculateScores();
+
+            // Atualizar scores na interface
+            document.getElementById('overall-score').textContent = scores.overall;
+            document.getElementById('governance-score').textContent = scores.governance;
+            document.getElementById('formulation-score').textContent = scores.formulation;
+            document.getElementById('deployment-score').textContent = scores.deployment;
+
+            // Atualizar barras de progresso
+            document.getElementById('governance-bar').style.width = (scores.governance / 4 * 100) + '%';
+            document.getElementById('formulation-bar').style.width = (scores.formulation / 4 * 100) + '%';
+            document.getElementById('deployment-bar').style.width = (scores.deployment / 4 * 100) + '%';
+
+            // Criar gráfico radar
+            createRadarChart(scores);
+
+            // Mostrar recomendações
+            showRecommendations(scores);
+        }
+
+        function createRadarChart(scores) {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Governança', 'Formulação', 'Desdobramento'],
+                    datasets: [{
+                        label: 'Nível de Maturidade',
+                        data: [scores.governance, scores.formulation, scores.deployment],
+                        backgroundColor: 'rgba(220, 38, 38, 0.2)',
+                        borderColor: 'rgba(220, 38, 38, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(220, 38, 38, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(220, 38, 38, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 4,
+                            min: 0,
+                            ticks: {
+                                stepSize: 1,
+                                callback: function(value) {
+                                    return value;
+                                }
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        function showRecommendations(scores) {
+            const container = document.getElementById('recommendations-container');
+            container.innerHTML = '';
+
+            const dimensions = ['governance', 'formulation', 'deployment'];
+            const dimensionNames = {
+                governance: 'Governança',
+                formulation: 'Formulação', 
+                deployment: 'Desdobramento'
+            };
+
+            dimensions.forEach(dimension => {
+                const score = scores[dimension];
+                const recommendation = recommendations[dimension][score];
+
+                const recDiv = document.createElement('div');
+                recDiv.className = 'bg-gray-50 p-6 rounded-lg';
+                recDiv.innerHTML = `
+                    <div class="text-center mb-4">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-red-700 font-bold text-lg">${score}</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-red-700">${dimensionNames[dimension]}</h4>
+                    </div>
+                    <h5 class="font-semibold mb-2">${recommendation.title}</h5>
+                    <p class="text-gray-600 text-sm mb-4">${recommendation.text}</p>
+                    <div class="space-y-1">
+                        <p class="text-xs font-semibold text-gray-700 mb-2">Próximos Passos:</p>
+                        ${recommendation.actions.map(action => `
+                            <div class="flex items-center text-xs text-gray-600">
+                                <i data-lucide="check" class="w-3 h-3 text-green-600 mr-2"></i>
+                                ${action}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                container.appendChild(recDiv);
+            });
+
+            // Reinicializar ícones Lucide
+            lucide.createIcons();
+        }
+
+        function restartAssessment() {
+            // Resetar estado
+            currentDimension = 'governance';
+            currentQuestionIndex = 0;
+            currentQuestionNumber = 1;
+            answers = {};
+
+            // Mostrar seções iniciais
+            resultsSection.classList.add('hidden');
+            questionnaireSection.classList.add('hidden');
+            introSection.classList.remove('hidden');
+            methodologySection.classList.remove('hidden');
+        }
+
+        function downloadPDF() {
+            // Implementação simplificada - em produção seria integrada com backend
+            alert('Funcionalidade de download PDF será implementada na versão final com integração backend.');
+        }
+
+        // Inicializar ícones Lucide
+        lucide.createIcons();
+    </script>
+</body>
+</html>
