@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assessment de Maturidade da Gestão da Estratégia - Stratica</title>
+    <title>Avaliação de Maturidade da Gestão da Estratégia - Stratica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,10 +24,27 @@
         .question-card {
             min-height: 400px;
             transition: all 0.3s ease;
+            max-width: 100%;
+        }
+        .question-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .question-text {
+            font-size: 1.1rem;
+            color: #374151;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
         .option-card {
             transition: all 0.2s ease;
             cursor: pointer;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            color: #374151;
         }
         .option-card:hover {
             transform: translateY(-2px);
@@ -39,9 +56,43 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(220,38,38,0.2);
         }
+        .option-level {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
         .radar-chart {
             max-width: 400px;
             margin: 0 auto;
+        }
+        
+        /* Estilos para listas com bullets visíveis */
+        .option-card ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            padding-left: 0.5rem;
+        }
+        
+        .option-card li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        /* Garantir que bullets sejam visíveis em todos os elementos ul/li */
+        ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            padding-left: 0.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -78,10 +129,10 @@
         <!-- Seção Hero -->
         <section id="intro" class="relative text-gray-800 hero-gradient py-20">
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Assessment de Maturidade da Gestão da Estratégia</h1>
-                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Avalie o nível de maturidade da sua organização na gestão estratégica através de três dimensões fundamentais: Governança, Formulação e Desdobramento/Comunicação da Estratégia.</p>
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Avaliação de Maturidade da Gestão da Estratégia</h1>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Este questionário avalia o grau de maturidade da sua organização na gestão da estratégia, em múltiplas dimensões. Para cada dimensão temática a seguir, leia a pergunta e identifique qual nível de maturidade melhor descreve a situação da sua organização.</p>
                 <div class="flex flex-col md:flex-row gap-4 justify-center max-w-2xl mx-auto">
-                    <button id="start-assessment" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">Iniciar Assessment</button>
+                    <button id="start-assessment" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">Iniciar Avaliação</button>
                     <a href="index.html" class="bg-white border-2 border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 text-center">Voltar ao Site Principal</a>
                 </div>
             </div>
@@ -93,10 +144,10 @@
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4">Metodologia de Avaliação</h2>
                     <div class="w-24 h-1 bg-red-700 mx-auto mb-8"></div>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Nossa avaliação é baseada em três dimensões fundamentais da gestão estratégica, com 4 níveis de maturidade cada.</p>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Nossa avaliação é baseada em 8 dimensões fundamentais da gestão estratégica, com 4 níveis de maturidade cada.</p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Dimensão Governança -->
                     <div class="bg-gray-50 p-8 rounded-lg text-center">
                         <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -112,7 +163,7 @@
                             <i data-lucide="lightbulb" class="w-8 h-8 text-red-700"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-4 text-red-700">Formulação da Estratégia</h3>
-                        <p class="text-gray-600">Examina os processos de planejamento estratégico, análise de mercado e definição de objetivos organizacionais.</p>
+                        <p class="text-gray-600">Processos de planejamento estratégico, análise de mercado e definição de objetivos organizacionais.</p>
                     </div>
 
                     <!-- Dimensão Desdobramento -->
@@ -122,6 +173,51 @@
                         </div>
                         <h3 class="text-xl font-bold mb-4 text-red-700">Desdobramento e Comunicação</h3>
                         <p class="text-gray-600">Analisa como a estratégia é comunicada, implementada e monitorada em toda a organização.</p>
+                    </div>
+
+                    <!-- Dimensão Execução -->
+                    <div class="bg-gray-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="play-circle" class="w-8 h-8 text-red-700"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-red-700">Execução e Monitoramento</h3>
+                        <p class="text-gray-600">Avalia como a organização executa o plano estratégico e monitora os resultados através de mecanismos sistemáticos.</p>
+                    </div>
+
+                    <!-- Dimensão Liderança e Cultura -->
+                    <div class="bg-gray-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="users" class="w-8 h-8 text-red-700"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-red-700">Liderança e Cultura</h3>
+                        <p class="text-gray-600">Analisa como a liderança estratégica e a cultura organizacional estão alinhadas e apoiam a execução da estratégia.</p>
+                    </div>
+
+                    <!-- Dimensão Indicadores -->
+                    <div class="bg-gray-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="bar-chart" class="w-8 h-8 text-red-700"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-red-700">Indicadores e Dados</h3>
+                        <p class="text-gray-600">Examina como a organização utiliza indicadores e dados para apoiar a gestão estratégica.</p>
+                    </div>
+
+                    <!-- Dimensão Tecnologia -->
+                    <div class="bg-gray-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="cpu" class="w-8 h-8 text-red-700"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-red-700">Uso de Tecnologia</h3>
+                        <p class="text-gray-600">Avalia quais ferramentas e tecnologias a organização utiliza para apoiar a gestão da estratégia.</p>
+                    </div>
+
+                    <!-- Dimensão Aprendizado -->
+                    <div class="bg-gray-50 p-8 rounded-lg text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="brain" class="w-8 h-8 text-red-700"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-red-700">Aprendizado e Inovação</h3>
+                        <p class="text-gray-600">Analisa como a organização incorpora aprendizado e inovação no processo de gestão da estratégia.</p>
                     </div>
                 </div>
             </div>
@@ -197,7 +293,7 @@
                                 <h4 class="text-lg font-semibold text-red-700">Score Geral</h4>
                                 <span id="overall-score" class="text-2xl font-bold text-red-700">0.0</span>
                             </div>
-                            <p class="text-gray-600 mt-2">Média das três dimensões avaliadas</p>
+                            <p class="text-gray-600 mt-2">Média das seis dimensões avaliadas</p>
                         </div>
 
                         <!-- Score Governança -->
@@ -230,6 +326,50 @@
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                                 <div id="deployment-bar" class="bg-red-700 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Score Execução -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold">Execução</h4>
+                                <span id="execution-score" class="text-xl font-bold text-gray-800">0</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div id="execution-bar" class="bg-red-700 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Score Indicadores -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold">Indicadores</h4>
+                                <span id="indicators-score" class="text-xl font-bold text-gray-800">0</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div id="indicators-bar" class="bg-red-700 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Score Ferramentas -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold">Ferramentas</h4>
+                                <span id="tools-score" class="text-xl font-bold text-gray-800">0</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div id="tools-bar" class="bg-red-700 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Score Aprendizado -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-lg font-semibold">Aprendizado</h4>
+                                <span id="learning-score" class="text-xl font-bold text-gray-800">0</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                <div id="learning-bar" class="bg-red-700 h-2 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
                     </div>
@@ -272,39 +412,31 @@
     </footer>
 
     <script>
-        // Dados do questionário baseado no arquivo original
+        // Dados do questionário baseado no arquivo original QUESTIONÁRIO_STRATICA_20250910.md
         const questionsData = {
             governance: {
                 title: "Governança da Gestão da Estratégia",
                 questions: [
                     {
-                        title: "Estrutura Organizacional",
-                        text: "Como está estruturada a governança da gestão da estratégia na sua organização?",
+                        title: "Estrutura organizacional, processos de tomada de decisão e responsabilidades na gestão estratégica",
+                        text: "Como a alta liderança exerce a governança da construção e da execução das estratégias na sua organização? Há uma estrutura clara (comitês, responsáveis, reuniões estruturadas periódicas) para direcionar e supervisionar a construção e execução da estratégia?",
                         options: [
-                            { level: 1, text: "Não há estrutura formal definida para a gestão da estratégia" },
-                            { level: 2, text: "Existe uma estrutura básica, mas com responsabilidades pouco claras" },
-                            { level: 3, text: "Estrutura bem definida com responsabilidades claras e processos estabelecidos" },
-                            { level: 4, text: "Estrutura otimizada com governança integrada e processos de melhoria contínua" }
-                        ]
-                    },
-                    {
-                        title: "Processos de Tomada de Decisão",
-                        text: "Como são tomadas as decisões estratégicas na sua organização?",
-                        options: [
-                            { level: 1, text: "Decisões tomadas de forma ad-hoc, sem processo estruturado" },
-                            { level: 2, text: "Processo básico de decisão com alguns critérios definidos" },
-                            { level: 3, text: "Processo estruturado com critérios claros e participação adequada" },
-                            { level: 4, text: "Processo otimizado com análise de dados, cenários e feedback contínuo" }
-                        ]
-                    },
-                    {
-                        title: "Responsabilidades e Accountability",
-                        text: "Como estão definidas as responsabilidades pela execução da estratégia?",
-                        options: [
-                            { level: 1, text: "Responsabilidades não estão claramente definidas" },
-                            { level: 2, text: "Responsabilidades básicas definidas, mas com pouco acompanhamento" },
-                            { level: 3, text: "Responsabilidades claras com acompanhamento regular" },
-                            { level: 4, text: "Sistema robusto de accountability com métricas e consequências definidas" }
+                            { 
+                                level: 1, 
+                                text: "<ul><li>Não há governança formal da gestão da estratégia</li><li>As decisões para construção e execução da estratégias são tomadas de forma isolada ou reativa, sem um fórum definido e sem alinhamento entre os departamentos</li><li>Falta clareza sobre quem são os responsáveis por construir, implantar e acompanhar cada estratégia, e revisões acontecem apenas diante de crises ou demandas pontuais</li></ul>"
+                            },
+                            { 
+                                level: 2, 
+                                text: "<ul><li>Existe alguma estrutura embrionária de governança para gestão da estratégia, porém pouco formal</li><li>A liderança se reúne esporadicamente para discutir as estratégias, mas sem cadência fixa ou agenda definida</li><li>Os papéis e responsabilidades para construir e implantar as estratégias não estão claramente definidos, e o acompanhamento da execução da estratégias é irregular e esporádico</li></ul>"
+                            },
+                            { 
+                                level: 3, 
+                                text: "<ul><li>A organização possui um processo de governança para gestão da estratégia estabelecido, porém ainda não muito eficaz</li><li>Há comitês estratégicos ou um Escritório de Gestão da Estratégia (OSM – Office of Strategy Management) dedicado, com reuniões periódicas (mensais, trimestrais, semestrais) tanto para construir as estratégias, quanto para revisar os resultados da sua execução</li><li>Papéis de decisão e responsabilidades de acompanhamento estão formalizados (por exemplo, cada iniciativa estratégica tem um responsável)</li><li>Mas, nem sempre as estratégias definidas são executadas como planejadas</li><li>A gestão da estratégia também está integrada aos mecanismos de governança corporativa – por exemplo, o conselho diretivo ou alta administração acompanha os indicadores-chaves definidos para medir as estratégias</li><li>Porém, nem sempre as estratégias estão realmente alinhadas com as diretrizes do conselho</li></ul>"
+                            },
+                            { 
+                                level: 4, 
+                                text: "<ul><li>A governança da gestão da estratégia é altamente madura e proativa</li><li>Existe um sistema robusto de governança conectando visão de longo prazo às estratégias, e por sua vez ações diárias totalmente alinhadas com elas</li><li>Comitês multifuncionais ou o OSM (Office of Strategy Management) atuam efetivamente, com cadência disciplinada de reuniões de desempenho e protocolos claros para ajustar táticas e estratégias rapidamente quando necessário</li><li>A alta liderança e conselho estão alinhados e engajados na estratégia; decisões estratégicas são tomadas com agilidade, embasadas em dados e monitoramento contínuo</li><li>A estratégia e a execução 'andam de mãos dadas', realmente são executadas táticas que apoiam diretamente as estratégias</li><li>Tudo isso, apoiados por processos e ferramentas bem definidos, tornando a gestão da estratégia efetiva e em contínua evolução</li></ul>"
+                            }
                         ]
                     }
                 ]
@@ -313,68 +445,268 @@
                 title: "Formulação da Estratégia",
                 questions: [
                     {
-                        title: "Processo de Planejamento",
-                        text: "Como é conduzido o processo de planejamento estratégico?",
+                        title: "Processos de planejamento estratégico, análise de mercado e definição de objetivos organizacionais",
+                        text: "Como é o processo de planejamento e formulação da estratégia na sua organização? A empresa realiza um planejamento estratégico estruturado, envolvendo análise do ambiente e definição clara de visão, objetivos e estratégias? Este processo envolve todos os departamentos da organização?",
                         options: [
-                            { level: 1, text: "Planejamento informal ou inexistente" },
-                            { level: 2, text: "Planejamento básico com metodologia simples" },
-                            { level: 3, text: "Processo estruturado com metodologia consolidada" },
-                            { level: 4, text: "Processo avançado com metodologias inovadoras e análise preditiva" }
-                        ]
-                    },
-                    {
-                        title: "Análise de Mercado e Ambiente",
-                        text: "Como sua organização analisa o mercado e ambiente competitivo?",
-                        options: [
-                            { level: 1, text: "Análise limitada ou baseada apenas em intuição" },
-                            { level: 2, text: "Análise básica com algumas ferramentas estruturadas" },
-                            { level: 3, text: "Análise abrangente com ferramentas consolidadas" },
-                            { level: 4, text: "Análise sofisticada com IA, big data e análise preditiva" }
-                        ]
-                    },
-                    {
-                        title: "Definição de Objetivos",
-                        text: "Como são definidos os objetivos estratégicos?",
-                        options: [
-                            { level: 1, text: "Objetivos vagos ou não mensuráveis" },
-                            { level: 2, text: "Objetivos básicos com algumas métricas" },
-                            { level: 3, text: "Objetivos SMART bem estruturados" },
-                            { level: 4, text: "Objetivos integrados com cenários e análise de riscos" }
+                            {
+                                level: 1,
+                                text: "<ul><li>A organização não possui um planejamento estratégico formal. As ações tendem a ser orientadas por urgências do dia a dia ou demandas de curto prazo, sem uma visão de longo prazo definida.</li><li>Não há visão/missão claras ou objetivos estratégicos documentados.</li><li>Decisões estratégicas são majoritariamente reativas a problemas imediatos, com pouco embasamento em análises externas ou internas.</li><li>Praticamente não existem Indicadores formais sendo usados para medir o sucesso das estratégias, que também não são claras e bem estruturadas.</li></ul>"
+                            },
+                            {
+                                level: 2,
+                                text: "<ul><li>Há alguma forma de planejamento estratégico, porém limitado.</li><li>A empresa define um plano anual básico (frequentemente focado apenas em uma pequena lista de prioridades estratégicas, e um conjunto simples de metas financeiras/orçamentárias), mas sem abordar perspectivas amplas.</li><li>As análises estratégicas são superficiais – por exemplo, faz-se um SWOT ou brainstorm, porém sem rigor nem participação ampla.</li><li>A visão e os objetivos existem, mas são genéricos ou pouco conhecidos fora do alto escalão.</li><li>O processo ocorre de forma pontual (ex.: uma reunião de direção por ano), sem engajamento mais amplo.</li></ul>"
+                            },
+                            {
+                                level: 3,
+                                text: "<ul><li>A organização conduz um processo estruturado de planejamento estratégico periodicamente (tipicamente anual, com revisões semestrais).</li><li>Envolve análise situacional abrangente (ambiente externo e interno), com uso de modelos consagrados (SWOT, análise PESTAL, etc.) e definição clara de Visão, Missão e Objetivos de longo prazo.</li><li>Os objetivos estratégicos são desdobrados em estratégias e táticas principais, cobrindo diferentes perspectivas do negócio (financeira, mercado e clientes, processos e pessoas).</li><li>Os Objetivos e as Estratégias contam ainda com Indicadores e Metas anuais.</li><li>O resultado é um Plano Estratégico claro e comunicável, bem estruturado, com responsáveis definidos, envolvendo todos os departamentos da organização.</li><li>Contudo, existem oportunidades de melhoria nas análises, na busca de estratégias mais diferenciadas e inovadoras, e na participação e engajamento mais amplo de níveis gerenciais mais baixos, além da diretoria.</li></ul>"
+                            },
+                            {
+                                level: 4,
+                                text: "<ul><li>O planejamento estratégico é robusto, inclusivo, buscando inovação e diferenciação.</li><li>Além de todos os elementos do nível 3, a organização incorpora mais dados (internos e externos) e inteligência na formulação das estratégias, como por exemplo: análises preditivas de mercado, benchmarking setorial e eventualmente ferramentas de IA para simular cenários e novas ideias.</li><li>O processo é mais colaborativo – envolve a alta liderança, a gerência e gestores-chaves de várias áreas, garantindo um escopo multidepartamental.</li><li>São explorados múltiplos cenários e premissas, aumentando a consistência e resiliência do plano.</li><li>A estratégia resultante é balanceada e alinhada: por exemplo, inclui a construção de um Mapa Estratégico e um Painel de Controle Estratégico (BSC), que conectam objetivos de longo prazo, estratégias e iniciativas táticas a Indicadores e Responsáveis, distribuídos em todos os níveis organizacionais.</li><li>O planejamento não é um evento único anual – embora haja um ciclo principal, a empresa revê premissas e faz ajustes estratégicos a cada semestre ou quando necessário (processo contínuo de aprendizagem e adaptação).</li></ul>"
+                            }
                         ]
                     }
                 ]
             },
             deployment: {
-                title: "Desdobramento e Comunicação da Estratégia",
+                title: "Desdobramento da Estratégia",
                 questions: [
                     {
-                        title: "Comunicação da Estratégia",
-                        text: "Como a estratégia é comunicada na organização?",
+                        title: "Desdobramento e Comunicação da Estratégia",
+                        text: "Como a estratégia é desdobrada e comunicada em toda a organização? Existe clareza sobre como as estratégias se traduzem em ações concretas?",
                         options: [
-                            { level: 1, text: "Comunicação limitada ou inexistente" },
-                            { level: 2, text: "Comunicação básica para alguns níveis" },
-                            { level: 3, text: "Comunicação estruturada para toda a organização" },
-                            { level: 4, text: "Comunicação integrada com feedback e engajamento contínuo" }
+                            {
+                                level: 1,
+                                text: "<ul><li>A estratégia não é adequadamente comunicada ou desdobrada</li><li>Há desconexão entre a estratégia e as ações operacionais</li><li>Os colaboradores não compreendem como seu trabalho contribui para a estratégia</li><li>Falta clareza sobre prioridades estratégicas</li></ul>"
+                            },
+                            {
+                                level: 2,
+                                text: "<ul><li>Há tentativas de comunicar a estratégia, mas de forma inconsistente</li><li>Alguns departamentos compreendem melhor a estratégia que outros</li><li>O desdobramento em ações concretas é limitado</li><li>Existe alguma conexão entre estratégia e operações, mas não sistemática</li></ul>"
+                            },
+                            {
+                                level: 3,
+                                text: "<ul><li>A estratégia é bem comunicada e desdobrada na organização</li><li>Existe clareza sobre como a estratégia se traduz em objetivos departamentais</li><li>Os colaboradores compreendem seu papel na execução estratégica</li><li>Há ferramentas e processos para garantir o alinhamento</li></ul>"
+                            },
+                            {
+                                level: 4,
+                                text: "<ul><li>O desdobramento estratégico é exemplar e dinâmico</li><li>Há perfeita cascata da estratégia até o nível individual</li><li>Todos os colaboradores são embaixadores da estratégia</li><li>O alinhamento é monitorado e ajustado continuamente</li></ul>"
+                            }
                         ]
-                    },
+                    }
+                ]
+            },
+            execution: {
+                title: "Execução da Estratégia",
+                questions: [
                     {
-                        title: "Implementação e Execução",
-                        text: "Como é feita a implementação da estratégia?",
+                        title: "Como a organização executa o plano estratégico e monitora os resultados através de mecanismos sistemáticos.",
+                        text: "Como a organização executa o plano estratégico e monitora os resultados ao longo do tempo? Existem mecanismos sistemáticos para acompanhar o progresso das iniciativas e dos resultados dos indicadores das estratégias e táticas, garantindo a implementação efetiva da estratégia?",
                         options: [
-                            { level: 1, text: "Implementação ad-hoc sem acompanhamento" },
-                            { level: 2, text: "Implementação básica com algum acompanhamento" },
-                            { level: 3, text: "Implementação estruturada com acompanhamento regular" },
-                            { level: 4, text: "Implementação ágil com monitoramento em tempo real" }
+                            {
+                                level: 1,
+                                text: "<ul><li>A execução das táticas é descoordenada e ocorre de forma desconexa com o plano estratégico.</li><li>O plano estratégico não é acompanhado sistematicamente – muitas iniciativas estratégicas ficam a cargo de áreas ou indivíduos sem um controle central.</li><li>Os indicadores de desempenho, se existem, não são monitorados regularmente (talvez apenas no final do ano ou esporadicamente).</li><li>Não existe clareza de responsabilidades.</li><li>Problemas na execução costumam ser descobertos tarde demais, ao término do período, quando as metas não são atingidas.</li><li>Em resumo, não há um sistema de monitoramento; a execução depende de esforço individual e boa vontade, com alta probabilidade de desvios, e que não são corrigidos na hora certa.</li></ul>"
+                            },
+                            {
+                                level: 2,
+                                text: "<ul><li>A organização implementa algum monitoramento dos planos, porém de forma reativa ou limitada.</li><li>Existem revisões periódicas informais – por exemplo, reuniões semestrais ou trimestrais para checar alguns indicadores financeiros ou o progresso de projetos estratégicos mais visíveis.</li><li>Entretanto, essas revisões nem sempre têm dados completos ou participação abrangente.</li><li>As ações corretivas ocorrem, mas geralmente só após grandes desvios já se concretizarem.</li><li>A execução das iniciativas é acompanhada mais no nível de projeto (por cada gestor) do que em um painel estratégico integrado.</li><li>Falta padronização: cada área pode ter seu método de acompanhar, dificultando uma visão coesa.</li></ul>"
+                            },
+                            {
+                                level: 3,
+                                text: "<ul><li>Há um sistema de acompanhamento estruturado da execução da estratégia.</li><li>A empresa acompanha um Painel de Controle Estratégico (por exemplo, um Balanced Scorecard customizado) com indicadores-chave de desempenho para todas as principais estratégias.</li><li>Reuniões de acompanhamento são realizadas em cadências regulares – tipicamente mensais para revisão operacional (táticas) e trimestrais para revisão estratégica (estratégias), seguindo agendas definidas.</li><li>Nessas reuniões, a alta liderança avalia os resultados recentes vs. as metas e identifica desvios.</li><li>Atribuem-se ações corretivas quando necessário, e essas ações são monitoradas nas reuniões seguintes.</li><li>Existe clareza de responsabilidades: cada iniciativa estratégica tem donos que reportam progresso; cada indicador tem um gestor responsável por explicá-lo.</li><li>Assim, a execução ganha transparência e rapidez de resposta maior que nos níveis anteriores – desvios são percebidos e endereçados de forma mais proativa (não se espera o ano acabar para reagir).</li></ul>"
+                            },
+                            {
+                                level: 4,
+                                text: "<ul><li>A organização atinge excelência em gerir a execução das estratégias.</li><li>O monitoramento é contínuo e em tempo real na medida do possível: dashboards estratégicos interativos mostram resultados de indicadores confirmando ou não o progresso dos objetivos, estratégias e táticas a qualquer momento.</li><li>A empresa trabalha com indicadores preditivos além dos indicadores de resultado, permitindo atuação preventiva.</li><li>A cadência de reuniões de acompanhamento é bem orquestrada: reuniões semanais, mensais e trimestrais integradas (com pauta, inputs/outputs claros) garantem um \"sistema operacional\" para a estratégia.</li><li>Decisões corretivas ou preventivas em relação a táticas ou até estratégias são tomadas imediatamente ao identificar um desvio significativo, sem esperar ciclos longos.</li><li>Além disso, após ciclos de execução, a organização realiza revisões estratégicas para aprender e ajustar o que for necessário (vide dimensão Aprendizado).</li><li>A execução estratégica passa a ser parte da rotina gerencial e orientada por dados em todos os níveis – semelhante a um piloto de avião usando instrumentos para ajustar o curso da viagem constantemente.</li><li>Como resultado, a estratégia é executada com alta taxa de sucesso, pois há disciplina, transparência e agilidade na correção de rumos.</li></ul>"
+                            }
                         ]
-                    },
+                    }
+                ]
+            },
+            culture: {
+                title: "Cultura Estratégica",
+                questions: [
                     {
-                        title: "Monitoramento e Controle",
-                        text: "Como é feito o monitoramento da execução estratégica?",
+                        title: "Cultura e Engajamento Estratégico",
+                        text: "Como a cultura organizacional apoia a gestão estratégica? Os colaboradores estão engajados e alinhados com a estratégia?",
                         options: [
-                            { level: 1, text: "Monitoramento inexistente ou muito básico" },
-                            { level: 2, text: "Monitoramento básico com alguns indicadores" },
-                            { level: 3, text: "Sistema estruturado de monitoramento com KPIs" },
-                            { level: 4, text: "Sistema avançado com dashboards em tempo real e análise preditiva" }
+                            {
+                                level: 1,
+                                text: "<ul><li>A cultura organizacional não favorece o pensamento estratégico</li><li>Há resistência a mudanças e baixo engajamento com iniciativas estratégicas</li><li>Os colaboradores não se sentem parte da estratégia</li><li>Predomina uma mentalidade reativa e de curto prazo</li></ul>"
+                            },
+                            {
+                                level: 2,
+                                text: "<ul><li>Existe algum alinhamento cultural com a estratégia, mas inconsistente</li><li>Alguns grupos estão mais engajados que outros</li><li>Há iniciativas pontuais para promover cultura estratégica</li><li>A mudança cultural acontece lentamente</li></ul>"
+                            },
+                            {
+                                level: 3,
+                                text: "<ul><li>A cultura organizacional apoia a gestão estratégica</li><li>Há engajamento generalizado com a estratégia</li><li>Os colaboradores compreendem e abraçam a visão estratégica</li><li>Existe mentalidade de melhoria contínua e inovação</li></ul>"
+                            },
+                            {
+                                level: 4,
+                                text: "<ul><li>A cultura estratégica é exemplar e auto-sustentável</li><li>Todos os colaboradores são protagonistas da estratégia</li><li>Há cultura de alta performance e accountability</li><li>A organização é adaptativa e resiliente</li></ul>"
+                            }
+                        ]
+                    }
+                ]
+            },
+            indicators: {
+                title: "Governança de Indicadores e Dados Estratégicos",
+                questions: [
+                    {
+                        title: "Governança de Indicadores e Dados Estratégicos",
+                        text: "Como a sua organização faz o acompanhamento da execução das estratégias orientado por indicadores e dados confiáveis?",
+                        options: [
+                            {
+                                level: 1,
+                                text: "<ul><li>A organização não possui um conjunto adequado de indicadores para acompanhar a execução das estratégias</li><li>As métricas existentes, se houver, são desalinhadas com os objetivos estratégicos ou são coletadas de forma inconsistente</li><li>As decisões estratégicas são baseadas principalmente em experiência ou intuição, com pouco uso de dados objetivos</li><li>Há problemas significativos de qualidade, confiabilidade ou disponibilidade dos dados necessários para o acompanhamento estratégico</li></ul>"
+                            },
+                            {
+                                level: 2,
+                                text: "<ul><li>A organização estabeleceu alguns KPIs (Key Performance Indicators) básicos para acompanhar a estratégia, mas a coleta de dados ainda é manual ou proveniente de sistemas não integrados</li><li>Existe um glossário inicial de indicadores, mas nem sempre há clareza sobre responsabilidades pela coleta e análise</li><li>Os dados são utilizados principalmente para relatórios periódicos (mensais, trimestrais), mas há limitações na capacidade de análise e interpretação</li><li>Algumas decisões estratégicas começam a ser apoiadas por dados, mas ainda há dependência significativa de julgamento subjetivo</li></ul>"
+                            },
+                            {
+                                level: 3,
+                                text: "<ul><li>A gestão da estratégia é amplamente apoiada por dados, com um painel integrado de indicadores estratégicos que consolida informações de diferentes áreas</li><li>A coleta de dados é consistente e proveniente de sistemas corporativos integrados, com um repositório central ou software de BI</li><li>Há políticas de governança de dados definidas, incluindo responsabilidades claras pela qualidade e atualização dos indicadores</li><li>As decisões estratégicas são baseadas em dados e análises, incluindo análises sofisticadas como tendências, benchmarks e algumas análises preditivas básicas</li></ul>"
+                            },
+                            {
+                                level: 4,
+                                text: "<ul><li>A organização atingiu excelência analítica, utilizando analytics avançado, inteligência artificial e machine learning para gerar insights estratégicos</li><li>Possui dashboards em tempo real e modelos de IA que identificam sinais precoces de mudanças no desempenho estratégico</li><li>A governança de dados é proativa, com equipes dedicadas de inteligência estratégica que fazem análises preditivas e prescritivas</li><li>Os indicadores são revisados e atualizados regularmente com base em aprendizados e mudanças no ambiente</li><li>A organização utiliza ferramentas de visualização avançada e simulação de cenários para apoiar decisões estratégicas complexas, e há um programa contínuo de capacitação da equipe em analytics e ciência de dados</li></ul>"
+                            }
+                        ]
+                    }
+                ]
+            },
+            tools: {
+                title: "Formulação da Estratégia",
+                questions: [
+                    {
+                        title: "Processos de planejamento estratégico, análise de mercado e definição de objetivos organizacionais",
+                        text: "Processos de planejamento estratégico, análise de mercado e definição de objetivos organizacionais",
+                        options: [
+                            { 
+                                level: 1, 
+                                text: "A organização não possui um planejamento estratégico formal. As ações tendem a ser orientadas por urgências do dia a dia ou demandas de curto prazo, sem uma visão de longo prazo definida. Não há visão/missão claras ou objetivos estratégicos documentados. Decisões estratégicas são majoritariamente reativas a problemas imediatos, com pouco embasamento em análises externas ou internas. Praticamente não existem indicadores formais sendo usados para medir o sucesso das estratégias, que também não são claras e bem estruturadas."
+                            },
+                            { 
+                                level: 2, 
+                                text: "Há alguma forma de planejamento estratégico, porém limitado. A empresa define um plano anual básico (frequentemente focado apenas em uma pequena lista de prioridades estratégicas e um conjunto simples de metas financeiras/orçamentárias), mas sem abordar perspectivas amplas. As análises estratégicas são superficiais – por exemplo, faz-se um SWOT ou brainstorm, porém sem rigor nem participação ampla. A visão e os objetivos existem, mas são genéricos ou pouco conhecidos fora do alto escalão. O processo ocorre de forma pontual (ex.: uma reunião de direção por ano), sem engajamento mais amplo."
+                            },
+                            { 
+                                level: 3, 
+                                text: "A organização conduz um processo estruturado de planejamento estratégico periodicamente (tipicamente anual, com revisões semestrais). Envolve análise situacional abrangente (ambiente externo e interno), com uso de modelos consagrados (SWOT, análise PESTAL, etc.) e definição clara de Visão, Missão e Objetivos de longo prazo. Os objetivos estratégicos são desdobrados em estratégias e táticas principais, cobrindo diferentes perspectivas do negócio (financeira, mercado e clientes, processos e pessoas). Os Objetivos e as Estratégias contam ainda com Indicadores e Metas anuais. O resultado é um Plano Estratégico claro e comunicável, bem estruturado, com responsáveis definidos, envolvendo todos os departamentos da organização. Contudo, existem oportunidades de melhoria nas análises, na busca de estratégias mais diferenciadas e inovadoras, e na participação e engajamento mais amplo de níveis gerenciais mais baixos, além da diretoria."
+                            },
+                            { 
+                                level: 4, 
+                                text: "O planejamento estratégico é robusto, inclusivo, buscando inovação e diferenciação. Além de todos os elementos do nível 3, a organização incorpora mais dados (internos e externos) e inteligência na formulação das estratégias, como por exemplo: análises preditivas de mercado, benchmarking setorial e eventualmente ferramentas de IA para simular cenários e novas ideias. O processo é mais colaborativo – envolve a alta liderança, a gerência e gestores-chave de várias áreas, garantindo um escopo multidepartamental. São explorados múltiplos cenários e premissas, aumentando a consistência e resiliência do plano. A estratégia resultante é balanceada e alinhada: por exemplo, inclui a construção de um Mapa Estratégico e um Painel de Controle Estratégico (BSC), que conectam objetivos de longo prazo, estratégias e iniciativas táticas a Indicadores e Responsáveis, distribuídos em todos os níveis organizacionais. O planejamento não é um evento único anual – embora haja um ciclo principal, a empresa revê premissas e faz ajustes estratégicos a cada semestre ou quando necessário (processo contínuo de aprendizagem e adaptação)."
+                            }
+                        ]
+                    }
+                ]
+            },
+            deployment: {
+                title: "Desdobramento da Estratégia",
+                questions: [
+                    {
+                        title: "Como a estratégia é comunicada, implementada e monitorada em toda a organização.",
+                        text: "Como as estratégias definidas são desdobradas e comunicadas para os demais níveis da organização? Os objetivos, estratégias e táticas são cascateados para departamentos e colaboradores? Cada equipe entende seu papel na execução das táticas (projetos, programas, iniciativas) que apoiam as estratégias de sua responsabilidade?",
+                        options: [
+                            { 
+                                level: 1, 
+                                text: "<ul><li>O planejamento estratégico é inexistente ou não é desdobrado além da cúpula. Poucos fora da alta direção conhecem as estratégias em detalhe.</li><li>Não há comunicação sistemática: colaboradores de níveis médios e operacionais não entendem claramente as estratégias de responsabilidade do seu departamento, ou como o trabalho deles se conecta a essas estratégias.</li><li>Departamentos tendem a definir indicadores e metas operacionais próprias, sem alinhamento com as estratégias; assim, as ações do dia a dia nem sempre contribuem para as prioridades estratégicas definidas.</li></ul>"
+                            },
+                            { 
+                                level: 2, 
+                                text: "<ul><li>A estratégia é comunicada de forma pontual e limitada. Por exemplo, uma apresentação anual ou um e-mail do CEO sobre as prioridades e metas do ano, no mínimo para o nível gerencial.</li><li>Alguns gestores tentam repassar objetivos para suas equipes, mas não existe um processo consistente de desdobramento ou cascata.</li><li>A conexão entre os objetivos e estratégias do plano da empresa e os planos departamentais é parcial – áreas como Financeiro ou Comercial talvez traduzam algumas metas da empresa para suas metas departamentais, porém outras áreas ficam à margem.</li><li>Os colaboradores têm alguma noção das prioridades gerais, mas muitos ainda não veem claramente como seu trabalho diário influencia as prioridades estratégicas da organização.</li></ul>"
+                            },
+                            { 
+                                level: 3, 
+                                text: "<ul><li>Existe um processo estruturado de desdobramento. Após o plano estratégico, cada unidade de negócio ou departamento estabelece seus planos alinhados, a partir do plano geral da organização: objetivos departamentais coerentes com os objetivos corporativos.</li><li>As metas estratégicas anuais são desdobradas e distribuídas em metas específicas para áreas (ex.: metas de vendas por região, metas operacionais de eficiência, iniciativas de TI alinhadas, etc.).</li><li>A comunicação da estratégia é mais abrangente, indo além do nível gerencial – podem ocorrer workshops ou reuniões de alinhamento para desdobramento das estratégias e táticas podendo chegando a incluir praticamente todos os colaboradores (a liderança apresenta aos gerentes, que repassam às equipes).</li><li>Ferramentas visuais como mapa estratégico ou infográficos são usados para tornar a estratégia acessível a todos.</li><li>Os colaboradores de nível gerencial entendem bem as prioridades estratégicas e como o seu trabalho contribui para elas, e já se observa alinhamento de esforços entre áreas diferentes para objetivos comuns.</li></ul>"
+                            },
+                            { 
+                                level: 4, 
+                                text: "<ul><li>A estratégia está entranhada em toda a organização. Todos os níveis conhecem os objetivos estratégicos em certo detalhe e de forma adequada a seu contexto – por exemplo, cada colaborador consegue dizer como seu trabalho contribui para a visão, os objetivos e metas da empresa.</li><li>Há um desdobramento completo: os objetivos estratégicos anuais geram estratégias e iniciativas táticas por área, até chegar a metas individuais (através de avaliações de desempenho ou OKRs).</li><li>A comunicação é contínua e em múltiplos canais: reuniões gerais (\"all-hands meetings\") periódicas para rever resultados e prioridades, atualizações em murais ou intranet sobre o progresso do plano, e narrativas que celebram conquistas estratégicas.</li><li>Recursos e estruturas são ajustados conforme necessário para suportar a estratégia (por exemplo, orçamento e investimentos alinhados com os objetivos estratégicos, eventuais mudanças na estrutura organizacional para melhor executar o plano).</li><li>A organização apresenta unidade de propósito: esforços sincronizados e colaboração interdepartamental para atingir metas estratégicas, minimizando silos. Em resumo, a estratégia faz parte da rotina de todos e orienta a tomada de decisão em todos os níveis.</li></ul>"
+                            }
+                        ]
+                    }
+                ]
+            },
+            tools: {
+                title: "Uso de Tecnologia na Gestão da Estratégia",
+                questions: [
+                    {
+                        title: "Uso de Tecnologia na Gestão da Estratégia",
+                        text: "Quais **ferramentas e tecnologias** são utilizadas para apoiar o planejamento, a execução e o acompanhamento da estratégia? A organização aproveita sistemas digitais (dashboards, softwares de gestão, automação, IA) para gerir a estratégia de forma eficaz? A utilização de IA em vários processos de gestão das estratégias já é uma realidade?",
+                        options: [
+                            {
+                                level: 1,
+                                text: "<ul><li>O gerenciamento da estratégia é feito basicamente com **ferramentas manuais ou genéricas**</li><li>O plano estratégico possivelmente reside em documentos Word/PowerPoint ou similares, os indicadores são acompanhados em planilhas Excel isoladas e as atualizações são inseridas manualmente</li><li>Não há um sistema central ou específico para consolidar informações e dados estratégicos; cada reunião exige esforço para compilar dados de diferentes fontes</li><li>A comunicação do progresso é via e-mail ou reuniões presenciais, sem apoio de plataformas on-line</li><li>A falta de tecnologia dedicada torna o processo **lento e suscetível a falhas** (por exemplo, versões conflitantes de planilhas, dados desatualizados, dificuldade de compartilhamento)</li></ul>"
+                            },
+                            {
+                                level: 2,
+                                text: "<ul><li>A organização adota algumas **ferramentas digitais** para melhorar a gestão estratégica, as vezes online, mas de maneira limitada</li><li>Talvez use um software genérico de projetos para acompanhar iniciativas estratégicas, ou ferramentas básicas de BI (como Power BI, Google Data Studio) para criar painéis de controle simples dos indicadores</li><li>Pode ter adotado ferramentas de colaboração online (como Teams, Slack) para comunicação sobre temas estratégicos, e um repositório central (como SharePoint, Google Drive) para armazenar documentos estratégicos</li><li>Embora ainda haja dependência de planilhas e processos manuais, a organização já percebe os benefícios da digitalização e busca **reduzir a fragmentação** de informações</li><li>Contudo, as ferramentas não estão totalmente integradas e ainda requerem esforço manual significativo para consolidar dados e gerar relatórios</li></ul>"
+                            },
+                            {
+                                level: 3,
+                                text: "<ul><li>A empresa investe em uma **plataforma mais robusta** para gestão estratégica</li><li>Por exemplo, um **software de planejamento e performance** (como ferramentas de Balanced Scorecard, OKR software, ou módulos de EPM – Enterprise Performance Management), ou no mínimo sistemas desenvolvidos em planilhas online, conectados automaticamente para atualização e colaboração, e que centralizam os objetivos, estratégias, táticas, indicadores, metas, resultados e responsáveis</li><li>Os dados de diferentes áreas começam a ser **integrados automaticamente** nesses sistemas (via integrações com bancos de dados corporativos, planilhas vinculadas ou APIs)</li><li>A alta administração consegue visualizar um **dashboard estratégico consolidado** e atualizado quase em tempo real com os principais KPIs</li><li>Ferramentas colaborativas apoiam o acompanhamento – por exemplo, sistemas onde cada responsável atualiza o status de seu projeto e isso fica visível para todos</li><li>Há também uso de tecnologia para **comunicação estratégica interna**: portais, apps ou murais digitais onde se publicam os objetivos e o progresso, aumentando transparência</li><li>Em resumo, a empresa dispõe de uma **plataforma unificada** que facilita muito o acompanhamento da estratégia, reduz trabalho manual e melhora a velocidade de acesso à informação e a tomada de decisão</li></ul>"
+                            },
+                            {
+                                level: 4,
+                                text: "<ul><li>A organização leva o uso de tecnologia ao **estado da arte** na gestão da estratégia</li><li>O antigo escritório de projetos/estratégia evoluiu para um **\"Office of Strategy Management 2.0\" digital**, com ampla incorporação de tecnologias de **Inteligência Artificial e automação**</li><li>Dashboards **interativos em tempo real** cobrem todos os níveis, desde visão geral para executivos até visões detalhadas para gestores, permitindo \"drill-down\"(detalhamento) em questões específicas</li><li>**Agentes de IA** atuam como assistentes: monitoram mudanças de ambiente e performance interna, simulam impactos de cenários alternativos, sugerem ajustes de rota e até alertam sobre riscos emergentes ou oportunidades não exploradas</li><li>**Machine learning** é usado para identificar padrões nos dados estratégicos e prever tendências</li><li>A organização pode usar **automação robótica de processos (RPA)** para coletar dados de múltiplas fontes e alimentar automaticamente os sistemas de gestão estratégica</li><li>Há integração total entre sistemas (ERP, CRM, RH, financeiro), permitindo uma visão holística e em tempo real da performance organizacional</li><li>A tecnologia não apenas **suporta** a gestão da estratégia, mas a **potencializa**, oferecendo insights que não seriam possíveis manualmente e permitindo uma agilidade de resposta sem precedentes</li></ul>"
+                            }
+                        ]
+                    }
+                ]
+            },
+            learning: {
+                title: "Aprendizado e Inovação na Gestão da Estratégia",
+                questions: [
+                    {
+                        title: "Aprendizado e Inovação",
+                        text: "A organização aprende com os resultados obtidos e ajusta sua estratégia e táticas conforme necessário? Existe abertura para inovação estratégica, buscando novas ideias e adaptando a estratégia diante de mudanças de cenário ou oportunidades? Existe a busca da inovação para diferenciar as estratégias mais importantes?",
+                        options: [
+                            {
+                                level: 1,
+                                text: "<ul><li>A estratégia, uma vez definida (se é que foi definida), permanece estática até o fim do ciclo (ano, biênio, etc.), independentemente dos resultados obtidos ao longo do tempo</li><li>Não há práticas de revisão ou reflexão sobre o andamento da estratégia: os fracassos podem se repetir pois ninguém analisa as causas, e os sucessos não são formalmente capturados como aprendizados</li><li>A cultura não incentiva questionar a estratégia vigente – 'plano é plano'</li><li>Iniciativas inovadoras ou sugestões de mudança estratégica dificilmente emergem, pois predomina o status quo ('sempre foi assim')</li><li>Apenas choques externos muito fortes forçam alguma mudança, e mesmo assim a organização demora a reagir</li></ul>"
+                            },
+                            {
+                                level: 2,
+                                text: "<ul><li>A empresa reconhece a necessidade de aprender com a execução, mas o faz de forma reativa e esporádica</li><li>Após concluir o período do plano, há uma avaliação informal e superficial de sucesso/fracasso, mas sem análise profunda das causas ou sistematização das lições</li><li>Mudanças na estratégia acontecem apenas quando problemas se tornam evidentes ou críticos – não há antecipação</li><li>A inovação é vista como 'coisa de outros departamentos' ou algo para o futuro, não integrada ao processo estratégico</li><li>Quando surgem ideias inovadoras, elas são tratadas de forma ad hoc, sem processo estruturado para avaliá-las ou implementá-las</li><li>A organização tende a repetir os mesmos padrões estratégicos, mesmo quando o contexto muda</li></ul>"
+                            },
+                            {
+                                level: 3,
+                                text: "<ul><li>Periodicamente ou em pontos definidos, a liderança realiza sessões para avaliar o progresso das estratégias, revisar premissas e ajustar o que for necessário</li><li>Há um esforço consciente de extrair lições aprendidas: documentar os fatores por trás das metas atingidas ou não atingidas, e discutir o que poderia ser feito diferente</li><li>Essas lições são conectadas ao ciclo seguinte de planejamento (p. ex., se um projeto estratégico falhou, suas causas são analisadas e consideradas ao desenhar novas iniciativas)</li><li>A cultura valoriza a melhoria contínua – problemas viram oportunidades de aprendizagem e melhoria, e acertos viram boas práticas a replicar</li><li>Em termos de inovação, a empresa começa a incorporar iniciativas inovadoras em suas estratégias: pilotos de novas ideias, projetos de transformação digital, parcerias ou pesquisas visando novas fontes de vantagem competitiva, ou seja, uma estratégia diferenciada</li><li>Existe espaço para adaptar a estratégia, embora com cautela: se algo não vai bem e pequenas correções táticas não resolvem, admite-se ajustar ou substituir aquela estratégia</li><li>Em síntese, a estratégia passa a ser encarada como um processo dinâmico, sujeito a ajustes baseados em evidências e reflexões, e sempre buscando a inovação, quando isso for possível</li></ul>"
+                            },
+                            {
+                                level: 4,
+                                text: "<ul><li>A organização atingiu um estágio em que aprendizado e inovação são parte integrante da gestão das estratégias</li><li>Há um ciclo ativo de aprendizado estratégico: a empresa não só faz revisões periódicas estruturadas (semestral, anual), mas também aprendizado contínuo – indicadores e feedback do mercado e internos são monitorados para recalibrar rapidamente a execução ou até a própria estratégia quando necessário (sem improviso, baseado em fatos, mas com agilidade)</li><li>A cultura encoraja questionamentos construtivos: se surgem evidências de que uma estratégia não está funcionando, há abertura para mudá-la sem resistência excessiva</li><li>A inovação é sistemática: há processos para gerar, avaliar e implementar ideias inovadoras que possam se tornar novas estratégias ou melhorar as existentes</li><li>A organização não apenas reage a mudanças, mas as antecipa e se prepara para elas – cenários alternativos e planos de contingência prontos para serem colocados em prática</li><li>Os colaboradores sentem-se parte desse processo de inovação – ideias do campo são incentivadas, coletadas e algumas implementadas, num ciclo de experimentação estratégica</li><li>Assim, a estratégia se mantém viva, em constante evolução e inovadora, garantindo vantagem competitiva sustentável</li></ul>"
+                            }
+                        ]
+                    }
+                ]
+            },
+            culture: {
+                title: "Liderança e Cultura da Gestão da Estratégia",
+                questions: [
+                    {
+                        title: "Liderança e Cultura da Gestão da Estratégia",
+                        text: "A cultura organizacional e as práticas de liderança apoiam a gestão da estratégia? Os líderes promovem ativamente a gestão da construção e da execução da estratégia? Existe uma cultura de comprometimento com os objetivos estratégicos em todos os níveis?",
+                        options: [
+                            {
+                                level: 1,
+                                text: "<ul><li>A cultura e a liderança não enfatizam a estratégia</li><li>Os líderes raramente comunicam ou reforçam os objetivos estratégicos; o foco recai somente em problemas operacionais do dia a dia</li><li>Muitos colaboradores nem conhecem a visão ou os objetivos estratégicos da empresa</li><li>Há resistência a mudanças de direção e pouca mentalidade de longo prazo</li><li>Cada área cuida apenas de si, resultando em silos organizacionais que dificultam iniciativas estratégicas transversais</li><li>Em suma, 'a gestão da estratégia' não faz parte da cultura vigente – é vista talvez como algo distante ou burocrático</li></ul>"
+                            },
+                            {
+                                level: 2,
+                                text: "<ul><li>A alta direção tem consciência da importância da estratégia e comunica diretrizes estratégicas ocasionalmente (por exemplo, em um discurso anual ou em materiais institucionais), porém isso não se traduz plenamente em comportamento diário</li><li>Alguns líderes seniores apoiam a estratégia, mas de forma inconsistente – muitas vezes priorizam o curto prazo em detrimento de iniciativas estratégicas de longo prazo</li><li>A cultura começa a reconhecer termos como visão e objetivos estratégicos, mas ainda não há engajamento amplo</li><li>Funcionários podem perceber a gestão da estratégia como 'mais uma tarefa' em vez de parte de seu trabalho essencial</li><li>A liderança intermediária ainda não está totalmente alinhada ou capacitada para promover a estratégia em suas equipes</li></ul>"
+                            },
+                            {
+                                level: 3,
+                                text: "<ul><li>Os líderes ativamente comunicam e exemplificam o comprometimento com a gestão da estratégia</li><li>Estratégia e resultados tornam-se pauta frequente em reuniões gerais e de equipe</li><li>A organização desenvolve uma cultura de accountability (compromisso, responsabilidade): acompanhar metas e resultados passa a ser valorizado</li><li>Começam a existir reconhecimentos a equipes que atingem objetivos estratégicos ou que contribuem com ideias inovadoras</li><li>A colaboração entre áreas melhora, puxada pelos líderes que estimulam quebrar silos para projetos estratégicos</li><li>A cultura incorpora noções de melhoria contínua – erros na execução são analisados para solução e aprendizado, ao invés de busca por culpados</li><li>Ainda existem desafios (nem todos os colaboradores estão engajados, e algumas áreas podem estar em transição), mas a direção é clara: líderes e RH trabalham para incorporar a gestão da estratégia como competência organizacional</li></ul>"
+                            },
+                            {
+                                level: 4,
+                                text: "<ul><li>A organização tem uma cultura sólida orientada à gestão da estratégia e à excelência</li><li>Os líderes, em todos os níveis, atuam como sponsors (responsáveis que fornecem recursos e apoio para o sucesso das iniciativas) e comunicadores da estratégia: constantemente vinculam decisões do dia a dia aos objetivos de longo prazo, e mantêm as equipes focadas no 'norte' estabelecido</li><li>A valorização da estratégia faz parte da cultura – há orgulho em cumprir a missão e buscar a visão, atingindo os objetivos estratégicos definidos</li><li>Existe transparência e confiança: a liderança compartilha abertamente progresso, desafios e ajustes necessários</li><li>A organização tem capacidade de adaptação rápida quando o contexto muda, sem perder o foco estratégico</li><li>Colaboradores em todos os níveis compreendem como seu trabalho contribui para os objetivos maiores e se sentem parte ativa da construção do futuro da organização</li></ul>"
+                            }
                         ]
                     }
                 ]
@@ -403,6 +735,116 @@
                     title: "Mantenha a Excelência",
                     text: "Continue evoluindo e realize avaliações periódicas da própria governança estratégica.",
                     actions: ["Inovar processos", "Benchmarking externo", "Melhoria contínua"]
+                }
+            },
+            execution: {
+                1: {
+                    title: "Estruture a Execução Básica",
+                    text: "Estabeleça processos básicos de execução e monitoramento dos resultados estratégicos.",
+                    actions: ["Definir responsáveis por iniciativas", "Criar cronograma de execução", "Estabelecer reuniões de acompanhamento"]
+                },
+                2: {
+                    title: "Sistematize o Monitoramento",
+                    text: "Implemente relatórios regulares e melhore o acompanhamento das iniciativas estratégicas.",
+                    actions: ["Criar relatórios padronizados", "Definir indicadores de progresso", "Estabelecer rituais de revisão"]
+                },
+                3: {
+                    title: "Integre Performance e BI",
+                    text: "Desenvolva painéis integrados e utilize ferramentas de Business Intelligence para monitoramento.",
+                    actions: ["Implementar dashboard estratégico", "Integrar sistemas", "Automatizar relatórios"]
+                },
+                4: {
+                    title: "Otimize com Analytics Avançados",
+                    text: "Utilize analytics avançados e processos ágeis para execução e monitoramento em tempo real.",
+                    actions: ["Implementar analytics preditivos", "Automatizar alertas", "Gestão proativa de riscos"]
+                }
+            },
+            indicators: {
+                1: {
+                    title: "Defina Indicadores Básicos",
+                    text: "Estabeleça indicadores estratégicos fundamentais e inicie a coleta sistemática de dados.",
+                    actions: ["Definir KPIs estratégicos", "Estabelecer fontes de dados", "Criar processo de coleta"]
+                },
+                2: {
+                    title: "Estruture a Governança de Dados",
+                    text: "Organize melhor a coleta e análise de dados, definindo responsabilidades e processos.",
+                    actions: ["Definir governança de dados", "Padronizar coleta", "Treinar equipes"]
+                },
+                3: {
+                    title: "Implemente BI Avançado",
+                    text: "Desenvolva painéis integrados e utilize ferramentas de BI para análises sofisticadas.",
+                    actions: ["Implementar plataforma BI", "Criar dashboards integrados", "Análises preditivas básicas"]
+                },
+                4: {
+                    title: "Utilize IA e Machine Learning",
+                    text: "Implemente soluções avançadas de analytics e inteligência artificial para insights estratégicos.",
+                    actions: ["Implementar IA/ML", "Analytics em tempo real", "Insights preditivos avançados"]
+                }
+            },
+            culture: {
+                1: {
+                    title: "Inicie Mudança Cultural",
+                    text: "Comece a desenvolver uma cultura mais orientada à estratégia na organização.",
+                    actions: ["Comunicar importância da estratégia", "Engajar lideranças", "Promover primeiros comportamentos"]
+                },
+                2: {
+                    title: "Estruture Programas Culturais",
+                    text: "Implemente programas estruturados para desenvolver a cultura estratégica.",
+                    actions: ["Criar programas de engajamento", "Treinar lideranças", "Estabelecer rituais estratégicos"]
+                },
+                3: {
+                    title: "Integre Cultura ao Dia a Dia",
+                    text: "Incorpore a orientação estratégica aos processos e decisões cotidianas.",
+                    actions: ["Integrar estratégia às decisões", "Reconhecer comportamentos", "Medir engajamento"]
+                },
+                4: {
+                    title: "Mantenha Cultura de Excelência",
+                    text: "Sustente uma cultura de alta performance e orientação estratégica contínua.",
+                    actions: ["Cultura de inovação", "Melhoria contínua", "Liderança estratégica"]
+                }
+            },
+            tools: {
+                1: {
+                    title: "Digitalize o Básico",
+                    text: "Substitua processos manuais por ferramentas digitais básicas para gestão da estratégia.",
+                    actions: ["Migrar de planilhas para ferramentas digitais", "Centralizar informações", "Treinar equipes"]
+                },
+                2: {
+                    title: "Implemente Ferramentas Colaborativas",
+                    text: "Adote ferramentas de colaboração e painéis básicos para melhorar a gestão estratégica.",
+                    actions: ["Implementar ferramentas colaborativas", "Criar painéis básicos", "Estabelecer repositório central"]
+                },
+                3: {
+                    title: "Integre Plataformas SPM",
+                    text: "Implemente plataformas integradas de Strategic Performance Management.",
+                    actions: ["Avaliar plataformas SPM", "Integrar sistemas", "Automatizar processos"]
+                },
+                4: {
+                    title: "Utilize IA e Automação Avançada",
+                    text: "Implemente soluções avançadas de IA e automação para gestão estratégica.",
+                    actions: ["Implementar IA estratégica", "Automação completa", "Analytics preditivos"]
+                }
+            },
+            learning: {
+                1: {
+                    title: "Inicie Captura de Lições",
+                    text: "Estabeleça processos básicos para capturar e documentar lições aprendidas.",
+                    actions: ["Criar processo de lições aprendidas", "Documentar experiências", "Estabelecer reuniões de retrospectiva"]
+                },
+                2: {
+                    title: "Sistematize o Aprendizado",
+                    text: "Organize melhor a captura e aplicação de lições aprendidas no processo estratégico.",
+                    actions: ["Formalizar processo de aprendizado", "Criar base de conhecimento", "Treinar equipes"]
+                },
+                3: {
+                    title: "Integre ao Ciclo de Planejamento",
+                    text: "Conecte sistematicamente as lições aprendidas ao ciclo de planejamento estratégico.",
+                    actions: ["Integrar lições ao planejamento", "Implementar melhoria contínua", "Promover inovação"]
+                },
+                4: {
+                    title: "Cultive Aprendizado Ágil",
+                    text: "Desenvolva uma cultura de aprendizado contínuo e inovação na gestão estratégica.",
+                    actions: ["Cultura de experimentação", "Aprendizado contínuo", "Inovação sistemática"]
                 }
             },
             formulation: {
@@ -522,17 +964,26 @@
             currentQuestion.options.forEach((option, index) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.className = 'option-card bg-white border-2 border-gray-200 rounded-lg p-4 text-left';
-                optionDiv.innerHTML = `
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                            <span class="text-red-700 font-bold">${option.level}</span>
-                        </div>
-                        <div>
-                            <p class="text-gray-800 font-medium">${option.text}</p>
-                        </div>
-                    </div>
-                `;
-
+                
+                // Criar indicador de nível
+                const levelIndicator = document.createElement('div');
+                levelIndicator.className = 'option-level';
+                const levelDescriptions = {
+                    1: 'Nível 1 - Reativo',
+                    2: 'Nível 2 - Básico',
+                    3: 'Nível 3 - Estruturado',
+                    4: 'Nível 4 - Avançado'
+                };
+                levelIndicator.textContent = levelDescriptions[option.level];
+                
+                // Criar texto da opção
+                const optionText = document.createElement('div');
+                optionText.className = 'text-gray-800 font-medium';
+                optionText.innerHTML = option.text;
+                optionText.style.marginTop = '0.5rem';
+                
+                optionDiv.appendChild(levelIndicator);
+                optionDiv.appendChild(optionText);
                 optionDiv.addEventListener('click', () => selectOption(option.level, optionDiv));
                 optionsContainer.appendChild(optionDiv);
             });
@@ -618,7 +1069,12 @@
             const scores = {
                 governance: 0,
                 formulation: 0,
-                deployment: 0
+                deployment: 0,
+                execution: 0,
+                culture: 0,
+                indicators: 0,
+                tools: 0,
+                learning: 0
             };
 
             // Calcular scores por dimensão
@@ -635,7 +1091,9 @@
             });
 
             // Calcular score geral
-            const overallScore = ((scores.governance + scores.formulation + scores.deployment) / 3).toFixed(1);
+            const dimensionCount = Object.keys(questionsData).length;
+            const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
+            const overallScore = (totalScore / dimensionCount).toFixed(1);
 
             return { ...scores, overall: parseFloat(overallScore) };
         }
@@ -651,11 +1109,21 @@
             document.getElementById('governance-score').textContent = scores.governance;
             document.getElementById('formulation-score').textContent = scores.formulation;
             document.getElementById('deployment-score').textContent = scores.deployment;
+            document.getElementById('execution-score').textContent = scores.execution;
+            document.getElementById('culture-score').textContent = scores.culture;
+            document.getElementById('indicators-score').textContent = scores.indicators;
+            document.getElementById('tools-score').textContent = scores.tools;
+            document.getElementById('learning-score').textContent = scores.learning;
 
             // Atualizar barras de progresso
             document.getElementById('governance-bar').style.width = (scores.governance / 4 * 100) + '%';
             document.getElementById('formulation-bar').style.width = (scores.formulation / 4 * 100) + '%';
             document.getElementById('deployment-bar').style.width = (scores.deployment / 4 * 100) + '%';
+            document.getElementById('execution-bar').style.width = (scores.execution / 4 * 100) + '%';
+            document.getElementById('culture-bar').style.width = (scores.culture / 4 * 100) + '%';
+            document.getElementById('indicators-bar').style.width = (scores.indicators / 4 * 100) + '%';
+            document.getElementById('tools-bar').style.width = (scores.tools / 4 * 100) + '%';
+            document.getElementById('learning-bar').style.width = (scores.learning / 4 * 100) + '%';
 
             // Criar gráfico radar
             createRadarChart(scores);
@@ -670,10 +1138,10 @@
             new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['Governança', 'Formulação', 'Desdobramento'],
+                    labels: ['Governança', 'Formulação', 'Desdobramento', 'Execução', 'Cultura', 'Indicadores', 'Ferramentas', 'Aprendizado'],
                     datasets: [{
                         label: 'Nível de Maturidade',
-                        data: [scores.governance, scores.formulation, scores.deployment],
+                        data: [scores.governance, scores.formulation, scores.deployment, scores.execution, scores.culture, scores.indicators, scores.tools, scores.learning],
                         backgroundColor: 'rgba(220, 38, 38, 0.2)',
                         borderColor: 'rgba(220, 38, 38, 1)',
                         borderWidth: 2,
@@ -718,11 +1186,16 @@
             const container = document.getElementById('recommendations-container');
             container.innerHTML = '';
 
-            const dimensions = ['governance', 'formulation', 'deployment'];
+            const dimensions = ['governance', 'formulation', 'deployment', 'execution', 'culture', 'indicators', 'tools', 'learning'];
             const dimensionNames = {
                 governance: 'Governança',
                 formulation: 'Formulação', 
-                deployment: 'Desdobramento'
+                deployment: 'Desdobramento',
+                execution: 'Execução',
+                culture: 'Cultura',
+                indicators: 'Indicadores',
+                tools: 'Ferramentas',
+                learning: 'Aprendizado'
             };
 
             dimensions.forEach(dimension => {
