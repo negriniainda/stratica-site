@@ -647,6 +647,9 @@ serve(async (req) => {
              html: `
                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 10px; background-color: #f9f9f9;">
                  <div style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                   <div style="text-align: center; margin-bottom: 25px;">
+                     <img src="https://raw.githubusercontent.com/mnegrini/stratica-site/main/Logo09.avif" alt="Stratica Logo" style="height: 40px; max-width: 200px; object-fit: contain;" />
+                   </div>
                    <h1 style="color: #2c3e50; text-align: center; margin-bottom: 30px;">Seu Diagnóstico de Maturidade</h1>
                    
                    <div style="background-color: #ecf0f1; padding: 20px; border-radius: 8px; margin-bottom: 25px;">

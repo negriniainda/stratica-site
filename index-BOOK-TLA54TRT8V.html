@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratica - Consultoria Estratégica Potencializada por IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Estilo para usar a fonte Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Efeito de gradiente no fundo do hero */
+        .hero-gradient {
+            background: #f8f9fa; /* Fundo mais claro, similar à referência */
+        }
+        
+        /* Estilos para o carrossel de logos */
+        .logos-carousel {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            padding: 20px 0;
+            background-color: white;
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .logos-slide {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            animation: scroll 110s linear infinite;
+        }
+        
+        .logos-slide img {
+            height: 108px;
+            width: auto;
+            object-fit: contain;
+            margin: 0 30px;
+            opacity: 0.9;
+            transition: opacity 0.3s, transform 0.3s;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        
+        .logos-slide img:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-168px * 59));
+            }
+        }
+        
+        /* Responsividade para o carrossel */
+        @media (max-width: 768px) {
+            .logos-slide img {
+                height: 90px;
+                margin: 0 22px;
+            }
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-134px * 59));
+                }
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logos-slide img {
+                height: 72px;
+                margin: 0 15px;
+            }
+            .logos-carousel {
+                padding: 20px 0;
+            }
+            .logos-slide {
+                animation: scroll 80s linear infinite;
+            }
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-102px * 59));
+                }
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Cabeçalho e Navegação -->
+    <header class="bg-white text-gray-800 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <img src="Logo09.avif" alt="Stratica Logo" class="h-10">            
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#visao" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Visão</a>
+                <a href="#servicos" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Serviços</a>
+                <a href="#diferenciais" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Diferenciais</a>
+                <a href="#consultores" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Consultores</a>
+                <a href="strategic-assessment.html" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Assessment Estratégico</a>
+                <!-- <a href="#cases" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Depoimentos</a> -->
+                <a href="#contato" class="bg-red-700 text-white px-4 py-2 rounded-md hover:bg-red-800 transition duration-300">Contato</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6 text-gray-800"></i>
+            </button>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#visao" class="block py-2 hover:text-red-700">Visão</a>
+            <a href="#servicos" class="block py-2 hover:text-red-700">Serviços</a>
+            <a href="#diferenciais" class="block py-2 hover:text-red-700">Diferenciais</a>
+            <a href="#consultores" class="block py-2 hover:text-red-700">Consultores</a>
+            <a href="strategic-assessment.html" class="block py-2 hover:text-red-700">Assessment Estratégico</a>
+            <a href="#cases" class="block py-2 hover:text-red-700">Depoimentos</a>
+            <a href="#contato" class="block py-2 hover:text-red-700">Contato</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Hero -->
+        <section id="home" class="relative text-gray-800 hero-gradient">
+             <div class="container mx-auto px-6 py-32 flex flex-col md:flex-row items-center text-center md:text-left">
+                <div class="md:w-1/2">
+                    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Estratégia + Tática</h1>
+                    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Powered by AI</h1>
+
+                    <p class="text-lg md:text-xl text-gray-700 max-w-xl mx-auto md:mx-0 mb-8">Transforme estratégias, pessoas e processos de gestão em resultados. Nossa metodologia integra expertise em consultoria com recursos de IA, proporcionando análises precisas e soluções eficazes a preços competitivos.</p>
+                    <div class="flex flex-col gap-4 justify-center md:justify-start max-w-xl mx-auto md:mx-0">
+                        <a href="#contato" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 text-center">Agende Uma Reunião de Diagnóstico Gratuita</a>
+                        <a href="assessment.html" class="bg-white border-2 border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 text-center">Avalie Online Sua Maturidade em Gestão da Estratégia</a>
+                    </div>
+                </div>
+                 <div class="md:w-1/2 mt-10 md:mt-0">
+                    <img src="Office.avif" alt="Executivo sorrindo" class="rounded-lg shadow-2xl mx-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Logos Clientes -->
+        <section class="py-12" style="background-color: #f8f9fa;">
+            <div class="container mx-auto px-6">
+                <h3 class="text-xl font-semibold text-center text-gray-700 mb-8">Quem Confia na Stratica</h3>
+                <div class="logos-carousel relative overflow-hidden">
+                    <div class="logos-slide flex items-center space-x-8" id="logos-container">
+                        <!-- Logos serão carregados automaticamente via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção A Visão -->
+        <section id="visao" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">Augmented Intelligence</h2>
+                <div class="w-24 h-1 bg-red-700 mx-auto mb-8"></div>
+                <p class="max-w-4xl mx-auto text-lg text-gray-600">
+                    A Stratica é uma consultoria estratégica "Powered by AI". Em um ambiente de negócios dinâmico, a integração da IA ao processo de gestão da estratégia é um imperativo. Trabalhamos para melhorar seus processos de gestão e unir a inteligência artificial e a humana — <span class="font-semibold text-red-700">Augmented Intelligence</span> — para ajudar nossos clientes a não apenas reagir, mas a se antecipar às mudanças do mercado, com recomendações embasadas, amplas e preditivas.
+                </p>
+            </div>
+        </section>
+
+        <!-- Seção de Serviços -->
+        <section id="servicos" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Nosso Portfólio de Serviços</h2>
+                    <div class="w-24 h-1 bg-red-700 mx-auto mt-4"></div>
+                    <p class="mt-4 text-lg text-gray-600">Oferecemos um portfólio completo, da construção da estratégia até gestão da sua implementação e execução, garantindo resultados mensuráveis.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="bar-chart-3" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Planejamento Estratégico</h4>
+                        <p class="text-gray-600">Facilitação do ciclo de planejamento com uso de IA e Ciência de Dados, da análise situacional e de mercado à definição das Estratégias e seus desdobramentos em Táticas, incluindo definição de Responsáveis e Indicadores-Chave de Performance (KPIs).</p>
+                    </div>
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="target" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Execução da Estratégia</h4>
+                        <p class="text-gray-600">Apoio na implantação de governança operacional, garantindo que as estratégias sejam refletidas em projetos táticos que avancem conforme o planejado, com ferramentas de gestão e painéis de controle "powered by AI".</p>
+                    </div>
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="search" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Inteligência de Mercado</h4>
+                        <p class="text-gray-600">Pesquisas de mercado, análise de tendências locais e globais, mapeamento de concorrentes e insights, apoiados por "Deep Research" com IA, para identificar ameaças e oportunidades, e alimentar melhores decisões estratégicas.</p>
+                    </div>
+                     <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="trending-up" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Aceleração de Crescimento</h4>
+                        <p class="text-gray-600">Consultoria para empresas que desejam acelerar seu crescimento, identificando e explorando novas oportunidades de mercado e modelos de negócio, incluindo digitalização e automatização de processos com auxílio de Inteligência Artificial.</p>
+
+                    </div>
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="percent" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Marketing e Go-To-Market</h4>
+                        <p class="text-gray-600">Estratégias de marketing e seus desdobramentos em campanhas e atividades de go-to-market, para expandir a presença e o alcance de produtos e serviços, nos mercados atuais ou para entrada em novos mercados, com apoio de ferramentas e canais digitais.</p>
+                    </div>
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="square-kanban" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Desenvolvimento de Lideranças</h4>
+                        <p class="text-gray-600">Programas para desenvolver líderes eficazes e aumentar a produtividade de suas equipes, com foco em alinhamento, engajamento, comunicação e resultados, com apoio de ferramentas de colaboração digital e Business Intelligence.</p>
+                    </div>
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="globe" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Expansão Internacional (LatAm)</h4>
+                        <p class="text-gray-600">Expertise regional para desenvolvimento de estratégias para apoiar a entrada ou o crescimento de empresas estrangeiras em mercados da América Latina, incluindo o Brasil.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">Serviços Potencializados por IA</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                     <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="brain-circuit" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">AI-Driven Business Research</h4>
+                        <p class="text-gray-300">Uso de Machine Learning e IA Generativa para analisar dados de mercado, gerando insumos para o planejamento e a execução.</p>
+                    </div>
+                     <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="bot" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Planos Estratégicos com Agentes de IA</h4>
+                        <p class="text-gray-300">Agentes de IA treinados em metodologias de planejamento estratégico que agilizam e enriquecem a construção de planos estratégicos em tempo real.</p>
+
+                    </div>
+                     <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="radar" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Inteligência Competitiva Automatizada</h4>
+                        <p class="text-gray-300">Agentes de IA que monitoram continuamente o ambiente competitivo, filtrando ruídos, trazendo oportunidades e destacando insights.</p>
+                    </div>
+                    <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="line-chart" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">IA para Vendas e Previsão de Demanda</h4>
+                        <p class="text-gray-300">Algoritmos que geram previsões de demanda acuradas e aceleram vendas com lead scoring inteligente e enriquecimento de informações.</p>
+                    </div>                 
+                    <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="binoculars" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">AI-Driven Data Discovery</h4>
+                        <p class="text-gray-300"> Descubra respostas para perguntas que você nunca fez sobre seus dados através de análise de padrões e anomalias com IA</p>
+                    </div>
+                     <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="microscope" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Observabilidade de Sistemas com IA</h4>
+                        <p class="text-gray-300">Inteligência Artificial para detectar problemas e gargalos em seus sistemas e processos antes que eles afetem os usuários e clientes.</p>
+                    </div>
+                     <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="heart-handshake" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Análise Comportamental com IA</h4>
+                        <p class="text-gray-300">Ciência de Dados e IA para detectar probabilidades de vendas, churn, engajamento, fraudes e outros comportamentos.</p>
+                    </div>
+                    <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="monitor-smartphone" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Desenvolvimento de Aplicações com IA</h4>
+                        <p class="text-gray-300">Aplicativos que usam Inteligência Artificial para cenários internos e externos, potencializando seus negocios com foco em pessoas.</p>
+                    </div>      
+                    <!-- Card de Serviço IA -->
+                    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-red-500/20 transition-shadow duration-300">
+                        <i data-lucide="workflow" class="w-10 h-10 text-red-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Automação e Fluxos com Agentes de IA</h4>
+                        <p class="text-gray-300">Automações adaptativas para atividades como buscar oportunidades de negócios, gerar conteúdos, responder a RFPs.</p>
+                    </div>      
+                    
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Diferenciais -->
+        <section id="diferenciais" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Nossos Diferenciais Competitivos</h2>
+                    <div class="w-24 h-1 bg-red-700 mx-auto mt-4"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="gem" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Soluções Sob Medida</h4>
+                        <p class="text-gray-600">Não usamos modelos genéricos. Cada solução é adaptada para a realidade única da sua organização.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="rocket" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Agilidade e Velocidade</h4>
+                        <p class="text-gray-600">Estrutura enxuta e sem burocracia para responder rapidamente às mudanças do mercado.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="users" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Atendimento Sênior</h4>
+                        <p class="text-gray-600">Acesso direto a consultores experientes e sócios, que "colocam a mão na massa" junto com seu time.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="atom" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">IA + Expertise Humana</h4>
+                        <p class="text-gray-600">A IA aumenta, não substitui. Unimos a capacidade da IA com o julgamento e a criatividade humana.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="award" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Foco em Resultados</h4>
+                        <p class="text-gray-600">Nosso sucesso é medido pelos resultados concretos que geramos para o seu negócio.</p>
+                    </div>
+                     <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-red-700 mx-auto mb-4">
+                            <i data-lucide="book-open" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Transferência de Conhecimento</h4>
+                        <p class="text-gray-600">Capacitamos seu time para que se tornem autossuficientes e sustentem os resultados a longo prazo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Nossos Consultores Principais -->
+        <section id="consultores" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Nossos Consultores Principais</h2>
+                    <div class="w-24 h-1 bg-red-700 mx-auto mt-4"></div>
+                    <p class="mt-4 text-lg text-gray-600">Conheça os especialistas que lideram nossa equipe de consultoria estratégica.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Consultor 1 - Carlos -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Carlos Ferreira.jpeg" alt="Carlos Ferreira" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Carlos Ferreira</h4>
+                        <p class="text-red-700 font-semibold mb-3">Estratégia e Execução</p>
+                        <p class="text-gray-600">Professor de MBA na BSP e membro do IBGC, formado em Administração pela FEA-USP com MBAs pela ESSEC e Dom Cabral. Mais de 30 anos de experiência em Gestão Estratégica e Marketing, tendo trabalhado 13 anos na Microsoft em cargos de direção. Passagens pela IBM e Itautec.</p>
+                    </div>
+                    <!-- Consultor 2 - Marcos -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Marcos Braga.jpeg" alt="Marcos Braga" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Marcos Braga</h4>
+                        <p class="text-red-700 font-semibold mb-3">Liderança e Gestão</p>
+                        <p class="text-gray-600">Administrador pela FEA-USP com MBA pela ESSEC e mestrado, Conselheiro com mais de 30 anos de experiência. Trabalhou na Deloitte como Diretor de Educação Empresarial e 14 anos na HSM como Diretor Presidente, além de CEO da SBPNL. É expert em Liderança e Gestão.</p>
+                    </div>
+                    <!-- Consultor 3 - Reinaldo -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Reinaldo Roveri.jpeg" alt="Reinaldo Roveri" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Reinaldo Roveri</h4>
+                        <p class="text-red-700 font-semibold mb-3">Inteligência de Mercado</p>
+
+                        <p class="text-gray-600">Especialista em inteligência de mercado e estratégia com 20 anos de experiência, atendendo Microsoft, IBM, HP, SAP e outras. Trabalhou na Microsoft liderando Inteligência Competitiva. Graduado em Marketing pelo Mackenzie com pós e MBA pela FIA/USP.</p>
+                    </div>
+                    <!-- Consultor 4 - Anderson -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Anderson Figueiredo.jpeg" alt="Anderson Figueiredo" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Anderson Figueiredo</h4>
+                        <p class="text-red-700 font-semibold mb-3">Análises e Tendências</p>
+                        <p class="text-gray-600">Mais de 40 anos no mercado, sendo um dos analistas mais respeitados do Brasil. Passou por Cobra, Digirede e CPM (CapGemini), e foi Gerente Sênior na IDC Brasil focando em tendências de TI e Telecom. Graduado em Ciências da Computação pela Unicamp.</p>
+                    </div>
+                    <!-- Consultor 5 - Marcelo -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Marcelo Negrini.jpeg" alt="Marcelo Negrini" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Marcelo Negrini</h4>
+                        <p class="text-red-700 font-semibold mb-3">IA e Transformação Digital</p>
+                        <p class="text-gray-600">Formado em Comunicação Social pela Cásper Líbero com especializações por UC Berkeley e New York Institute of Technology, possuindo mais de 30 anos de experiência em transformação digital e IA. Passou por Microsoft, IBM, eBay e Naspers em posições de liderança global.</p>
+                    </div>
+                    <!-- Consultor 6 - Rodolfo -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Rodolfo Miceli.jpeg" alt="Rodolfo Miceli" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Rodolfo Miceli</h4>
+                        <p class="text-red-700 font-semibold mb-3">Gestão de Vendas</p>
+                        <p class="text-gray-600">Formado em Engenharia Eletrônica pela UFRJ com dois MBAs pela FGV, possuindo mais de 30 anos de experiência. Representou SAS Institute, IBM/Lotus e outras empresas. Trabalhou 12 anos na Microsoft Brasil e América Latina como responsável por Sales Excellence para 36 países.</p>
+                    </div>
+                    <!-- Consultor 7 - Hynde -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Hynde Fonseca.jpeg" alt="Hynde Fonseca Neto" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Hynde Fonseca Neto</h4>
+                        <p class="text-red-700 font-semibold mb-3">Transformação Digital</p>
+                        <p class="text-gray-600">Mentor, consultor e conselheiro com mais de 30 anos de experiência em Finanças, Varejo e Franchising. Especializado em transformação digital, planejamento e desenvolvimento de negócios. Atua em Conselhos Consultivos, iniciativas ESG e programas de mentoria executiva. Formado em Computação e Administração, com pós-graduação em Marketing pela ESPM.</p>
+                    </div>
+                     <!-- Consultor 8 - Victor -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Victor Sichero.jpeg" alt="Hynde Fonseca Neto" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Victor Sichero</h4>
+                        <p class="text-red-700 font-semibold mb-3">Planejamento Financeiro</p>
+                        <p class="text-gray-600">Administrador pela FAAP com MBA pela FGV/OHIO University. Foi VP Senior e CFO para América Latina na FOX, CFO da Microsoft Brasil e Diretor Financeiro na GE. Atua em finanças, controladoria, planejamento e gestão de riscos. Membro do FEG e diretor do IBEF. Premiado pelo CFO mundial da Microsoft.</p>
+                    </div>
+                     <!-- Consultor 9 - Ana -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Ana Venosa.jpeg" alt="Hynde Fonseca Neto" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Ana Venosa</h4>
+                        <p class="text-red-700 font-semibold mb-3">Estratégia e Inovação</p>
+                        <p class="text-gray-600">Consultora e mentora com 30 anos de experiência executiva em inovação e governança. Trabalhou no Vale do Silício desenvolvendo estratégias para Mercados Emergentes. Atuou na Intel, Oracle e Bayer. Graduada em Engenharia Civil pela Mackenzie com MBA Executivo pela BSP/Toronto e programas em Stanford e Wharton.</p>
+                    </div>                    
+                     <!-- Consultor 10 - Alex -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="mb-4">
+                            <img src="Pictures/Alex Silva.jpeg" alt="Hynde Fonseca Neto" class="w-24 h-24 rounded-full object-cover mx-auto border-4 border-gray-200">
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Alex Silva</h4>
+                        <p class="text-red-700 font-semibold mb-3">US Office</p>
+                        <p class="text-gray-600">Diretor da Stratica nos EUA, com vasta experiência em expansão internacional. Desde 1998 nos EUA, especializou-se em lançar operações LatAm para empresas do Vale do Silício, como Alteon, Nortel, NeScaler (Citrix) e Redline (Juniper). Formado em Processamento de Dados pela Mackenzie e Publicidade pela FAAP.</p>
+                    </div>                    
+               </div>
+            </div>
+        </section>
+
+        <!-- Seção Cases de Sucesso - TEMPORARIAMENTE OCULTA -->
+        <!-- 
+        <section id="cases" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Depoimentos de Clientes</h2>
+                    <div class="w-24 h-1 bg-red-700 mx-auto mt-4"></div>
+                    <p class="mt-4 text-lg text-gray-600">Depoimentos reais de clientes satisfeitos com nossos serviços.</p>
+                </div>
+                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Varejo de Bens de Consumo</h4>
+                            <p class="text-red-700 font-semibold mb-3">Aumento de 12% na receita</p>
+                            <p class="text-gray-600 italic">"Melhoramos a acurácia da previsão de demanda em 30% com IA, reduzindo rupturas de estoque e otimizando a estratégia comercial. O resultado foi um aumento de 12% na receita e redução de 20% nos custos logísticos."</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Setor Financeiro</h4>
+                            <p class="text-red-700 font-semibold mb-3">+25% em ativos sob gestão</p>
+                            <p class="text-gray-600 italic">"Estruturamos o plano de expansão para a América Latina e implementamos um Escritório de Gestão Estratégica, resultando na entrada bem-sucedida em 2 países, com 150 mil novos clientes e +25% nos ativos sob gestão na região."</p>
+
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Tecnologia (SaaS B2B)</h4>
+                            <p class="text-red-700 font-semibold mb-3">Aumento de 15% na taxa de conversão</p>
+                            <p class="text-gray-600 italic">"Com inteligência competitiva automatizada, antecipamos tendências de mercado e, com IA em vendas, aumentamos a taxa de conversão em 15% e reduzimos o churn trimestral de 8% para 5%."</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        -->
+
+        <!-- Seção de Contato -->
+        <section id="contato" class="py-20 bg-gray-800 text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Vamos Conversar?</h2>
+                    <div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div>
+                    <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Chame a Stratica para um assessment estratégico gratuito. Você vai se surpreender. Preencha o formulário abaixo ou entre em contato diretamente.</p>
+                </div>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+                    <div>
+                        <form action="#" method="POST" id="contact-form">
+                            <div class="mb-4">
+                                <label for="name" class="block mb-2">Nome</label>
+                                <input type="text" id="name" name="name" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block mb-2">Mensagem</label>
+                                <textarea id="message" name="message" rows="5" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">Enviar Mensagem</button>
+                        </form>
+                        <p id="form-success-message" class="hidden mt-4 text-center text-green-400">Mensagem enviada com sucesso! Entraremos em contato em breve.</p>
+                    </div>
+                    <div class="text-lg">
+                        <h3 class="text-2xl font-bold mb-4">Informações de Contato</h3>
+                        <p class="flex items-center mb-4">
+                            <i data-lucide="mail" class="w-6 h-6 mr-3 text-red-500"></i>
+                            <a href="mailto:stratica@stratica.com.br" class="hover:text-red-500">stratica@stratica.com.br</a>
+                        </p>
+                        <p class="flex items-center mb-4">
+                            <i data-lucide="globe" class="w-6 h-6 mr-3 text-red-500"></i>
+                            <a href="http://www.stratica.com.br" target="_blank" class="hover:text-red-500">www.stratica.com.br</a>
+                        </p>
+                        <p class="mt-8 text-gray-400">
+                            Estamos prontos para ajudar sua empresa a escrever o próximo capítulo de crescimento e sucesso estratégico.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Stratica. Todos os direitos reservados.</p>
+            <p class="text-sm text-gray-400 mt-2">Consultoria Estratégica Powered by AI</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para o menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Script para fechar o menu mobile ao clicar em um link
+        const mobileLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+
+        // Script para o formulário de contato
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('form-success-message');
+        
+        // Função para fallback mailto:
+        function sendEmailFallback(contactData) {
+            const subject = encodeURIComponent('Contato - Site Stratica');
+            const body = encodeURIComponent(
+                `Nome: ${contactData.name}\n` +
+                `Email: ${contactData.email}\n\n` +
+                `Mensagem:\n${contactData.message}`
+            );
+            const mailtoLink = `mailto:contato@stratica.com.br?subject=${subject}&body=${body}`;
+            window.open(mailtoLink, '_blank');
+            
+            // Mostrar mensagem de sucesso para o fallback
+            successMessage.textContent = 'Seu cliente de email foi aberto. Por favor, envie a mensagem através do seu email.';
+            successMessage.classList.remove('hidden');
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 8000);
+        }
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Obter dados do formulário
+            const formData = new FormData(contactForm);
+            const contactData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message')
+            };
+            
+            // Validar dados básicos
+            if (!contactData.name || !contactData.email || !contactData.message) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            // Desabilitar botão de envio durante o processamento
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+            
+            try {
+                // Tentar enviar dados para a Edge Function do Supabase
+                const response = await fetch('https://zfsdocnmxdaqvzuajbqp.supabase.co/functions/v1/contact-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmc2RvY25teGRhcXZ6dWFqYnFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2MDE1MzIsImV4cCI6MjA3MTE3NzUzMn0.uVd_l00SE-icATJEKam9sWJwzMMbblyjAqaMebnIPtM'
+                    },
+                    body: JSON.stringify(contactData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Sucesso - mostrar mensagem e limpar formulário
+                    contactForm.reset();
+                    successMessage.textContent = result.message || 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
+                    successMessage.classList.remove('hidden');
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+                } else {
+                    // Erro da API - usar fallback
+                    throw new Error(result.error || 'Erro na API');
+                }
+            } catch (error) {
+                console.error('Erro ao enviar formulário:', error);
+                
+                // Verificar se é erro de rede (Edge Function não disponível)
+                if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError') || error.message.includes('fetch')) {
+                    // Usar fallback mailto:
+                    console.log('Edge Function não disponível, usando fallback mailto:');
+                    sendEmailFallback(contactData);
+                    contactForm.reset();
+                } else {
+                    // Outros erros - mostrar mensagem e oferecer fallback
+                    const useEmailFallback = confirm(
+                        'Erro ao enviar mensagem através do sistema. ' +
+                        'Deseja abrir seu cliente de email para enviar a mensagem diretamente?'
+                    );
+                    
+                    if (useEmailFallback) {
+                        sendEmailFallback(contactData);
+                        contactForm.reset();
+                    }
+                }
+            } finally {
+                // Reabilitar botão de envio
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
+        });
+
+        // Inicializa os ícones do Lucide
+        lucide.createIcons();
+        
+        // Script para carregamento automático e carrossel de logos
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLogosAutomatically();
+        });
+
+        async function loadLogosAutomatically() {
+            const logosContainer = document.getElementById('logos-container');
+            if (!logosContainer) return;
+
+            // Lista de logos conhecidos (fallback caso não consiga carregar dinamicamente)
+            const knownLogos = [
+                { file: '02 - Microsoft.png', name: 'Microsoft' },
+                { file: '03 - Samsung.png', name: 'Samsung' },
+                { file: '04 - 99.png', name: '99' },
+                { file: '05 - AWS.png', name: 'AWS' },
+                { file: '06 - Cisco.png', name: 'Cisco' },
+                { file: '07 - Latam.png', name: 'Latam' },
+                { file: '08 - Einstein.png', name: 'Einstein' },
+                { file: '09 - Motorola.png', name: 'Motorola' },
+                { file: '10 - Software AG.png', name: 'Software AG' },
+                { file: '11 - BSP.png', name: 'BSP' },
+                { file: '12 - Catraca Livre.png', name: 'Catraca Livre' },
+                { file: '13 - NCR Atleos.png', name: 'NCR Atleos' },
+                { file: '14 - Tivit.png', name: 'Tivit' },
+                { file: '15 - Dynatrace.png', name: 'Dynatrace' },
+                { file: '16 - Avanade.png', name: 'Avanade' },
+                { file: '17 - Deloitte.png', name: 'Deloitte' },
+                { file: '18 - Circuito.png', name: 'Circuito' },
+                { file: '19 - Decio.png', name: 'Decio' },
+                { file: '20- Endemol.png', name: 'Endemol' },
+                { file: '21 - Febraban.png', name: 'Febraban' },
+                { file: '22 - Fujitsu.png', name: 'Fujitsu' },
+                { file: '23 - Ingram.png', name: 'Ingram' },
+                { file: '24 - Level 3.png', name: 'Level 3' },
+                { file: '25 - Linx.png', name: 'Linx' },
+                { file: '26 - Montecristo.png', name: 'Montecristo' },
+                { file: '27 - Neo Quimica Arena.png', name: 'Neo Quimica Arena' },
+                { file: '28 - CH Atrein.png', name: 'CH Atrein' },
+                { file: '29 - Beblue.png', name: 'Beblue' },
+                { file: '30 - Brasoftware.png', name: 'Brasoftware' },
+                { file: '31 - Ciranda.png', name: 'Ciranda' },
+                { file: '32 - CNA.png', name: 'CNA' },
+                { file: '33 -  Equinix.png', name: 'Equinix' },
+                { file: '34 - Estrela.png', name: 'Estrela' },
+                { file: '35 - Hortmix.png', name: 'Hortmix' },
+                { file: '36 - Gouvea.png', name: 'Gouvea' },
+                { file: '37 - Eucatex.png', name: 'Eucatex' },
+                { file: '38 - Experimento.png', name: 'Experimento' },
+                { file: '39 - Fluig.png', name: 'Fluig' },
+                { file: '40 - Fox.png', name: 'Fox' },
+                { file: '41 - Hinode.png', name: 'Hinode' },
+                { file: '42 - Giroflex.png', name: 'Giroflex' },
+                { file: '43 - Laureate.png', name: 'Laureate' },
+                { file: '44 - St Marche.png', name: 'St Marche' },
+                { file: '45 - Zebra.png', name: 'Zebra' },
+                { file: '46 - Nokia.png', name: 'Nokia' },
+                { file: '47 - Maksoud.png', name: 'Maksoud' },
+                { file: '48 - Promon.png', name: 'Promon' },
+                { file: '49 - Proxis.png', name: 'Proxis' },
+                { file: '50- Tracker.png', name: 'Tracker' },
+                { file: '51 - Fael.png', name: 'Fael' },
+                { file: '52 - KPMG.png', name: 'KPMG' },
+                { file: '53 - Valemobi.png', name: 'Valemobi' },
+                { file: '54 - Comstor.png', name: 'Comstor' },
+                { file: '55 - TES.png', name: 'TES' },
+                { file: '56 - OGMO.png', name: 'OGMO' },
+                { file: '57 - Paranapanema.png', name: 'Paranapanema' },
+                { file: '58 - Mundo Verde.png', name: 'Mundo Verde' },
+                { file: '59 - SOPESP.png', name: 'SOPESP' },
+                { file: '60 - Unisys.png', name: 'Unisys' }
+            ];
+
+            // Função para tentar carregar logos dinamicamente
+            async function tryLoadDynamicLogos() {
+                try {
+                    // Tenta buscar a lista de arquivos do diretório logos
+                    const response = await fetch('/logos/');
+                    if (response.ok) {
+                        const text = await response.text();
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(text, 'text/html');
+                        const links = doc.querySelectorAll('a[href$=".png"], a[href$=".PNG"]');
+                        
+                        const dynamicLogos = [];
+                        links.forEach(link => {
+                            const filename = link.getAttribute('href');
+                            if (filename && filename !== '../') {
+                                const name = filename.replace(/^\d+\s*-\s*/, '').replace(/\.(png|PNG)$/, '');
+                                dynamicLogos.push({ file: filename, name: name });
+                            }
+                        });
+                        
+                        return dynamicLogos.length > 0 ? dynamicLogos : null;
+                    }
+                } catch (error) {
+                    console.log('Carregamento dinâmico não disponível, usando lista conhecida');
+                }
+                return null;
+            }
+
+            // Tenta carregar dinamicamente, senão usa a lista conhecida
+            const logos = await tryLoadDynamicLogos() || knownLogos;
+
+            // Função para carregar uma imagem e retornar uma Promise
+            function loadImage(logo) {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = function() {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = `logos/${logo.file}`;
+                        imgElement.alt = logo.name;
+                        imgElement.className = 'object-contain';
+                        imgElement.style.height = '72px';
+                        imgElement.style.width = 'auto';
+                        imgElement.style.margin = '0 20px';
+                        resolve(imgElement);
+                    };
+                    img.onerror = function() {
+                        console.log(`Logo não encontrado: ${logo.file}`);
+                        reject(new Error(`Logo não encontrado: ${logo.file}`));
+                    };
+                    img.src = `logos/${logo.file}`;
+                });
+            }
+
+            // Carrega todas as imagens em paralelo e aguarda todas terminarem
+            const imagePromises = logos.map(logo => loadImage(logo));
+            
+            try {
+                const loadedImages = await Promise.allSettled(imagePromises);
+                
+                // Adiciona apenas as imagens que carregaram com sucesso ao container
+                loadedImages.forEach(result => {
+                    if (result.status === 'fulfilled') {
+                        logosContainer.appendChild(result.value);
+                    }
+                });
+                
+                // Configura o carrossel apenas após todas as imagens estarem carregadas
+                setupCarousel();
+            } catch (error) {
+                console.error('Erro ao carregar logos:', error);
+                setupCarousel(); // Configura mesmo com erro para não quebrar a página
+            }
+        }
+
+        function setupCarousel() {
+            const logosSlide = document.querySelector('.logos-slide');
+            if (logosSlide && logosSlide.children.length > 0) {
+                // Duplica os logos para criar o efeito de loop infinito
+                const originalLogos = Array.from(logosSlide.children);
+                originalLogos.forEach(logo => {
+                    const clone = logo.cloneNode(true);
+                    logosSlide.appendChild(clone);
+                });
+                
+                // Pausa a animação quando o mouse está sobre o carrossel
+                const logosCarousel = document.querySelector('.logos-carousel');
+                logosCarousel.addEventListener('mouseenter', () => {
+                    logosSlide.style.animationPlayState = 'paused';
+                });
+                logosCarousel.addEventListener('mouseleave', () => {
+                    logosSlide.style.animationPlayState = 'running';
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
