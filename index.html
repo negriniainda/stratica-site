@@ -114,6 +114,7 @@
                 <a href="#servicos" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Serviços</a>
                 <a href="#diferenciais" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Diferenciais</a>
                 <a href="#consultores" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Consultores</a>
+                <a href="strategic-assessment.html" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Assessment Estratégico</a>
                 <!-- <a href="#cases" class="text-gray-600 hover:text-red-700 transition duration-300 font-medium">Depoimentos</a> -->
                 <a href="#contato" class="bg-red-700 text-white px-4 py-2 rounded-md hover:bg-red-800 transition duration-300">Contato</a>
             </nav>
@@ -127,6 +128,7 @@
             <a href="#servicos" class="block py-2 hover:text-red-700">Serviços</a>
             <a href="#diferenciais" class="block py-2 hover:text-red-700">Diferenciais</a>
             <a href="#consultores" class="block py-2 hover:text-red-700">Consultores</a>
+            <a href="strategic-assessment.html" class="block py-2 hover:text-red-700">Assessment Estratégico</a>
             <a href="#cases" class="block py-2 hover:text-red-700">Depoimentos</a>
             <a href="#contato" class="block py-2 hover:text-red-700">Contato</a>
         </div>
@@ -140,10 +142,10 @@
                     <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Estratégia + Tática</h1>
                     <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-red-700">Powered by AI</h1>
 
-                    <p class="text-lg md:text-xl text-gray-700 max-w-xl mx-auto md:mx-0 mb-8">Otimizamos estratégias organizacionais, capital humano e processos de gestão para gerar resultados mensuráveis. Nossa metodologia integra expertise em consultoria com recursos de IA, proporcionando análises precisas e soluções eficazes a preços competitivos.</p>
+                    <p class="text-lg md:text-xl text-gray-700 max-w-xl mx-auto md:mx-0 mb-8">Transforme estratégias, pessoas e processos de gestão em resultados. Nossa metodologia integra expertise em consultoria com recursos de IA, proporcionando análises precisas e soluções eficazes a preços competitivos.</p>
                     <div class="flex flex-col gap-4 justify-center md:justify-start max-w-xl mx-auto md:mx-0">
                         <a href="#contato" class="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 text-center">Agende Uma Reunião de Diagnóstico Gratuita</a>
-                        <a href="assessment.html" class="bg-white border-2 border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 text-center">Avalie Online Sua Maturidade em Gestão de Estratégia</a>
+                        <a href="assessment.html" class="bg-white border-2 border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 text-center">Avalie Online Sua Maturidade em Gestão da Estratégia</a>
                     </div>
                 </div>
                  <div class="md:w-1/2 mt-10 md:mt-0">
@@ -221,6 +223,12 @@
                         <i data-lucide="square-kanban" class="w-10 h-10 text-red-700 mb-4"></i>
                         <h4 class="text-xl font-bold mb-2">Desenvolvimento de Lideranças</h4>
                         <p class="text-gray-600">Programas para desenvolver líderes eficazes e aumentar a produtividade de suas equipes, com foco em alinhamento, engajamento, comunicação e resultados, com apoio de ferramentas de colaboração digital e Business Intelligence.</p>
+                    </div>
+                    <!-- Card de Serviço -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <i data-lucide="globe" class="w-10 h-10 text-red-700 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Expansão Internacional (LatAm)</h4>
+                        <p class="text-gray-600">Expertise regional para desenvolvimento de estratégias para apoiar a entrada ou o crescimento de empresas estrangeiras em mercados da América Latina, incluindo o Brasil.</p>
                     </div>
                 </div>
 
@@ -826,26 +834,3 @@
 
 </body>
 </html>
-
-try {
-    const response = await fetch('http://localhost:54321/functions/v1/contact-form', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    
-    if (!response.ok) {
-        const errorText = await response.text()
-        console.error('Erro da API:', errorText)
-        throw new Error(`HTTP ${response.status}: ${errorText}`)
-    }
-    
-    const result = await response.json()
-    console.log('Sucesso:', result)
-    
-} catch (error) {
-    console.error('Erro completo:', error)
-    // Mostrar erro específico para debug
-}
